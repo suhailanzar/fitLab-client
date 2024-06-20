@@ -1,0 +1,28 @@
+<div class="flex justify-between">
+    <app-sidebar></app-sidebar>
+    <div class="p-3 w-full lg:ml-[240px] lg:mt-1 md:mt-5 ">
+
+<!-- bmi-calculator.component.html -->
+<div class="container mx-auto p-4 border w-3/4 shadow-lg">
+    <h1 class="text-2xl font-bold mb-4 text-slate-500">BMI Calculator</h1>
+    <form (ngSubmit)="calculateBMI()" #bmiForm="ngForm">
+      <div class="mb-4">
+        <label for="weight" class="block text-gray-700">Weight (kg):</label>
+        <input type="number" id="weight" name="weight" [(ngModel)]="weight" required class="mt-1 p-2 border rounded w-full ">
+      </div>
+      <div class="mb-4">
+        <label for="height" class="block text-gray-700">Height (m):</label>
+        <input type="number" id="height" name="height" [(ngModel)]="height" required class="mt-1 p-2 border rounded w-full">
+      </div>
+      <button type="submit" class="bg-blue-600 text-white p-2 rounded" [disabled]="!bmiForm.form.valid">Calculate BMI</button>
+    </form>
+    <div *ngIf="bmi" class="mt-4">
+      <h2 class="text-xl">Your BMI: {{ bmi  }}</h2>
+      <p>{{ bmiCategory }}</p>
+    </div>
+  </div>
+  
+    </div>
+</div>
+
+

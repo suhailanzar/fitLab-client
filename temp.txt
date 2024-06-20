@@ -1,0 +1,60 @@
+ <section class="flex flex-col md:flex-row justify-between bg-gray-600 items-center px-20 py-10 mt-20">
+      <h1 class="text-2xl font-bold text-gray-50">Companies who trust us</h1>
+      <div class="companies flex flex-row items-center flex-wrap justify-center">
+        <div class="my-4 mx-4">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/368px-Google_2015_logo.svg.png" class="w-28 h-auto" alt="logo company" />
+        </div>
+        <div class="my-4 mx-4">
+          <img src="http://media.corporate-ir.net/media_files/IROL/17/176060/Oct18/Amazon%20logo.PNG" class="w-28 h-auto" alt="logo company" />
+        </div>
+        <div class="my-4 mx-4">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Slack_Technologies_Logo.svg/1024px-Slack_Technologies_Logo.svg.png" class="w-28 h-auto" alt="logo company" />
+        </div>
+        <div class="my-4 mx-4">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Shopify_logo_2018.svg/800px-Shopify_logo_2018.svg.png" class="w-28 h-auto" alt="logo company" />
+        </div>
+      </div>
+    </section>
+    <section class="pt-20 dark:bg-gray-700">
+      <div class="grid grid-cols-1 md:grid-cols-2 px-8 my-2 max-w-6xl mx-auto items-center mt-10">
+        <div>
+          <h1 class="text-4xl font-bold dark:text-gray-50 text-gray-700">Payments in <span class="text-[#1a759f]">one click</span> without any hassle</h1>
+          <p class="my-8 dark:text-gray-200 text-gray-600">Get additional 40% off on your next referral. Refer a friend and earn money. Conditions apply!</p>
+          <div class="relative px-8 py-2 border rounded-3xl bg-white cursor-pointer inline-block">
+            <div class="absolute inset-0 transform translate-x-1 translate-y-2 rounded-3xl border px-8 py-2 dark:border-gray-50" style="z-index: -10"></div>
+            <a href="#" class="relative text-gray-700 font-bold hover:text-green-500 transition duration-100 transform hover:-translate-y-2 hover:-translate-x-1 dark:border-gray-50">Refer Now</a>
+          </div>
+        </div>
+  
+        <div class="relative shadow-2xl p-2 bg-gray-400 rounded-md mt-8 md:mt-0">
+          <img src="https://svgsilh.com/svg/26432.svg" class="absolute -right-10 opacity-5 -top-10 w-48 h-48 z-10" style="z-index: 20" />
+  
+          <img src="https://res.cloudinary.com/tailwindmasterkit/image/upload/v1627290155/assets/untitled-design-47png-a821832209.png" class="rounded-lg" alt="hero image" />
+        </div>
+      </div>
+  
+      <!-- Masonry with content -->
+      <div class="mt-8">
+        <div class="box-border max-w-6xl mx-auto md:masonry before:box-inherit after:box-inherit">
+          <div class="px-8 py-2 my-2 rounded-lg break-inside">
+            <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1390&q=80" alt="image here" class="rounded-lg" />
+          </div>
+          <div class="px-8 py-2 my-2 rounded-lg break-inside">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1404&q=80" alt="second image" class="rounded-lg" />
+          </div>
+          <div class="px-8 py-2 my-2 rounded-lg break-inside">
+            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1640&q=80" alt="fourth Image" class="rounded-lg" />
+          </div>
+  
+          <div class="px-8 py-2 my-6 rounded-lg break-inside">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80" alt="third image" class="rounded-lg" />
+          </div>
+          <div class="px-8 py-2 my-6 rounded-lg break-inside">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80" alt="third image" class="rounded-lg" />
+          </div>
+          <div class="px-8 py-2 my-6 rounded-lg break-inside">
+            <img src="https://images.unsplash.com/photo-1591696205602-2f950c417cb9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80" alt="third image" class="rounded-lg" />
+          </div>
+        </div>
+      </div>
+    </section>

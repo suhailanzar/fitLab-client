@@ -1,0 +1,46 @@
+<div class="flex items-center justify-between p-4 pb-0">
+  <div>
+    <img class="h-6" src="assets\logo\fitlab-high-resolution-logo-trainer.png" alt="" />
+  </div>
+  
+  <div>
+    <a [routerLink]="['/trainer/signup']" class="text-purple-600 hover:underline">Signup ?</a>
+  </div>
+</div>
+
+<div class="bg-white-100 flex min-h-screen items-center justify-center">
+  <div class="hidden items-center lg:block">
+    <img class="h-[35rem]" src="\assets\illustrations\Gym-trainer.png" alt="img" />
+  </div>
+
+  <div class="w-full max-w-md rounded-lg bg-white p-6">
+    <h2 class="text-wrap  hidden lg:block text-xl text-slate-700 pb-4	font-semibold" > TRAINER LOGIN </h2>
+
+    <h5 class="mb-4 text-sm font-light text-gray-800">login to continue</h5>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="mb-2">
+        <label for="email" class="mb-2 block font-semibold text-gray-700">Email</label>
+        <input type="email" id="email" formControlName="email" class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your email" />
+      </div>
+      <div [ngClass]="{'validation-message': loginForm!.get('email')?.invalid}" *ngIf="loginForm!.get('email')?.invalid && ((loginForm!.get('email')?.dirty || loginForm!.get('email')?.touched))">Please enter a valid email address.</div>
+
+      <div class="mb-2">
+        <label for="password" class="mb-2 block font-semibold text-gray-700">Password</label>
+        <input type="password" id="password" formControlName="password" class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your password" />
+      </div>
+      <div [ngClass]="{'validation-message': loginForm!.get('password')?.invalid}" *ngIf="loginForm!.get('password')?.invalid && ((loginForm!.get('password')?.dirty || loginForm!.get('password')?.touched))">password must be atleast 8 characters.</div>
+
+      <div class="mb-6 flex items-center justify-between">
+        <button (click)="fullvalid()" type="submit" class="bg-purple-800 w-28 rounded-lg px-4 py-2 text-white hover:bg-purple-900">Login</button>
+        <!-- <a href="#" class="text-purple-800 hover:underline">Forgot Password?</a> -->
+      </div>
+
+      <div>
+        <!-- <button class="flex w-full items-center rounded-lg border border-gray-300 bg-white px-4 py-2 font-semibold text-gray-700 shadow-md hover:bg-gray-100">
+          <img class="h-8" src="\assets\logo\7123025_logo_google_g_icon.svg" alt="" />
+          Sign in with Google
+        </button> -->
+      </div>
+    </form>
+  </div>
+</div>

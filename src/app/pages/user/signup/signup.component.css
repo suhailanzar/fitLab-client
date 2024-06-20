@@ -1,0 +1,13 @@
+
+
+.min-h-screen {
+    min-height: 60vh;
+}
+
+.validation-message {
+    color: red; /* Change the color to red */
+    margin-top: 10px; /* Add some space above the message */
+    font-size: 14px; /* Make the text slightly smaller */
+  }
+
+ 

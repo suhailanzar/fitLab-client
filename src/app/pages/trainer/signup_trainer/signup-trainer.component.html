@@ -1,0 +1,68 @@
+<div class="flex items-center justify-between p-4 pb-0">
+  <div>
+    <img class="h-6" src="assets\logo\fitlab-high-resolution-logo-trainer.png" alt="" />
+  </div>
+  <div>
+    <a [routerLink]="['/trainer/login']" class="text-purple-600 hover:underline">Already an user? Signin</a>
+  </div>
+</div>
+
+
+<div class="bg-white-100 flex min-h-screen items-center justify-center">
+  <div class="hidden lg:block">
+    <img class="h-[35rem]" src="\assets\illustrations\Workout-cuate-trainer signup.png" alt="img" />
+  </div>
+
+  <div class="w-full max-w-md rounded-lg bg-white p-8">
+    <h2 class="mb-4 text-2xl font-bold text-gray-800">Sign up</h2>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <!-- name -->
+      <div class="mb-3">
+        <label for="name" class="mb-2 block font-semibold text-gray-700">Name</label>
+        <input type="text" id="Trainername" formControlName="Trainername" class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your Name" />
+      </div>
+      <div [ngClass]="{'validation-message': signupForm!.get('Trainername')?.invalid}" *ngIf="signupForm!.get('Trainername')?.invalid && ((signupForm!.get('Trainername')?.dirty || signupForm!.get('Trainername')?.touched))">Please enter your name.</div>
+
+      <!-- email -->
+      <div class="mb-3">
+        <label for="email" class="mb-2 block font-semibold text-gray-700">Email</label>
+        <input type="email" id="email" formControlName="email" class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your email" />
+      </div>
+      <div [ngClass]="{'validation-message': signupForm!.get('email')?.invalid}" *ngIf="signupForm!.get('email')?.invalid && ((signupForm!.get('email')?.dirty || signupForm!.get('email')?.touched))">Please enter a valid email address.</div>
+      <!-- SPEC -->
+      <div class="mb-3">
+        <label for="specification" class="mb-2 block font-semibold text-gray-700">specification</label>
+        <input type="text" id="specification" formControlName="specification" class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your specification" />
+      </div>
+      <div [ngClass]="{'validation-message': signupForm!.get('specification')?.invalid}" *ngIf="signupForm!.get('specification')?.invalid && ((signupForm!.get('specification')?.dirty || signupForm!.get('specification')?.touched))">Please enter a valid specification address.</div>
+
+      <!-- password -->
+      <div class="relative mb-3">
+        <label for="password" class="mb-2 block font-semibold text-gray-700">Password</label>
+        <input type="password" id="password" formControlName="password" class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your password" />
+      </div>
+      <div [ngClass]="{'validation-message': signupForm!.get('password')?.invalid} " *ngIf="signupForm!.get('password')?.invalid && ((signupForm!.get('password')?.dirty || signupForm!.get('password')?.touched))">password must be atleast 8 characters</div>
+
+      <!-- confirm password -->
+      <div class="relative mb-2">
+        <label for="confirmpassword" class="mb-2 block font-semibold text-gray-700">confirm password</label>
+        <input type="password" id="confirmpassword" formControlName="confirmPassword" class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Renter your password" />
+      </div>
+      <!-- Validation Message -->
+      <div class="mb-2" [ngClass]="{'validation-message': signupForm!.get('confirmPassword')?.invalid}" *ngIf="signupForm.errors && signupForm.errors['confirmedValidator']">{{ signupForm.errors['confirmedValidator'] }}</div>
+
+      <!-- submit button -->
+      <div class="mb-2 flex justify-center">
+        <button type="submit" (click)="fullvalid()" class="w-28 rounded-lg bg-purple-800 px-4 py-2 text-white hover:bg-purple-900">Get OTP</button>
+      </div>
+
+      <!-- google auth button -->
+    </form>
+    <!-- <div>
+      <button class="flex w-full items-center rounded-lg border border-gray-300 bg-white px-4 py-2 font-semibold text-gray-700 shadow-md hover:bg-gray-100">
+        <img class="h-8" src="\assets\logo\7123025_logo_google_g_icon.svg" alt="" />
+        Sign in with Google
+      </button>
+    </div> -->
+  </div>
+</div>

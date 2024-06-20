@@ -1,0 +1,22 @@
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities {
+    @variants responsive {
+      .masonry {
+        column-gap: 0.1em;
+        column-count: 3;
+      }
+      .break-inside {
+        break-inside: avoid;
+      }
+    }
+  }
+
+

@@ -1,0 +1,37 @@
+.reqbutton {
+    padding: 15px 25px;
+    border: unset;
+    border-radius: 8px;
+    color: hsl(0, 0%, 13%);
+    z-index: 1;
+    background: #e8e8e8;
+    position: relative;
+    font-size: 17px;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms;
+    overflow: hidden;
+   }
+   
+   .reqbutton::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    border-radius: 8px;
+    background-color: #152a52;
+    z-index: -1;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms
+   }
+   
+   .reqbutton:hover {
+    color: #e8e8e8;
+   }
+   
+   .reqbutton:hover::before {
+    width: 100%;
+   }

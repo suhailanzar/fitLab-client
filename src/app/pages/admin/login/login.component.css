@@ -1,0 +1,11 @@
+body{
+    background-image:url("/assets/illustrations/Running-bro.png") ;
+    background-size :contain;
+
+
+}
+.validation-message {
+    color: red; /* Change the color to red */
+    margin-top: 10px; /* Add some space above the message */
+    font-size: 14px; /* Make the text slightly smaller */
+  }

@@ -1,0 +1,137 @@
+<div class="flex justify-between">
+    <app-sidebar></app-sidebar>
+    <div class="p-3 w-full lg:ml-[240px] lg:mt-1 md:mt-5 ">
+
+
+        <div class="flex-grow flex flex-col items-center">
+            <div class=" overflow-auto  md:w-5 lg:w-5">
+                <div class="container mx-auto py-3 px-3">
+                    <div class="col-span-12 md:col-span-12 lg:col-span-12">
+                        <div class="bg-white  shadow-2xl rounded-lg p-6">
+                            <div class="flex flex-col items-center">
+                                <img src="{{profile.image}}" class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0">
+                                <h1 class="text-xl font-bold">{{profile.trainername}}</h1>
+                                <div class="mt-6 flex flex-wrap gap-4 justify-center">
+                                    <a class="bg-cyan-900 hover:bg-cyan-800 text-white py-2 px-4 rounded"
+                                        (click)="showDialog()">Edit</a>
+                                </div>
+                            </div>
+                            <hr class="my-6 border-t border-gray-300">
+
+                            <div class="flex justify-center">
+                                <div>
+                                    <ul class="">
+                                        <li class="mb-2">Specification : {{profile.specification}}</li>
+                                        <li class="mb-2">email : {{profile.email}}</li>
+                                        <li class="mb-2">Phone :{{profile.phone}} </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+<p-dialog header="Header" [(visible)]="visible" [modal]="true" [style]="{ width: '25rem' }">
+
+    <ng-template pTemplate="header">
+
+
+        <div class="inline-flex align-items-center justify-content-center gap-2">
+
+            <p-avatar image="{{profile.image}}" shape="circle" />
+
+            <span class="font-bold white-space-nowrap">
+                {{profile.trainername}}
+            </span>
+        </div>
+    </ng-template>
+    <span class="p-text-secondary block mb-5">Update your Profile</span>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div class="flex flex-col gap-3 mb-3">
+
+
+            <div class="flex items-center gap-3">
+                <label for="image" class="font-semibold w-24">Image :</label>
+
+                <label class="block">
+                    <span class="sr-only">Choose file</span>
+                    <input (change)="onFileChange($event)" type="file" class="block w-full text-sm text-gray-500
+                    file:mr-4 file:py-2 file:px-4
+                    file:rounded-full file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-blue-50 file:text-blue-700
+                    hover:file:bg-blue-100
+                    " />
+                </label>
+
+            </div>
+           
+           
+                <div [ngClass]="{'validation-message': form!.get('image')?.invalid}" *ngIf="form.get('image')?.errors?.['invalidFileType']" class="error-message">
+                    Invalid file type. Please select a JPEG, PNG, or GIF file.
+                  </div>
+                  <div [ngClass]="{'validation-message': form!.get('image')?.invalid}" *ngIf="form.get('image')?.errors?.['fileTooLarge']" class="error-message">
+                    File size is too large. Maximum allowed size is 1MB.
+                  </div>
+
+
+
+            <div class="flex items-center gap-3">
+                <label for="trainername" class="font-semibold w-24">Name :</label>
+                <input type="text" [(ngModel)]="profile.trainername" id="trainername" formControlName="trainername"
+                    class="flex-1 border border-slate-400" autocomplete="off" />
+
+            </div>
+            <div [ngClass]="{'validation-message': form!.get('trainername')?.invalid}"
+                *ngIf="form!.get('trainername')?.invalid && ((form!.get('trainername')?.dirty || form!.get('trainername')?.touched))">
+                Please enter your Name.</div>
+
+
+
+            <div class="flex items-center gap-3">
+                <label for="specification" class="font-semibold w-24">Specification:</label>
+                <input type="text" [(ngModel)]="profile.specification" id="specification"
+                    formControlName="specification" class="flex-1 border border-slate-400" autocomplete="off" />
+
+            </div>
+            <div [ngClass]="{'validation-message': form!.get('specification')?.invalid}"
+                *ngIf="form!.get('specification')?.invalid && ((form!.get('specification')?.dirty || form!.get('specification')?.touched))">
+                Please enter your Specification</div>
+
+            <div class="flex items-center gap-3">
+                <label for="phone" class="font-semibold w-24">phone :</label>
+                <input type="number" id="phone" [(ngModel)]="profile.phone" formControlName="phone"
+                    class="flex-1 border border-slate-400" autocomplete="off" />
+
+            </div>
+            <div [ngClass]="{'validation-message': form!.get('phone')?.invalid}"
+                *ngIf="form!.get('phone')?.invalid && ((form!.get('phone')?.dirty || form!.get('phone')?.touched))">
+                Please enter your phone.</div>
+
+
+        </div>
+
+
+        <div>
+            <p-button label="Save" type="submit" [outlined]="true" severity="secondary"
+                class="border border-slate-400 px-2 rounded" (click)="fullvalid()" />
+
+        </div>
+
+
+
+    </form>
+
+
+</p-dialog>

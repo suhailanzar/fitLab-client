@@ -1,0 +1,92 @@
+<div class="p-4 pb-0 flex items-center justify-between">
+  <div>
+    <img class="h-6" src="assets\logo\fitlab-high-resolution-logo-transparent.png" alt="">
+  </div>
+  <div>
+    <a [routerLink]="['/login']" class="text-blue-500 hover:underline">Already an user? Signin</a>
+  </div>
+</div>
+
+<p-toast />
+
+  <div class="min-h-screen flex items-center justify-center bg-white-100">
+
+  <div class="hidden lg:block ">
+    <img class="h-[35rem]" src="\assets\illustrations\Fitness tracker-bro.png" alt="img">
+  </div>
+
+  <div class="bg-white p-8 rounded-lg  w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-4 text-gray-800">Sign up</h2>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+
+      <!-- name -->
+      <div class="mb-3">
+        <label for="name" class="block text-gray-700 font-semibold mb-2">Name</label>
+        <input type="text" id="username" formControlName="username"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter your Name">
+      </div>
+      <div [ngClass]="{'validation-message': signupForm!.get('username')?.invalid}"
+        *ngIf="signupForm!.get('username')?.invalid && ((signupForm!.get('username')?.dirty || signupForm!.get('username')?.touched))">
+        Please enter your name.
+      </div>
+
+      <!-- email -->
+      <div class="mb-3">
+        <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+        <input type="email" id="email" formControlName="email"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter your email">
+      </div>
+      <div [ngClass]="{'validation-message': signupForm!.get('email')?.invalid}"
+        *ngIf="signupForm!.get('email')?.invalid && ((signupForm!.get('email')?.dirty || signupForm!.get('email')?.touched))">
+        Please enter a valid email address.
+      </div>
+
+      <!-- password -->
+      <div class="mb-3 relative">
+        <label for="password" class="block text-gray-700 font-semibold mb-2">Password</label>
+        <input type="password" id="password" formControlName="password"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter your password">
+      </div>
+      <div [ngClass]="{'validation-message': signupForm!.get('password')?.invalid} "
+        *ngIf="signupForm!.get('password')?.invalid && ((signupForm!.get('password')?.dirty || signupForm!.get('password')?.touched))">
+        password must be atleast 8 characters
+      </div>
+
+      <!-- confirm password -->
+      <div class="mb-2 relative">
+        <label for="confirmpassword" class="block text-gray-700 font-semibold mb-2">confirm password</label>
+        <input type="password" id="confirmpassword" formControlName="confirmPassword"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Renter your password">
+      </div>
+      <!-- Validation Message -->
+      <div class="mb-2" [ngClass]="{'validation-message': signupForm!.get('confirmPassword')?.invalid}"
+       *ngIf="signupForm.errors && signupForm.errors['confirmedValidator']">
+        {{ signupForm.errors['confirmedValidator'] }}
+      </div>
+      
+
+      <!-- submit button -->  
+      <div class="flex justify-center	 mb-2">
+
+        <button type="submit"  
+        (click)="fullvalid()"
+        class="bg-blue-800 text-white w-28 px-4 py-2 rounded-lg hover:bg-blue-900">Get
+          OTP</button>
+      </div>
+
+      <!-- google auth button -->
+     
+    </form>
+    <div>
+      <!-- <button
+        class="bg-white w-full text-gray-700 font-semibold py-2 px-4 border border-gray-300 rounded-lg shadow-md hover:bg-gray-100 flex items-center">
+        <img class="h-8" src="\assets\logo\7123025_logo_google_g_icon.svg" alt="">
+        Sign in with Google
+      </button> -->
+    </div>
+  </div>
+</div>

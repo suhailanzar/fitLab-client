@@ -1,0 +1,12 @@
+.maindiv{
+    height: 85%;
+}
+
+body {
+    overflow: hidden;
+  }
+
+  .validation-message{
+    color: red;
+    font-size: small;
+  }

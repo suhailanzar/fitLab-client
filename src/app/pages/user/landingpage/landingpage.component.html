@@ -1,0 +1,95 @@
+<main class="relative antialiased bg-white dark:bg-[#25292A] z-0 overflow-hidden">
+  <p-toast />
+
+    <!-- Blobs -->
+    <div class="absolute hidden md:block -left-40 -top-40 text-gray-100 dark:text-gray-600" style="z-index:-20">
+      <svg id="visual" viewBox="0 0 900 900" width="600" height="600" xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <g transform="translate(423.6017287294153 429.411998482734)"><path d="M164.8 -274.6C221 -253 278.9 -223.8 345.5 -176.7C412.1 -129.7 487.3 -64.8 476.3 -6.3C465.4 52.2 368.2 104.3 297.9 144.9C227.6 185.5 184.1 214.6 138.9 253C93.8 291.4 46.9 339.2 -6.9 351.1C-60.7 363.1 -121.3 339.2 -194.4 316.8C-267.4 294.5 -352.8 273.7 -394 221.2C-435.1 168.7 -432.1 84.3 -400.9 18C-369.7 -48.3 -310.4 -96.7 -267.6 -146.3C-224.8 -196 -198.4 -246.9 -156.5 -276.8C-114.7 -306.6 -57.3 -315.3 -1.5 -312.7C54.3 -310.1 108.7 -296.2 164.8 -274.6" fill="currentColor"></path></g>
+      </svg>
+    </div>
+    <nav class="flex flex-row items-center justify-between px-4 md:px-20 py-10">
+      <!-- Small little logo :) -->
+      <div class="relative flex flex-row space-x-1 items-center">
+       
+            <img class="h-6" src="assets\logo\fitlab-high-resolution-logo-transparent.png" alt="">
+       
+      </div>
+      <div class="flex flex-row items-center space-x-8 ">
+        <a href="#" class="hidden md:block font-semibold text-gray-500 hover:text-green-500 transition duration-100 dark:text-gray-200">Home</a>
+        
+        <div class="relative px-8 py-2 border border-gray-800 rounded-3xl bg-white dark:border-gray-50">
+          <a  [routerLink]="['/login']" class="relative text-gray-700 font-light hover:text-green-500 transition duration-100 transform hover:-translate-y-2 hover:-translate-x-1">Login</a>
+        </div>
+      </div>
+    </nav>
+  
+
+    <header class="mt-4 md:mt-20 flex flex-col md:flex-row space-x-2 px-4 md:px-20">
+      <!-- Text container -->
+      <div class="w-full md:w-1/2">
+        <h1 class="text-2xl md:text-4xl lg:text-6xl font-semibold	 text-gray-800 dark:text-gray-50">Transform Your Life, One Workout at a Time.<span class="font-thin tracking-wider"></span></h1>
+        <p class="my-10 text-gray-800 font-light max-w-xl dark:text-gray-200">Achieve your fitness     <p-button pRipple (click)="show()" label="goals" />
+          with our comprehensive app. Track workouts, monitor progress, and get personalized training plans to stay motivated and healthy</p>
+        <div class="relative px-8 py-2 border rounded-3xl bg-white cursor-pointer inline-block">
+          <div class="absolute inset-0 transform translate-x-1 translate-y-2 rounded-3xl border px-8 py-2" style="z-index: -10"></div>
+          <a [routerLink]="['/signup']" class="relative text-gray-700 font-bold hover:text-green-500 transition duration-100 transform hover:-translate-y-2 hover:-translate-x-1">Create Account</a>
+
+        </div>
+
+      </div>
+  
+      <!-- Image container -->
+      <div class="hidden md:block w-full md:w-1/6" style="perspective: 800px;">
+        <div class="img-container rounded-xl overflow-hidden p-2 bg-white transform shadow-2xl ">
+          <img class="rounded-lg " src="assets/illustrations/Running-bro.png" alt="img-container" />
+        </div>
+      </div>
+    </header>
+
+
+    <!-- Companies -->
+   
+    <!-- footer -->
+    <div class="py-6 flex flex-col justify-center sm:py-12 mt-4 dark:bg-[#25292A]">
+      <div class="h-90 rounded-xl ">
+        <!-- Menus -->
+        <div class="md:flex justify-around">
+          <!-- Left logo + button -->
+  
+          <!-- Menus -->
+          <div class="py-5 md:py-0">
+            <h4 class="font-bold text-blue-700 mb-2 px-2">Explore</h4>
+            <ul class="text-gray-600">
+              <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">Free tutorials</li>
+              <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">Payments</li>
+              <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">Referrals</li>
+              <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">Open Source</li>
+            </ul>
+          </div>
+          <div class="py-5 md:py-0">
+            <h4 class="font-bold text-blue-700 mb-2 px-2">Site</h4>
+            <ul class="text-gray-600">
+              <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">License</li>
+              <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">Articles</li>
+              <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">About</li>
+              <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">Support</li>
+            </ul>
+          </div>
+          <div class="py-5 md:py-0">
+            <h4 class="font-bold text-blue-700 mb-2 px-2">Follow Us</h4>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+        <!-- below footer -->
+        <div class="flex justify-between items-end px-12 md:px-32 py-8 text-gray-500">
+          <div>Legal</div>
+          <div>© 2021 AcePay. All Rights Reserved.</div>
+          <div class="hidden md:block">
+            <p class="font-bold tracking-tighter text-xl">1384</p>
+            <p>Cr. funds transferred</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
