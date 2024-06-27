@@ -1,5 +1,4 @@
 <main class="relative antialiased bg-white dark:bg-[#25292A] z-0 overflow-hidden">
-  <p-toast />
 
     <!-- Blobs -->
     <div class="absolute hidden md:block -left-40 -top-40 text-gray-100 dark:text-gray-600" style="z-index:-20">
@@ -15,7 +14,7 @@
        
       </div>
       <div class="flex flex-row items-center space-x-8 ">
-        <a href="#" class="hidden md:block font-semibold text-gray-500 hover:text-green-500 transition duration-100 dark:text-gray-200">Home</a>
+        <a [routerLink]="['/trainer/login']" class="hidden md:block font-semibold text-gray-500 hover:text-green-500 transition duration-100 dark:text-gray-200">Trainer</a>
         
         <div class="relative px-8 py-2 border border-gray-800 rounded-3xl bg-white dark:border-gray-50">
           <a  [routerLink]="['/login']" class="relative text-gray-700 font-light hover:text-green-500 transition duration-100 transform hover:-translate-y-2 hover:-translate-x-1">Login</a>
@@ -30,9 +29,12 @@
         <h1 class="text-2xl md:text-4xl lg:text-6xl font-semibold	 text-gray-800 dark:text-gray-50">Transform Your Life, One Workout at a Time.<span class="font-thin tracking-wider"></span></h1>
         <p class="my-10 text-gray-800 font-light max-w-xl dark:text-gray-200">Achieve your fitness     <p-button pRipple (click)="show()" label="goals" />
           with our comprehensive app. Track workouts, monitor progress, and get personalized training plans to stay motivated and healthy</p>
-        <div class="relative px-8 py-2 border rounded-3xl bg-white cursor-pointer inline-block">
-          <div class="absolute inset-0 transform translate-x-1 translate-y-2 rounded-3xl border px-8 py-2" style="z-index: -10"></div>
-          <a [routerLink]="['/signup']" class="relative text-gray-700 font-bold hover:text-green-500 transition duration-100 transform hover:-translate-y-2 hover:-translate-x-1">Create Account</a>
+        <div class="   px-8 py-2 border rounded-3xl bg-white cursor-pointer inline-block">
+          
+          <div>
+            <a [routerLink]="['/signup']" class="relative text-gray-700 font-bold hover:text-green-500 transition duration-100 transform hover:-translate-y-2 hover:-translate-x-1">Create Account</a>
+
+          </div>
 
         </div>
 
@@ -58,7 +60,7 @@
   
           <!-- Menus -->
           <div class="py-5 md:py-0">
-            <h4 class="font-bold text-blue-700 mb-2 px-2">Explore</h4>
+            <h4 class="font-bold text-slate-500 mb-2 px-2">Explore</h4>
             <ul class="text-gray-600">
               <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">Free tutorials</li>
               <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">Payments</li>
@@ -67,7 +69,7 @@
             </ul>
           </div>
           <div class="py-5 md:py-0">
-            <h4 class="font-bold text-blue-700 mb-2 px-2">Site</h4>
+            <h4 class="font-bold text-slate-500 mb-2 px-2">Site</h4>
             <ul class="text-gray-600">
               <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">License</li>
               <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">Articles</li>
@@ -76,17 +78,21 @@
             </ul>
           </div>
           <div class="py-5 md:py-0">
-            <h4 class="font-bold text-blue-700 mb-2 px-2">Follow Us</h4>
-            <div></div>
-            <div></div>
+            <h4 class="font-bold text-slate-500 mb-2 px-2">Follow Us</h4>
+            <ul class="text-gray-600">
+              <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">Instagram</li>
+              <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">Twitter</li>
+              <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">Facebook</li>
+              <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">LinkedIn</li>
+            </ul>
           </div>
         </div>
         <!-- below footer -->
         <div class="flex justify-between items-end px-12 md:px-32 py-8 text-gray-500">
           <div>Legal</div>
-          <div>© 2021 AcePay. All Rights Reserved.</div>
+          <div>© 2024 FitLab All Rights Reserved.</div>
           <div class="hidden md:block">
-            <p class="font-bold tracking-tighter text-xl">1384</p>
+            <p class="font-bold tracking-tighter text-xl">369</p>
             <p>Cr. funds transferred</p>
           </div>
         </div>

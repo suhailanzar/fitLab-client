@@ -11,7 +11,7 @@ import { TrianerOtpComponent } from './pages/trainer/otp-trainer/otp-trainer.com
 import { adminLoginComponent } from './pages/admin/login/login.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { TrainersComponent } from './pages/admin/trainers/trainers.component';
-import { TrainerDetailsComponent } from './pages/admin/trainer-details/trainer-details.component';
+import { TrainerDetailsComponentUser } from './pages/user/trainer-details/trainer-details.component';
 import { TrainersComponentuser } from './pages/user/trainers/trainers.component';
 import { PagenotfoundComponent } from './shared/pagenotfound/pagenotfound.component'
 import { RequestsComponent } from './pages/admin/requests/requests.component';
@@ -19,6 +19,9 @@ import { ProfileComponent } from './pages/trainer/profile/profile.component';
 import { TrainerAuthGuardService } from './core/guards/trainerAuth.guard';
 import { userAuthGuardService } from './core/guards/userAuth.guard';
 import { adminAuthGuardService } from './core/guards/adminAuth.guard';
+import { SlotsComponent } from './pages/trainer/slots/slots.component';
+import { TrainerDetailsComponent } from './pages/admin/trainer-details/trainer-details.component';
+import { UserProfileComponent } from './pages/user/profile/profile.component';
 
 
 
@@ -33,12 +36,16 @@ const routes: Routes = [
   {path:"otp",component:OtpComponent},
   {path:"userhome",component:HomepageComponent,canActivate: [userAuthGuardService]},
   {path:"trainers",component:TrainersComponentuser,canActivate: [userAuthGuardService]},
+  {path:"trainersdetails",component:TrainerDetailsComponentUser,canActivate: [userAuthGuardService]},
+  {path:"profile",component:UserProfileComponent,canActivate: [userAuthGuardService]},
 
   // trainer routes
   {path:"trainer/login",component:trainerLoginComponent},
   {path:"trainer/signup",component:trainerSignupComponent},
   {path:"trainer/otp",component:TrianerOtpComponent},
   {path:"trainer/profile",component:ProfileComponent,canActivate: [TrainerAuthGuardService]},
+  {path:"trainer/slot",component:SlotsComponent,canActivate: [TrainerAuthGuardService]},
+
   // admin routes
   {path:"admin/login",component:adminLoginComponent},
   {path:"admin/dashboard",component:DashboardComponent,canActivate: [adminAuthGuardService]},

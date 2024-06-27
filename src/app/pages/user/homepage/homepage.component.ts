@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , Input  } from '@angular/core';
 
 @Component({
   selector: 'app-homepage',
@@ -7,11 +7,16 @@ import { Component } from '@angular/core';
 })
 export class HomepageComponent {
 
+  
+  images: string[] = [
+    'assets/illustrations/Running-bro.png', 'assets/illustrations/admin-work.png', 'assets/illustrations/Gym-trainer.png'
+  ];
+  interval: number = 4000; 
+
+  currentSlide = 0;
+  private timer: any;
   isSidebarOpen = false;
 
-  toggleSidebar() {
-    this.isSidebarOpen = !this.isSidebarOpen;
-  }
 
 
   weight!: number ;
@@ -38,4 +43,47 @@ export class HomepageComponent {
     }
   }
 
+
+
+  ngOnInit() {
+    this.startTimer();
+  }
+
+  ngOnDestroy() {
+    this.stopTimer();
+  }
+
+  startTimer() {
+    this.timer = setInterval(() => {
+      this.nextSlide();
+    }, this.interval);
+  }
+
+  stopTimer() {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+  }
+
+  prevSlide() {
+    this.resetTimer();
+    this.currentSlide = (this.currentSlide - 1 + this.images.length) % this.images.length;
+  }
+
+  nextSlide() {
+    this.resetTimer();
+    this.currentSlide = (this.currentSlide + 1) % this.images.length;
+  }
+
+  setSlide(index: number) {
+    this.resetTimer();
+    this.currentSlide = index;
+  }
+
+  resetTimer() {
+    this.stopTimer();
+    this.startTimer();
+  }
+
+ 
 }

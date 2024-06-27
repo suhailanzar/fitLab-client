@@ -8,3 +8,14 @@ export interface User {
     height: number
     createdAt:  Date
   }
+
+
+
+  export interface Payment {
+    razorpayPaymentId: string;
+    amount: number;
+    currency: string;
+    email: string;
+    slotid: string;
+    trainerid: string;
+  }

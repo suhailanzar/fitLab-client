@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'; 
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -31,7 +32,7 @@ import { AvatarModule } from 'primeng/avatar';
 
 
 import { CommonModule } from '@angular/common';
-import { sharedAppModule } from './shared.module';
+import { sharedAppModule } from '../custom_modules/shared.module';
 import { ClientDetailsComponent } from '../../pages/trainer/client-details/client-details.component';
 import { AddCourseComponent } from '../../pages/trainer/add-course/add-course.component';
 import { EditCourseComponent } from '../../pages/trainer/edit-course/edit-course.component';
@@ -71,7 +72,7 @@ import { ResetPasswordComponent } from '../../pages/trainer/reset-password/reset
     FileUploadModule,
     AvatarModule,
     sharedAppModule,
-   
+    FormsModule
 
     ],
     providers: [MessageService ],

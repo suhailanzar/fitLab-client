@@ -5,6 +5,7 @@ import { Injectable } from "@angular/core";
 import { Trainer } from "../models/trainer";
 import { Observable, of } from "rxjs";
 import { environment } from "../../../env/environment";
+import { Slot } from "../models/trainer";
 
 const BASE_URL = environment.BASE_URL
 
@@ -27,9 +28,7 @@ export class trainerService {
     }
 
   
-    otpcheck(data: Number): Observable<any> {
-        console.log('data  from front end o',data);
-        
+    otpcheck(data: Number): Observable<any> {        
         return this.http.post(`${BASE_URL}trainer/otp`, data);
     }
 
@@ -47,6 +46,16 @@ export class trainerService {
     getprofile(): Observable<any> {
         
         return this.http.get(`${BASE_URL}trainer/getprofile`)
+    }
+
+    addSlot(data:Slot): Observable<any> {
+        
+        return this.http.post(`${BASE_URL}trainer/addslot`,data)
+    }
+
+    getslots(): Observable<any> {
+        
+        return this.http.get(`${BASE_URL}trainer/getslots`)
     }
 
 

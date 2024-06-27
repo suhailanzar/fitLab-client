@@ -8,26 +8,37 @@ import { HomepageComponent } from '../../pages/user/homepage/homepage.component'
 import { LandingpageComponent } from '../../pages/user/landingpage/landingpage.component';
 import { SidebarComponent } from '../../pages/user/sidebarReusableuser/sidebar.component';
 import { TrainersComponentuser } from '../../pages/user/trainers/trainers.component';
+
+
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { MessagesModule } from 'primeng/messages';
-import { OtpComponent } from '../../pages/user/otp/otp.component';
-import { sharedAppModule } from './shared.module';
-import { CoursesComponent } from '../../pages/user/courses/courses.component';
-import { ProfileComponent } from '../../pages/user/profile/profile.component';
-import { CartComponent } from '../../pages/user/cart/cart.component';
-import { ReportsComponent } from '../../pages/user/reports/reports.component';
-import { DietPlansComponent } from '../../pages/user/diet-plans/diet-plans.component';
-import { TrainerDetailsComponent } from '../../pages/user/trainer-details/trainer-details.component';
-import { BookSlotComponent } from '../../pages/user/book-slot/book-slot.component';
-import { SubscriptionComponent } from '../../pages/user/subscription/subscription.component';
 import { CardModule } from 'primeng/card';
 import { DataViewModule } from 'primeng/dataview';
 import { TagModule } from 'primeng/tag';
 import { RatingModule } from 'primeng/rating';
+import { CarouselModule } from 'primeng/carousel';
+
+
+import { OtpComponent } from '../../pages/user/otp/otp.component';
+import { sharedAppModule } from '../custom_modules/shared.module';
+import { CoursesComponent } from '../../pages/user/courses/courses.component';
+import { UserProfileComponent } from '../../pages/user/profile/profile.component';
+import { CartComponent } from '../../pages/user/cart/cart.component';
+import { ReportsComponent } from '../../pages/user/reports/reports.component';
+import { DietPlansComponent } from '../../pages/user/diet-plans/diet-plans.component';
+import { TrainerDetailsComponentUser } from '../../pages/user/trainer-details/trainer-details.component';
+import { BookSlotComponent } from '../../pages/user/book-slot/book-slot.component';
+import { SubscriptionComponent } from '../../pages/user/subscription/subscription.component';
+import { IstPipe } from '../../core/pipes/ist.pipe';
+import { NgxPayPalModule } from 'ngx-paypal';
+import { AvailableSlotsPipe } from '../../core/pipes/available-slots.pipe';
+
 
 @NgModule({
     declarations: [
@@ -39,13 +50,15 @@ import { RatingModule } from 'primeng/rating';
         SidebarComponent,
         TrainersComponentuser,
         CoursesComponent,
-        ProfileComponent,
+        UserProfileComponent,
         CartComponent,
         DietPlansComponent,
         ReportsComponent,
-        TrainerDetailsComponent,
+        TrainerDetailsComponentUser,
         BookSlotComponent,
         SubscriptionComponent,
+        IstPipe,
+        AvailableSlotsPipe
     ],
     imports: [
         HttpClientModule,
@@ -57,11 +70,14 @@ import { RatingModule } from 'primeng/rating';
         BrowserAnimationsModule,
         MessagesModule,
         CardModule,
+        CarouselModule,
         sharedAppModule,
         DataViewModule,
         TagModule,
         RatingModule,
-        FormsModule
+        FormsModule,
+        DialogModule,
+        NgxPayPalModule
         
     ],
     providers: [MessageService],

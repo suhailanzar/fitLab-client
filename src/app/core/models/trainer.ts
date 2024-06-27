@@ -8,7 +8,18 @@ export interface Trainer {
   phone:number
   image:string
   availibilty:boolean
-  availableslots:string[]
+  availableslots:Slot[]
   _id:string
 
+  }
+
+
+
+  export interface Slot {
+    _id:string,
+    date: string;
+    startTime: string;
+    price:number;
+    status:boolean;
+  
   }

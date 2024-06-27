@@ -1,102 +1,174 @@
-<div class="flex justify-between">
-    <app-sidebar></app-sidebar>
-    <div class="p-3 w-full lg:ml-[240px] lg:mt-1 md:mt-5 ">
+<app-sidebar></app-sidebar>
+<div class="p-3 w-full  lg:mt-1 md:mt-5 ">
 
-        <div class="  overflow-auto h-full">
+  <div class="  overflow-auto h-full">
 
-            <div class="mb-3">
-                <form class="flex items-center max-w-sm mx-auto">
-                    <label for="simple-search" class="sr-only">Search</label>
-                    <div class="relative w-full">
-                        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                            <svg class=" h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2" />
-                            </svg>
-                        </div>
-                        <input type="text" id="simple-search"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Search Trainers..." required [formControl]="searchControl" />
-                    </div>
-                </form>
+    <div class="relative mb-3">
+      <form class="flex items-center max-w-sm mx-auto">
+        <label for="simple-search" class="sr-only">Search</label>
+        <div class="relative w-full">
+          <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <svg class=" h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              fill="none" viewBox="0 0 18 20">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2" />
+            </svg>
+          </div>
+          <input type="text" id="simple-search"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Search Trainers..." required [formControl]="searchControl" />
+        </div>
+      </form>
 
-                <div *ngIf="results.length > 0" class="max-w-sm mx-auto mt-2 bg-white rounded-md shadow-md z-50">
-                    <ul class="divide-y divide-gray-200">
-                        <li *ngFor="let result of results" class="p-2 hover:bg-gray-100 cursor-pointer" (click)="selectTrainer(result)">
-                            {{ result }}
-                        </li>
-                    </ul>
-                </div>
-                <div *ngIf="!selectedTrainer &&  hasTypedQuery &&  results.length === 0" class="max-w-sm mx-auto mt-2 text-center">
-                    No results found.
-                </div>
+      <div *ngIf="results.length > 0"
+        class="absolute  left-0 right-0 top-full  max-w-sm mx-auto mt-2 bg-white rounded-md shadow-md z-50">
+        <ul class="divide-y divide-gray-200">
+          <li *ngFor="let result of results" class="p-2 hover:bg-gray-100 cursor-pointer"
+            (click)="selectTrainer(result)">
+            {{ result }}
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="!selectedTrainer &&  hasTypedQuery &&  results.length === 0"
+        class="max-w-sm mx-auto mt-2 text-center">
+        No results found.
+      </div>
+    </div>
+
+
+
+    <div class="card">
+      <ng-container *ngIf="selectedTrainer">
+        <!-- Display selected trainer details -->
+        <div class="flex flex-column sm:flex-row sm:align-items-center p-4 gap-3 hover:bg-violet-100 ">
+          <div class="md:w-10rem relative hover:cursor-pointer"
+            [routerLink]="['/trainersdetails', selectedTrainer._id]">
+            <img class="block xl:block mx-auto border-round  h-16 w-8"
+              [src]="selectedTrainer.image && selectedTrainer.image.trim() !== '' ? selectedTrainer.image : 'assets/img/no-dp.png'" />
+          </div>
+          <div class="flex flex-column md:flex-row justify-content-between md:align-items-center flex-1 gap-4">
+            <div
+              class="flex flex-row md:flex-column justify-content-between align-items-start gap-2 hover:cursor-pointer "
+              [routerLink]="['/trainersdetails', selectedTrainer._id]">
+              <div>
+                <span class="font-medium text-secondary text-sm">{{ selectedTrainer.trainername }}</span>
+                <div class="text-lg font-medium text-900 mt-2">{{ selectedTrainer.specification }}</div>
+              </div>
             </div>
+            <div class="flex flex-column md:align-items-end gap-5">
+              <div class="flex flex-row-reverse md:flex-row gap-2">
+                <button class="button2 px-2 py-1" (click)="openslot(selectedTrainer._id)">Book Slot</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="!selectedTrainer">
+        <!-- Display all trainers -->
+        <p-dataView #dv [value]="trainers">
+          <ng-template pTemplate="list" let-trainers>
+            <div class="grid grid-nogutter ">
+              <div class="col-12" *ngFor="let trainer of trainers; let first = first" class="col-12">
+                <div class="flex flex-column sm:flex-row sm:align-items-center p-4 gap-3 hover:bg-violet-100"
+                  [ngClass]="{ 'border-top-1 surface-border': !first }">
+
+                  <div class="md:w-10rem relative hover:cursor-pointer"
+                    [routerLink]="['/trainersdetails', trainer._id]">
+                    <img class="block xl:block mx-auto border-round  h-16 w-8"
+                      [src]="trainer.image && trainer.image.trim() !== '' ? trainer.image : 'assets/img/no-dp.png'" />
+                  </div>
 
 
-
-            <div class="card">
-                <ng-container *ngIf="selectedTrainer">
-                  <!-- Display selected trainer details -->
-                  <div class="flex flex-column sm:flex-row sm:align-items-center p-4 gap-3">
-                    <div class="md:w-10rem relative">
-                      <img class="block xl:block mx-auto border-round w-full h-28"
-                        [src]="selectedTrainer.image && selectedTrainer.image.trim() !== '' ? selectedTrainer.image : 'assets/img/no-dp.png'" />
-                    </div>
-                    <div class="flex flex-column md:flex-row justify-content-between md:align-items-center flex-1 gap-4">
-                      <div class="flex flex-row md:flex-column justify-content-between align-items-start gap-2">
-                        <div>
-                          <span class="font-medium text-secondary text-sm">{{ selectedTrainer.trainername }}</span>
-                          <div class="text-lg font-medium text-900 mt-2">{{ selectedTrainer.specification }}</div>
-                        </div>
+                  <div class="flex flex-column md:flex-row justify-content-between md:align-items-center flex-1 gap-4">
+                    <div [routerLink]="['/trainersdetails', trainer._id]"
+                      class="hover:cursor-pointer flex flex-row md:flex-column justify-content-between align-items-start gap-2">
+                      <div>
+                        <span class="font-medium text-secondary text-sm">{{ trainer.trainername }}</span>
+                        <div class="text-lg font-medium text-900 mt-2">{{ trainer.specification }}</div>
                       </div>
-                      <div class="flex flex-column md:align-items-end gap-5">
-                        <div class="flex flex-row-reverse md:flex-row gap-2">
-                          <button class="button2">Book Slot</button>
-                        </div>
+                    </div>
+
+                    <div class="flex flex-column md:align-items-end gap-5">
+                      <div class="flex justify-between align-items-center md:flex-row gap-2">
+                        <p class="px-3"></p>
+                        <button class="button2 px-2 py-1 " (click)="openslot(trainer._id)">Book Slot</button>
                       </div>
                     </div>
                   </div>
-                </ng-container>
-              
-                <ng-container *ngIf="!selectedTrainer">
-                  <!-- Display all trainers -->
-                  <p-dataView #dv [value]="trainers">
-                    <ng-template pTemplate="list" let-trainers>
-                      <div class="grid grid-nogutter">
-                        <div class="col-12" *ngFor="let trainer of trainers; let first = first" class="col-12">
-                          <div class="flex flex-column sm:flex-row sm:align-items-center p-4 gap-3"
-                            [ngClass]="{ 'border-top-1 surface-border': !first }">
-                            <div class="md:w-10rem relative">
-                              <img class="block xl:block mx-auto border-round w-full h-28"
-                                [src]="trainer.image && trainer.image.trim() !== '' ? trainer.image : 'assets/img/no-dp.png'" />
-                            </div>
-                            <div
-                              class="flex flex-column md:flex-row justify-content-between md:align-items-center flex-1 gap-4">
-                              <div class="flex flex-row md:flex-column justify-content-between align-items-start gap-2">
-                                <div>
-                                  <span class="font-medium text-secondary text-sm">{{ trainer.trainername }}</span>
-                                  <div class="text-lg font-medium text-900 mt-2">{{ trainer.specification }}</div>
-                                </div>
-                              </div>
-                              <div class="flex flex-column md:align-items-end gap-5">
-                                <div class="flex flex-row-reverse md:flex-row gap-2">
-                                  <button class="button2">Book Slot</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </ng-template>
-                  </p-dataView>
-                </ng-container>
+                </div>
               </div>
-              
+            </div>
+          </ng-template>
+        </p-dataView>
+      </ng-container>
+    </div>
+
+
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<p-dialog header="Available Slots" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" class="bg-violet-100" (onHide)="clearSelectedSlot()">
+
+  <div>
+    <div *ngIf="trainer; else noTrainerFound">
+      <div class="py-3">
+        <p class="text-lg">Select a Slot</p>
+
+      </div>
+      <div *ngIf="trainer.availableslots && trainer.availableslots.length > 0; else noSlots"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-2">
+        <div *ngFor="let slot of trainer.availableslots | availableSlots:false"
+          class="px-3 py-2 bg-lime-100 rounded-lg shadow-lg flex items-center justify-between"
+          [class.selected]="slot === selectedSlot" (click)="selectSlot(slot)">
+          <div>
+            <p class="text-lg text-gray-700">{{ slot.date | date }}</p>
+            <p class="text-md text-gray-500">{{ slot.startTime | ist }}</p>
+            <p class="text-md text-gray-500">Price : {{ slot.price }} $</p>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div [hidden]="!selectedSlot">
+        <div *ngIf="!selectedSlot" class="text-red-500 mt-4 block">
+          Please select a slot to proceed.
+        </div>
+      </div>
+
+
+      <div class="p-4 " [hidden]="!selectedSlot">
+        <div class="flex justify-center p-2">
+          <button class="bg-indigo-700 text-white w-full font-bold py-2 px-4 rounded-full hover:bg-indigo-900"
+            (click)="checkout()">
+            Pay with Razorpay
+          </button>
 
         </div>
+        <!-- <ngx-paypal [config]="payPalConfig"></ngx-paypal> -->
 
+      </div>
 
     </div>
-</div>
+
+    <ng-template #noSlots>
+      <p class="text-gray-600">No slots available!!!</p>
+    </ng-template>
+
+    <ng-template #noTrainerFound>
+      <p class="text-gray-600">Trainer not found.</p>
+    </ng-template>
+  </div>
+</p-dialog>

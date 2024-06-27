@@ -41,9 +41,9 @@
                     <span class="text-[15px] ml-4 text-gray-200">Clients</span>
                 </div>
             </a>
-            <a routerLink="/trainer/slots" routerLinkActive="activelinks">
+            <a routerLink="/trainer/slot" routerLinkActive="activelinks">
                 <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-900"
-                routerLink="/trainer/slots" routerLinkActive="activelinks">
+                routerLink="/trainer/slot" routerLinkActive="activelinks">
                     <span class="text-[15px] ml-4 text-gray-200">Slots</span>
                 </div>
             </a>
@@ -67,8 +67,8 @@
             <hr class="my-4 text-gray-600">
 
 
-            <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-900">
-                <span (click)="confirm1($event)" class="text-[15px] ml-4 text-gray-200">Logout</span>
+            <div (click)="confirm1($event)" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-900">
+                <span  class="text-[15px] ml-4 text-gray-200">Logout</span>
             </div>
 
         </div>

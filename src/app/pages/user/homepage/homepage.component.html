@@ -1,28 +1,244 @@
-<div class="flex justify-between">
-    <app-sidebar></app-sidebar>
-    <div class="p-3 w-full lg:ml-[240px] lg:mt-1 md:mt-5 ">
+<app-sidebar></app-sidebar>
 
-<!-- bmi-calculator.component.html -->
-<div class="container mx-auto p-4 border w-3/4 shadow-lg">
+
+<main class="relative antialiased bg-white dark:bg-[#25292A] z-0 overflow-hidden">
+
+  <!-- Blobs -->
+  <div class="absolute hidden md:block -left-40 -top-40 text-gray-100 dark:text-gray-600" style="z-index:-20">
+    <svg id="visual" viewBox="0 0 900 900" width="600" height="600" xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <g transform="translate(423.6017287294153 429.411998482734)">
+        <path
+          d="M164.8 -274.6C221 -253 278.9 -223.8 345.5 -176.7C412.1 -129.7 487.3 -64.8 476.3 -6.3C465.4 52.2 368.2 104.3 297.9 144.9C227.6 185.5 184.1 214.6 138.9 253C93.8 291.4 46.9 339.2 -6.9 351.1C-60.7 363.1 -121.3 339.2 -194.4 316.8C-267.4 294.5 -352.8 273.7 -394 221.2C-435.1 168.7 -432.1 84.3 -400.9 18C-369.7 -48.3 -310.4 -96.7 -267.6 -146.3C-224.8 -196 -198.4 -246.9 -156.5 -276.8C-114.7 -306.6 -57.3 -315.3 -1.5 -312.7C54.3 -310.1 108.7 -296.2 164.8 -274.6"
+          fill="currentColor"></path>
+      </g>
+    </svg>
+  </div>
+
+
+  
+  <nav class="flex flex-row items-center justify-between px-4 md:px-20 py-10">
+    <!-- Small little logo :) -->
+   
+    
+  </nav>
+
+
+  <header class="mt-4 md:mt-20 flex flex-col md:flex-row space-x-2 px-4 md:px-20">
+    <!-- Text container -->
+    <div class="w-full md:w-1/2">
+      <h1 class="text-2xl md:text-4xl lg:text-6xl font-semibold	 text-gray-800 dark:text-gray-50">Transform Your Life,
+        One Workout at a Time.<span class="font-thin tracking-wider"></span></h1>
+      <p class="my-10 text-gray-800 font-light max-w-xl dark:text-gray-200">Achieve your fitness goals
+        with our comprehensive app. Track workouts, monitor progress, and get personalized training plans to stay
+        motivated and healthy</p>
+      <div class="   px-8 py-2 border rounded-3xl bg-white cursor-pointer inline-block">
+
+        <div>
+          <a [routerLink]="['/signup']"
+            class="relative text-gray-700 font-bold hover:text-green-500 transition duration-100 transform hover:-translate-y-2 hover:-translate-x-1">Create
+            Account</a>
+
+        </div>
+
+      </div>
+
+
+
+
+      <div id="default-carousel" class="relative  " data-carousel="slide">
+        <!-- Carousel wrapper -->
+        <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+          <ng-container *ngFor="let image of images; let i = index">
+            <div [ngClass]="{'hidden': i !== currentSlide, 'duration-700 ease-in-out': true}" data-carousel-item>
+              <img [src]="image" class="absolute h-3/4 w-3/4 block  -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                alt="...">
+            </div>
+          </ng-container>
+        </div>
+        <!-- Slider indicators -->
+        <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+          <button *ngFor="let image of images; let i = index" type="button" class="w-3 h-3 rounded-full"
+            [attr.aria-current]="i === currentSlide" [attr.aria-label]="'Slide ' + (i + 1)" (click)="setSlide(i)">
+          </button>
+        </div>
+        <!-- Slider controls -->
+        <button type="button"
+          class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+          (click)="prevSlide()">
+          <span
+            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M5 1 1 5l4 4" />
+            </svg>
+            <span class="sr-only">Previous</span>
+          </span>
+        </button>
+        <button type="button"
+          class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+          (click)="nextSlide()">
+          <span
+            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 9 4-4-4-4" />
+            </svg>
+            <span class="sr-only">Next</span>
+          </span>
+        </button>
+      </div>
+
+
+    </div>
+
+
+
+    <!-- Image container -->
+    <div class="hidden md:block w-full md:w-1/6" style="perspective: 800px;">
+      <div class="img-container rounded-xl overflow-hidden p-2 bg-white transform shadow-2xl ">
+        <img class="rounded-lg " src="assets/illustrations/Running-bro.png" alt="img-container" />
+      </div>
+    </div>
+  </header>
+
+  <div class="pt-6 flex justify-center">
+    <p class="text-2xl text-slate-400 font-semibold	 ">Subscription Plans</p>
+  </div>
+
+
+  <div class="flex justify-center items-center min-h-screen   ">
+    <div class="flex flex-col md:flex-row gap-8 pt-2 pb-6">
+      <!-- Basic Plan -->
+      <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col border-2 border-green-100  w-72">
+        <h2 class="text-2xl font-bold mb-4">Basic</h2>
+        <ul class="mb-6 flex-grow">
+          <li class="mb-2">Feature 1</li>
+          <li class="mb-2">Feature 2</li>
+          <li class="mb-2">Feature 3</li>
+        </ul>
+        <p class="text-3xl font-bold mb-4">$9.99/mo</p>
+        <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Subscribe</button>
+      </div>
+
+
+
+      <!-- Advanced Plan -->
+      <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col border-2 border-green-100  w-72">
+        <h2 class="text-2xl font-bold mb-4">Advanced</h2>
+        <ul class="mb-6 flex-grow">
+          <li class="mb-2">All Pro features</li>
+          <li class="mb-2">Advanced Feature 1</li>
+          <li class="mb-2">Advanced Feature 2</li>
+        </ul>
+        <p class="text-3xl font-bold mb-4">$29.99/mo</p>
+        <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Subscribe</button>
+      </div>
+
+
+      <!-- Advanced Plan -->
+      <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col border-2 border-green-100  w-72">
+        <h2 class="text-2xl font-bold mb-4">Premium</h2>
+        <ul class="mb-6 flex-grow">
+          <li class="mb-2">All Pro features</li>
+          <li class="mb-2">Advanced Feature 1</li>
+          <li class="mb-2">Advanced Feature 2</li>
+        </ul>
+        <p class="text-3xl font-bold mb-4">$29.99/mo</p>
+        <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Subscribe</button>
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <div class="flex justify-center py-4">
+    <p class="text-slate-600 font-semibold">Want to check Your BMI ??</p>
+  </div>
+
+  <div class=" mx-auto mb-4 p-4 border w-3/4 shadow-lg">
     <h1 class="text-2xl font-bold mb-4 text-slate-500">BMI Calculator</h1>
     <form (ngSubmit)="calculateBMI()" #bmiForm="ngForm">
       <div class="mb-4">
         <label for="weight" class="block text-gray-700">Weight (kg):</label>
-        <input type="number" id="weight" name="weight" [(ngModel)]="weight" required class="mt-1 p-2 border rounded w-full ">
+        <input type="number" id="weight" name="weight" [(ngModel)]="weight" required
+          class="mt-1 p-2 border rounded w-full ">
       </div>
       <div class="mb-4">
         <label for="height" class="block text-gray-700">Height (m):</label>
-        <input type="number" id="height" name="height" [(ngModel)]="height" required class="mt-1 p-2 border rounded w-full">
+        <input type="number" id="height" name="height" [(ngModel)]="height" required
+          class="mt-1 p-2 border rounded w-full">
       </div>
-      <button type="submit" class="bg-blue-600 text-white p-2 rounded" [disabled]="!bmiForm.form.valid">Calculate BMI</button>
+      <button type="submit" class="bg-blue-600 text-white p-2 rounded" [disabled]="!bmiForm.form.valid">Calculate
+        BMI</button>
     </form>
     <div *ngIf="bmi" class="mt-4">
-      <h2 class="text-xl">Your BMI: {{ bmi  }}</h2>
+      <h2 class="text-xl">Your BMI: {{ bmi }}</h2>
       <p>{{ bmiCategory }}</p>
     </div>
   </div>
-  
+
+
+
+  <!-- footer -->
+  <div class="py-6 flex flex-col justify-center sm:py-12 mt-4 dark:bg-[#25292A]">
+    <div class="h-90 rounded-xl ">
+      <!-- Menus -->
+      <div class="md:flex justify-around">
+        <!-- Left logo + button -->
+
+        <!-- Menus -->
+        <div class="py-5 md:py-0">
+          <h4 class="font-bold text-slate-500 mb-2 px-2">Explore</h4>
+          <ul class="text-gray-600">
+            <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">Free
+              tutorials</li>
+            <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">Payments
+            </li>
+            <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">
+              Referrals</li>
+            <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">Open
+              Source</li>
+          </ul>
+        </div>
+        <div class="py-5 md:py-0">
+          <h4 class="font-bold text-slate-500 mb-2 px-2">Site</h4>
+          <ul class="text-gray-600">
+            <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">License
+            </li>
+            <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">Articles
+            </li>
+            <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">About
+            </li>
+            <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">Support
+            </li>
+          </ul>
+        </div>
+        <div class="py-5 md:py-0">
+          <h4 class="font-bold text-slate-500 mb-2 px-2">Follow Us</h4>
+          <ul class="text-gray-600">
+            <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">
+              Instagram</li>
+            <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">Twitter
+            </li>
+            <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">Facebook
+            </li>
+            <li class="py-2 cursor-pointer hover:border-purple-300 border border-transparent px-2 rounded-full">LinkedIn
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- below footer -->
+      <div class="flex justify-between items-end px-12 md:px-32 py-8 text-gray-500">
+        <div>Legal</div>
+        <div>© 2024 FitLab All Rights Reserved.</div>
+        <div class="hidden md:block">
+          <p class="font-bold tracking-tighter text-xl">369</p>
+          <p>Cr. funds transferred</p>
+        </div>
+      </div>
     </div>
-</div>
-
-
+  </div>
+</main>

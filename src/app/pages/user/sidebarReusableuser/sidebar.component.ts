@@ -1,4 +1,4 @@
-import { Component,Input  } from '@angular/core';
+import { Component,Input, OnInit  } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
@@ -7,16 +7,11 @@ import { ConfirmationService, MessageService } from 'primeng/api';
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
 
   @Input() activeRoute!: string;
+  isMobileMenuOpen = false;
 
-  
-  isSidebarOpen = false;
-
-  toggleSidebar() {
-    this.isSidebarOpen = !this.isSidebarOpen;
-  }
 
 
   constructor(private authservice:AuthService , private confirmationService: ConfirmationService , private messageService: MessageService){}
@@ -24,6 +19,12 @@ export class SidebarComponent {
   logout(): void {
     this.authservice.userlogout();
   }
+
+  ngOnInit() {}
+
+  toggleMobileMenu() {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    console.log('Mobile menu toggled:', this.isMobileMenuOpen);  }
 
   confirm1(event: Event) {
     this.confirmationService.confirm({
