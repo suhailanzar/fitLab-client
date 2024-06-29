@@ -57,6 +57,7 @@ export class trainerLoginComponent {
           }, 1000);
           this.loginForm.reset();          
           localStorage.setItem('trainerToken',res.token)
+          localStorage.setItem('trainer', JSON.stringify(res.Trainerdata));
           this.router.navigateByUrl('trainer/profile')
         }
       },

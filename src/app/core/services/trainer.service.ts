@@ -6,6 +6,7 @@ import { Trainer } from "../models/trainer";
 import { Observable, of } from "rxjs";
 import { environment } from "../../../env/environment";
 import { Slot } from "../models/trainer";
+import { User } from "../models/user";
 
 const BASE_URL = environment.BASE_URL
 
@@ -56,6 +57,10 @@ export class trainerService {
     getslots(): Observable<any> {
         
         return this.http.get(`${BASE_URL}trainer/getslots`)
+    }
+
+    getClients():Observable<any>{
+        return this.http.get(`${BASE_URL}trainer/clients`)
     }
 
 

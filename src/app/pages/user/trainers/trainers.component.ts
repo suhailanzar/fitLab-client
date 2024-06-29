@@ -31,11 +31,15 @@ export class TrainersComponentuser {
   hasTypedQuery: boolean = false;
   selectedTrainer: any; // Track the selected trainer here
   visible: boolean = false;
+  chatvisible: boolean = false;
   trainer: Trainer | undefined;
   public payPalConfig?: IPayPalConfig;
   showSuccess: boolean = false;
   selectedSlot: Slot | null = null; // Replace with your actual slot type
   userData!:any;
+  _trainerid!:string;
+  isModalVisible: boolean = false;
+
 
   constructor(private service: UserService, private router: Router, private messageService: MessageService , private cdr: ChangeDetectorRef ) {
     this.setupSearchSubscription();
@@ -49,9 +53,7 @@ export class TrainersComponentuser {
     this.service.getTrainers().subscribe({
       next: (res => {
         if (res) {
-         
-          console.log('trainers are',res.trainers);
-          
+                   
           this.trainers = res.trainers
         }
       }), error: (err => {
@@ -65,7 +67,13 @@ export class TrainersComponentuser {
 
     this.initConfig();
 
+    console.log('this.selected trainer is ',this.selectedTrainer);
     
+    
+  }
+
+  onMessageSent(): void {
+    this.cdr.detectChanges(); 
   }
 
   openslot(id:string){
@@ -258,6 +266,14 @@ export class TrainersComponentuser {
           console.error('Error saving payment details:', error);
         }
       });
+      
+    }
+
+
+    openchat(trainerid:string){      
+      this._trainerid = trainerid      
+      this.chatvisible = true;
+      this.isModalVisible = true; // Show the modal
       
     }
     

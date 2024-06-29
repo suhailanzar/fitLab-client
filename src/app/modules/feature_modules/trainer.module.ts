@@ -28,6 +28,7 @@ import { DialogModule } from 'primeng/dialog';
 import { MessagesModule } from 'primeng/messages'
 import { FileUploadModule } from 'primeng/fileupload';
 import { AvatarModule } from 'primeng/avatar';
+import { DataViewModule } from 'primeng/dataview';
 
 
 
@@ -37,6 +38,7 @@ import { ClientDetailsComponent } from '../../pages/trainer/client-details/clien
 import { AddCourseComponent } from '../../pages/trainer/add-course/add-course.component';
 import { EditCourseComponent } from '../../pages/trainer/edit-course/edit-course.component';
 import { ResetPasswordComponent } from '../../pages/trainer/reset-password/reset-password.component';
+import { TraineChatComponent } from '../../pages/trainer/traine-chat/traine-chat.component';
 
 
 @NgModule({
@@ -54,7 +56,8 @@ import { ResetPasswordComponent } from '../../pages/trainer/reset-password/reset
       EditCourseComponent,
       ResetPasswordComponent,
       SidebarComponent,
-      
+      TraineChatComponent,
+
     ],
     imports: [
       
@@ -72,7 +75,8 @@ import { ResetPasswordComponent } from '../../pages/trainer/reset-password/reset
     FileUploadModule,
     AvatarModule,
     sharedAppModule,
-    FormsModule
+    FormsModule,
+    DataViewModule
 
     ],
     providers: [MessageService ],

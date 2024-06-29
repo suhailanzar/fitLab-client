@@ -38,6 +38,9 @@ import { SubscriptionComponent } from '../../pages/user/subscription/subscriptio
 import { IstPipe } from '../../core/pipes/ist.pipe';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { AvailableSlotsPipe } from '../../core/pipes/available-slots.pipe';
+import { SocketIoModule } from 'ngx-socket-io';
+import { config } from '../../../../socket-config';
+import { UserchatComponent } from '../../pages/user/userchat/userchat.component';
 
 
 @NgModule({
@@ -58,7 +61,9 @@ import { AvailableSlotsPipe } from '../../core/pipes/available-slots.pipe';
         BookSlotComponent,
         SubscriptionComponent,
         IstPipe,
-        AvailableSlotsPipe
+        AvailableSlotsPipe,
+        UserchatComponent,
+
     ],
     imports: [
         HttpClientModule,
@@ -77,7 +82,8 @@ import { AvailableSlotsPipe } from '../../core/pipes/available-slots.pipe';
         RatingModule,
         FormsModule,
         DialogModule,
-        NgxPayPalModule
+        NgxPayPalModule,
+        SocketIoModule.forRoot(config)
         
     ],
     providers: [MessageService],

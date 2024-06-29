@@ -34,13 +34,14 @@ export class SidebarComponent implements OnInit {
         icon: 'pi pi-exclamation-triangle',
         acceptIcon:"none",
         rejectIcon:"none",
-        rejectButtonStyleClass:"p-button-text",
+        rejectButtonStyleClass:"p-button-danger",
+        acceptButtonStyleClass: "p-button-success", 
         accept: () => {
             this.logout()
-            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'logout successful' });
+            // this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'logout successful' });
         },
         reject: () => {
-            this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'cancelled' });
+            // this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'cancelled' });
         }
     });
 }

@@ -22,6 +22,9 @@ import { adminAuthGuardService } from './core/guards/adminAuth.guard';
 import { SlotsComponent } from './pages/trainer/slots/slots.component';
 import { TrainerDetailsComponent } from './pages/admin/trainer-details/trainer-details.component';
 import { UserProfileComponent } from './pages/user/profile/profile.component';
+import { UserchatComponent } from './pages/user/userchat/userchat.component';
+import { ClientsComponent } from './pages/trainer/clients/clients.component';
+import { TraineChatComponent } from './pages/trainer/traine-chat/traine-chat.component';
 
 
 
@@ -38,6 +41,7 @@ const routes: Routes = [
   {path:"trainers",component:TrainersComponentuser,canActivate: [userAuthGuardService]},
   {path:"trainersdetails",component:TrainerDetailsComponentUser,canActivate: [userAuthGuardService]},
   {path:"profile",component:UserProfileComponent,canActivate: [userAuthGuardService]},
+  {path:"chat",component:UserchatComponent,canActivate: [userAuthGuardService]},
 
   // trainer routes
   {path:"trainer/login",component:trainerLoginComponent},
@@ -45,6 +49,8 @@ const routes: Routes = [
   {path:"trainer/otp",component:TrianerOtpComponent},
   {path:"trainer/profile",component:ProfileComponent,canActivate: [TrainerAuthGuardService]},
   {path:"trainer/slot",component:SlotsComponent,canActivate: [TrainerAuthGuardService]},
+  {path:"trainer/clients",component:ClientsComponent,canActivate: [TrainerAuthGuardService]},
+  {path:"trainer/chat",component:TraineChatComponent,canActivate: [TrainerAuthGuardService]},
 
   // admin routes
   {path:"admin/login",component:adminLoginComponent},

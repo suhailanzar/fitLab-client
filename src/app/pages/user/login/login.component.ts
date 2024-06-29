@@ -47,8 +47,9 @@ export class LoginComponent {
         
         if (res && res.message) {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message });
-          this.loginForm.reset();
-          localStorage.setItem('userToken',res.token)
+          this.loginForm.reset();          
+          localStorage.setItem('userToken',res.token)          
+          localStorage.setItem('user', JSON.stringify(res.userdata));
           this.router.navigateByUrl('/userhome')
 
         }
@@ -66,13 +67,12 @@ export class LoginComponent {
     if (this.loginForm.valid) {
 
       const signupdata = JSON.stringify(this.loginForm.value);
-      localStorage.setItem('userMail', signupdata);
       this.sendLoginData(this.loginForm.value);
     }
   }
 
   ngOnDestroy() {
-    console.log('signuppage destroyued');
+    console.log('signuppage destroyed');
     
     if (this.LoginSubscription) {
       this.LoginSubscription.unsubscribe();

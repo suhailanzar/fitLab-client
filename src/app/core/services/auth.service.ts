@@ -14,6 +14,7 @@ export class AuthService {
 
   userlogout(): void {
     localStorage.removeItem('userToken');
+    localStorage.removeItem('user');
     this.Authenticateduser = false;
     this.router.navigate(['/login']); 
   }

@@ -38,7 +38,6 @@ export class ProfileComponent {
     this.service.getprofile().subscribe({
       next: (res) => {
         if (res) {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message });
           this.profile = res.Details;
           this.form.patchValue(this.profile);
           
