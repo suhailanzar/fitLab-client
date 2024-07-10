@@ -57,7 +57,8 @@ export class trainerLoginComponent {
           }, 1000);
           this.loginForm.reset();          
           localStorage.setItem('trainerToken',res.token)
-          localStorage.setItem('trainer', JSON.stringify(res.Trainerdata));
+          const trainerdata = {trainername:res.Trainerdata.trainername,id:res.Trainerdata._id,email:res.Trainerdata.email}
+          localStorage.setItem('trainer', JSON.stringify(trainerdata));
           this.router.navigateByUrl('trainer/profile')
         }
       },

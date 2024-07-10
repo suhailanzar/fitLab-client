@@ -50,7 +50,6 @@ export class ChatService {
   }
   
   getMessages(senderid:string,receiverid:string): Observable<any> {    
-    console.log('get trainer cht ',senderid,receiverid);
     const data = {userid:senderid,trainerid:receiverid}
     return this.http.post(`${this._baseUrl}getMessages`, data)
   }

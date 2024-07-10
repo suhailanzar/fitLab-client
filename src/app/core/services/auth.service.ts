@@ -21,12 +21,14 @@ export class AuthService {
 
   adminlogout(): void {
     localStorage.removeItem('adminToken');
+    localStorage.removeItem('admin');
     this.Authenticatedadmin = false;
     this.router.navigate(['/admin/login']); 
   }
 
   trainerlogout(): void {
     localStorage.removeItem('trainerToken');
+    localStorage.removeItem('trainer');
     this.Authenticatedtrainer = false;
     this.router.navigate(['/trainer/login']); 
   }

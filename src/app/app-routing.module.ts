@@ -25,6 +25,9 @@ import { UserProfileComponent } from './pages/user/profile/profile.component';
 import { UserchatComponent } from './pages/user/userchat/userchat.component';
 import { ClientsComponent } from './pages/trainer/clients/clients.component';
 import { TraineChatComponent } from './pages/trainer/traine-chat/traine-chat.component';
+import { SubscriptionComponent } from './pages/user/subscription/subscription.component';
+import { CoursesComponent } from './pages/trainer/courses/courses.component';
+import { AddCourseComponent } from './pages/trainer/add-course/add-course.component';
 
 
 
@@ -42,6 +45,7 @@ const routes: Routes = [
   {path:"trainersdetails",component:TrainerDetailsComponentUser,canActivate: [userAuthGuardService]},
   {path:"profile",component:UserProfileComponent,canActivate: [userAuthGuardService]},
   {path:"chat",component:UserchatComponent,canActivate: [userAuthGuardService]},
+  {path:"subscription",component:SubscriptionComponent,canActivate: [userAuthGuardService]},
 
   // trainer routes
   {path:"trainer/login",component:trainerLoginComponent},
@@ -51,6 +55,8 @@ const routes: Routes = [
   {path:"trainer/slot",component:SlotsComponent,canActivate: [TrainerAuthGuardService]},
   {path:"trainer/clients",component:ClientsComponent,canActivate: [TrainerAuthGuardService]},
   {path:"trainer/chat",component:TraineChatComponent,canActivate: [TrainerAuthGuardService]},
+  {path:"trainer/courses",component:CoursesComponent,canActivate: [TrainerAuthGuardService]},
+  {path:"trainer/addcourse",component:AddCourseComponent,canActivate: [TrainerAuthGuardService]},
 
   // admin routes
   {path:"admin/login",component:adminLoginComponent},

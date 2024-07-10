@@ -59,13 +59,13 @@ export class adminLoginComponent {
     if (this.loginForm.valid) {
 
       const signupdata = JSON.stringify(this.loginForm.value);
-      localStorage.setItem('adminmail', signupdata);
+      localStorage.setItem('admin', signupdata);
       this.sendLoginData(this.loginForm.value);
     }
   }
 
   ngOnDestroy() {
-    console.log('signuppage destroyued');
+    console.log('login destroyed');
     
     if (this.LoginSubscription) {
       this.LoginSubscription.unsubscribe();

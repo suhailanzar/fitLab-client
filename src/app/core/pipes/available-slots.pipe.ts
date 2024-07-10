@@ -1,12 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Slot } from '../models/trainer';
 
 @Pipe({
   name: 'availableSlots'
 })
 export class AvailableSlotsPipe implements PipeTransform {
-
-  transform(items: any[], status: boolean): any[] {
-    return items? items.filter(item => item.status === status) : [];
+  transform(slots: Slot[], status: boolean): Slot[] {
+    return slots.filter(slot => slot.status === status);
   }
-
 }

@@ -1,10 +1,141 @@
 <app-sidebar></app-sidebar>
 
-<div class="p-8">
-    <button 
-    pButton 
-    pRipple 
-    label="Submit" 
-    class="p-button p-button-success">
-</button>
+<div class="px-12 ">
+    <div class="p-8 bg-white shadow mt-24">
+        <div class="grid grid-cols-1 md:grid-cols-3">
+            <div class="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0">
+                <div>
+                    <p class="font-bold text-gray-700 text-xl">Gender </p>
+                    <p class="text-gray-400  text-lg ">{{profile.gender}}</p>
+                </div>
+                <div>
+                    <p class="font-bold text-gray-700 text-xl">Weight</p>
+                    <p class="text-gray-400  text-lg">{{profile.weight}} Kg</p>
+                </div>
+                <div>
+                    <p class="font-bold text-gray-700 text-xl">Height</p>
+                    <p class="text-gray-400  text-lg">{{profile.height}} Cm</p>
+                </div>
+            </div>
+            <div class="relative right-0 bottom-0">
+                <div
+                    class=" relative h-44 w-44 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500">
+                    <img [src]="profile.image" class="h-44 w-44 rounded-full object-cover" alt="Profile picture">
+                </div>
+
+                <i (click)="fileInput.click()" class="absolute right-14 bottom-3 pi pi-pen-to-square text-blue-600 p-2 hover:text-blue-800   hover:text-2xl"
+                    style="font-size: 1.5rem"></i>
+                    <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;" accept="image/*">
+
+
+
+            </div>
+
+            <div class=" flex justify-center items-center mt-32 md:pb-12 md:mt-0 md:justify-center">
+
+                <p class="text-slate-500 font-semibold">Edit Profile :</p> &nbsp; &nbsp;
+                <button class="edit-button" (click)="editProfileVisible(true)">
+                    <svg class="edit-svgIcon" viewBox="0 0 512 512">
+                        <path
+                            d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="mt-20 text-center border-b pb-12">
+            <h1 class="text-4xl font-medium text-gray-700 mt-12">Subcription Plans :  {{profile.subscription?.name}}
+            </h1>
+            <h1 class="text-4xl font-medium text-gray-700 mt-12">{{profile.name}} ,
+                <span class="font-light text-gray-500">{{profile.age}}</span>
+            </h1>
+            <p class="font-light text-gray-600 mt-3">{{profile.place}}</p>
+            <!-- <p class="mt-8 text-gray-500">Solution Manager - Creative Tim Officer</p>
+            <p class="mt-2 text-gray-500">University of Computer Science</p> -->
+        </div>
+        <div class="mt-12 flex flex-col justify-center">
+            <!-- <p class="text-gray-600 text-center font-light lg:px-16">An artist of considerable range, Ryan — the name
+                taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own
+                music, giving it a warm, intimate feel with a solid groove structure. An artist of considerable range.
+            </p> <button class="text-indigo-500 py-2 px-4  font-medium mt-4"> Show more</button> -->
+        </div>
+    </div>
 </div>
+
+
+
+<p-dialog header="Header" [(visible)]="visible" [modal]="true" [style]="{ width: '25rem' }">
+    <ng-template pTemplate="header">
+        <div class="inline-flex align-items-center justify-content-center gap-2">
+            <p-avatar image="{{profile.image}}" shape="circle" />
+
+            <span class="font-bold white-space-nowrap">
+                {{profile.name}}
+            </span>
+        </div>
+    </ng-template>
+    <span class="p-text-secondary block mb-5">Update your information.</span>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div class="flex align-items-center gap-3 mb-3">
+            <label for="username" class="font-semibold w-6rem">Name</label>
+            <input type="text" formControlName="username" id="first_name"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="name" required />
+        </div>
+
+        <div class="flex align-items-center gap-3 mb-5">
+            <label for="place" class="font-semibold w-6rem">Place</label>
+            <input type="text" formControlName="place" id="place"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="place" required />
+        </div>
+
+
+        <div class="flex align-items-center gap-3 mb-5">
+            <label for="age" class="font-semibold w-6rem">Age</label>
+            <input type="number" formControlName="age" id="age"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="age" required />
+        </div>
+
+
+
+        <div class="flex align-items-center gap-3 mb-5">
+            <label for="weight" class="font-semibold w-6rem">Weight</label>
+            <input type="number" id="weight" formControlName="weight"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="weight (kg)" required />
+        </div>
+
+
+        <div class="flex align-items-center gap-3 mb-5">
+            <label for="height" class="font-semibold w-6rem">Height</label>
+            <input type="number" id="height" formControlName="height"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="height (cm)" required />
+        </div>
+
+
+        <div class="flex align-items-center gap-3 mb-5">
+            <label for="gender" class="font-semibold w-6rem">Gender</label>
+            <select id="gender" formControlName="gender"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required>
+                <option value="" disabled selected>Select your gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+
+
+    </form>
+
+    <ng-template pTemplate="footer">
+        <button (click)="onSubmit()" type="button"
+            class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">save</button>
+        <button (click)="editProfileVisible(false)" type="button"
+            class="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-2 py-1 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800">cancel</button>
+
+    </ng-template>
+</p-dialog>

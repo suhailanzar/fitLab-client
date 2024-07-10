@@ -46,7 +46,7 @@ export class TrainersComponentuser {
    }
 
   ngOnInit(): void {
-    let userdat = localStorage.getItem("userMail") || '{}';
+    let userdat = localStorage.getItem("user") || '{}';
     this.userData = JSON.parse(userdat);
     
 
@@ -248,12 +248,15 @@ export class TrainersComponentuser {
         razorpayPaymentId: response.razorpay_payment_id,
         amount: this.selectedSlot.price * 100 ,
         currency: 'INR',
-        email: this.userData.email,
+        userid: this.userData.id,
         slotid: this.selectedSlot?._id,
         trainerid: this.trainer?._id ?? ''
       };
 
-      this.service.savePaymentDetails(paymentData).subscribe({
+      console.log('payment details are ',paymentData);
+      
+
+      this.service.bookslot(paymentData).subscribe({
         next: (result) => {
           this.messageService.add({ severity: 'success', summary: 'Payment', detail: "Payment Successful and Saved" });
           this.visible = false;

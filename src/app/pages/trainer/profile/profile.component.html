@@ -76,8 +76,7 @@
                 </label>
 
             </div>
-           
-           
+        
                 <div [ngClass]="{'validation-message': form!.get('image')?.invalid}" *ngIf="form.get('image')?.errors?.['invalidFileType']" class="error-message">
                     Invalid file type. Please select a JPEG, PNG, or GIF file.
                   </div>

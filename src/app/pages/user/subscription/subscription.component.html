@@ -1,1 +1,13 @@
-<p>subscription works!</p>
+<div class="subscription-container">
+    <h1 class="text-slate-500 font-xl" >Choose Your Subscription Plan</h1>
+    
+    <div class="plans">
+      <div class="plan" *ngFor="let plan of plans">
+        <h2>{{ plan.name }}</h2>
+        <p>{{ plan.description }}</p>
+        <p>Price: {{ plan.price | currency }}</p>
+        <button (click)="checkout(plan.id)">Subscribe</button>
+      </div>
+    </div>
+  </div>
+  

@@ -48,8 +48,9 @@ export class LoginComponent {
         if (res && res.message) {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message });
           this.loginForm.reset();          
-          localStorage.setItem('userToken',res.token)          
-          localStorage.setItem('user', JSON.stringify(res.userdata));
+          localStorage.setItem('userToken',res.token)                       
+          const userdata = {id:res.userdata._id,name:res.userdata.username,email:res.userdata.email}       
+          localStorage.setItem('user', JSON.stringify(userdata));
           this.router.navigateByUrl('/userhome')
 
         }

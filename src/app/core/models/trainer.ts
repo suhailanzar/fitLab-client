@@ -16,10 +16,32 @@ export interface Trainer {
 
 
   export interface Slot {
-    _id:string,
+    username:string;
     date: string;
     startTime: string;
     price:number;
     status:boolean;
+    _id:string,
+
   
   }
+
+
+
+ export interface IModule {
+    name: string;
+    description: string;
+    videoUrl: string;
+    isSaved?: boolean;
+}
+
+export  interface ICourse  {
+    author: string;
+    courseName: string;
+    description: string;
+    modules: IModule[];
+    price: number;
+    trainerId: string;
+    createdAt: Date;
+    updatedAt: Date;
+}

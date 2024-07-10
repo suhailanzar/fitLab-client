@@ -1,7 +1,6 @@
-
 <span class="absolute text-white top-2 left-2 cursor-pointer lg:hidden flex justify-between">
-    <button class="rounded-md  " (click)="toggleSidebar()">
-        <img class="bg-blue-800 h-6 p-0 " src="assets/icons/options.svg" alt="options">
+    <button class="rounded-md" (click)="toggleSidebar()">
+        <img class="bg-blue-800 h-6 p-0" src="assets/icons/options.svg" alt="options">
     </button>
 </span>
 
@@ -9,68 +8,52 @@
     [ngClass]="{'left-0': isSidebarOpen, 'left-[-300px]': !isSidebarOpen}">
     <div class="text-gray-100 text-xl">
         <div class="flex justify-center p-3">
-            <img class="h-6" src="assets\logo\fitlab-high-resolution-logo-transparent.png" alt="">
-
+            <img class="h-6" src="assets/logo/fitlab-high-resolution-logo-transparent.png" alt="">
         </div>
 
         <div class="p-2.5 mt-1 flex items-center rounded-md lg:hidden justify-center">
-
             <button class="ml-auto text-gray-200 lg:hidden" (click)="toggleSidebar()">
-                <img class="text-white h-6 p-0 " src="assets/icons/close.svg" alt="options">
+                <img class="text-white h-6 p-0" src="assets/icons/close.svg" alt="options">
             </button>
         </div>
         <hr class="my-2 text-gray-600">
 
         <div>
-            <!-- <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700">
-                <input class="text-[15px] ml-4 w-full bg-transparent focus:outline-none" placeholder="Search" />
-            </div> -->
-
-            <a routerLink="/trainer/profile" routerLinkActive="activelinks" [routerLinkActiveOptions]="{ exact: true }">
-                <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-900"
-                routerLink="/trainer/profile" routerLinkActive="activelinks"
-                    [routerLinkActiveOptions]="{ exact: true }">
+            <a routerLink="/trainer/profile" >
+                <div routerLinkActive="activelinks" [routerLinkActiveOptions]="{ exact: true }"  class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-900">
                     <span class="text-[15px] ml-4 text-gray-200">Profile</span>
                 </div>
-
             </a>
 
-            <a routerLink="/trainer/clients" routerLinkActive="activelinks">
-                <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-900"
-                routerLink="/trainer/clients" routerLinkActive="activelinks">
+            <a routerLink="/trainer/clients"   >
+                <div routerLinkActive="activelinks" class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-900">
                     <span class="text-[15px] ml-4 text-gray-200">Clients</span>
                 </div>
             </a>
-            <a routerLink="/trainer/slot" routerLinkActive="activelinks">
-                <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-900"
-                routerLink="/trainer/slot" routerLinkActive="activelinks">
+
+            <a routerLink="/trainer/slot" >
+                <div routerLinkActive="activelinks" class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-900">
                     <span class="text-[15px] ml-4 text-gray-200">Slots</span>
                 </div>
             </a>
 
-            <a routerLink="/trainer/revenue" routerLinkActive="activelinks">
-                <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-900"
-                routerLink="/trainer/revenue" routerLinkActive="activelinks">
+            <a routerLink="/trainer/revenue">
+                <div  routerLinkActive="activelinks" class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-900">
                     <span class="text-[15px] ml-4 text-gray-200">Revenue</span>
                 </div>
             </a>
 
-            <a routerLink="/trainer/courses" routerLinkActive="activelinks">
-                <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-900"
-                routerLink="/trainer/courses" routerLinkActive="activelinks">
+            <a routerLink="/trainer/courses">
+                <div  routerLinkActive="activelinks" class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-900">
                     <span class="text-[15px] ml-4 text-gray-200">Courses</span>
                 </div>
             </a>
 
-
-
             <hr class="my-4 text-gray-600">
 
-
             <div (click)="confirm1($event)" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-cyan-900">
-                <span  class="text-[15px] ml-4 text-gray-200">Logout</span>
+                <span class="text-[15px] ml-4 text-gray-200">Logout</span>
             </div>
-
         </div>
     </div>
 </div>

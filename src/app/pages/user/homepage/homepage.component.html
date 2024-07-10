@@ -4,7 +4,7 @@
 <main class="relative antialiased bg-white dark:bg-[#25292A] z-0 overflow-hidden">
 
   <!-- Blobs -->
-  <div class="absolute hidden md:block -left-40 -top-40 text-gray-100 dark:text-gray-600" style="z-index:-20">
+  <!-- <div class="absolute hidden md:block -left-40 -top-40 text-gray-100 dark:text-gray-600" style="z-index:-20">
     <svg id="visual" viewBox="0 0 900 900" width="600" height="600" xmlns="http://www.w3.org/2000/svg" version="1.1">
       <g transform="translate(423.6017287294153 429.411998482734)">
         <path
@@ -12,15 +12,9 @@
           fill="currentColor"></path>
       </g>
     </svg>
-  </div>
+  </div> -->
 
 
-  
-  <nav class="flex flex-row items-center justify-between px-4 md:px-20 py-10">
-    <!-- Small little logo :) -->
-   
-    
-  </nav>
 
 
   <header class="mt-4 md:mt-20 flex flex-col md:flex-row space-x-2 px-4 md:px-20">
@@ -31,16 +25,6 @@
       <p class="my-10 text-gray-800 font-light max-w-xl dark:text-gray-200">Achieve your fitness goals
         with our comprehensive app. Track workouts, monitor progress, and get personalized training plans to stay
         motivated and healthy</p>
-      <div class="   px-8 py-2 border rounded-3xl bg-white cursor-pointer inline-block">
-
-        <div>
-          <a [routerLink]="['/signup']"
-            class="relative text-gray-700 font-bold hover:text-green-500 transition duration-100 transform hover:-translate-y-2 hover:-translate-x-1">Create
-            Account</a>
-
-        </div>
-
-      </div>
 
 
 
@@ -103,23 +87,62 @@
     </div>
   </header>
 
+
+
+
+  <!-- Features Section -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl text-slate-600 font-semibold text-center mb-12">Features</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <div class="text-4xl mb-4 text-blue-500">🏋️‍♂️</div>
+          <h3 class="text-xl font-semibold mb-2">Personalized Workouts</h3>
+          <p class="text-gray-600">Get custom workout plans tailored to your fitness goals and level.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <div class="text-4xl mb-4 text-blue-500">🥗</div>
+          <h3 class="text-xl font-semibold mb-2">Nutrition Tracking</h3>
+          <p class="text-gray-600">Log your meals and track your macros to support your fitness goals.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <div class="text-4xl mb-4 text-blue-500">📊</div>
+          <h3 class="text-xl font-semibold mb-2">Progress Monitoring</h3>
+          <p class="text-gray-600">Visualize your fitness journey with detailed progress charts and metrics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <header class="custom-color shadow-md rounded-3xl mx-4  text-white py-16">
+    <div class="container mx-auto text-center">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">Transform Your Body</h1>
+      <p class="text-xl mb-8">Get fit, stay healthy, and track your progress with FitApp</p>
+      <a href="#"
+        class="bg-emerald-100 text-slate-500 py-2 px-6 rounded-full text-lg font-semibold hover:bg-blue-100 transition duration-300">
+        Start Your Journey
+      </a>
+    </div>
+  </header>
+
   <div class="pt-6 flex justify-center">
-    <p class="text-2xl text-slate-400 font-semibold	 ">Subscription Plans</p>
+    <p class="text-2xl text-slate-600 font-semibold	 ">Subscription Plans</p>
   </div>
 
 
   <div class="flex justify-center items-center min-h-screen   ">
-    <div class="flex flex-col md:flex-row gap-8 pt-2 pb-6">
+    <div class="flex flex-col md:flex-row gap-8 pt-2 pb-4">
       <!-- Basic Plan -->
       <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col border-2 border-green-100  w-72">
         <h2 class="text-2xl font-bold mb-4">Basic</h2>
         <ul class="mb-6 flex-grow">
-          <li class="mb-2">Feature 1</li>
-          <li class="mb-2">Feature 2</li>
-          <li class="mb-2">Feature 3</li>
+          <li class="mb-2"> * Get Access to all of the fitness courses</li>
+      
         </ul>
         <p class="text-3xl font-bold mb-4">$9.99/mo</p>
-        <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Subscribe</button>
+        <button routerLink="/subscription" class="custom-color text-white py-2 px-4 rounded hover:bg-green-800">Subscribe</button>
       </div>
 
 
@@ -128,12 +151,11 @@
       <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col border-2 border-green-100  w-72">
         <h2 class="text-2xl font-bold mb-4">Advanced</h2>
         <ul class="mb-6 flex-grow">
-          <li class="mb-2">All Pro features</li>
-          <li class="mb-2">Advanced Feature 1</li>
-          <li class="mb-2">Advanced Feature 2</li>
+          <li class="mb-2">* Access to  fitness courses</li>
+          <li class="mb-2">* Chat with favourite trainer, get diet plans </li>
         </ul>
         <p class="text-3xl font-bold mb-4">$29.99/mo</p>
-        <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Subscribe</button>
+        <button routerLink="/subscription" class="custom-color text-white py-2 px-4 rounded hover:bg-green-800">Subscribe</button>
       </div>
 
 
@@ -141,12 +163,12 @@
       <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col border-2 border-green-100  w-72">
         <h2 class="text-2xl font-bold mb-4">Premium</h2>
         <ul class="mb-6 flex-grow">
-          <li class="mb-2">All Pro features</li>
-          <li class="mb-2">Advanced Feature 1</li>
-          <li class="mb-2">Advanced Feature 2</li>
+          <li class="mb-2">* Access to  fitness courses</li>
+          <li class="mb-2">* Chat with favourite trainer, get diet plans </li>
+          <li class="mb-2">* Live interaction with the Trainers </li>
         </ul>
         <p class="text-3xl font-bold mb-4">$29.99/mo</p>
-        <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Subscribe</button>
+        <button routerLink="/subscription" class="custom-color text-white py-2 px-4 rounded hover:bg-green-800">Subscribe</button>
       </div>
 
     </div>
@@ -171,7 +193,8 @@
         <input type="number" id="height" name="height" [(ngModel)]="height" required
           class="mt-1 p-2 border rounded w-full">
       </div>
-      <button type="submit" class="bg-blue-600 text-white p-2 rounded" [disabled]="!bmiForm.form.valid">Calculate
+      <button type="submit" class=" custom-color hover:bg:green-800 text-white p-2 rounded"
+        [disabled]="!bmiForm.form.valid">Calculate
         BMI</button>
     </form>
     <div *ngIf="bmi" class="mt-4">

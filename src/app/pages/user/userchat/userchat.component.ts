@@ -95,14 +95,11 @@ export class UserchatComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   loadMessages(): void {
-    console.log('entered the load messages');
     
     if (this.senderId && this.trainerid) {
-      console.log('got the  sender or receiver id');
 
       this.chatService.getMessages(this.senderId, this.trainerid).subscribe((data: any) => {
-        this.messages = data.messages;
-        console.log('messages were',this.messages);
+        this.messages = data.messages || [];
         
       });
     }else{
@@ -123,6 +120,9 @@ export class UserchatComponent implements OnInit, OnDestroy, OnChanges {
 
   private getUserId(): string | null {
     const userString = localStorage.getItem('user');
+
+    console.log('user id is ',userString);
+    
 
     if (userString) {      
       try {

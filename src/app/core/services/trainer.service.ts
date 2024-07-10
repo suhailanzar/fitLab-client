@@ -6,7 +6,7 @@ import { Trainer } from "../models/trainer";
 import { Observable, of } from "rxjs";
 import { environment } from "../../../env/environment";
 import { Slot } from "../models/trainer";
-import { User } from "../models/user";
+import { ICourse } from "../models/trainer"
 
 const BASE_URL = environment.BASE_URL
 
@@ -40,7 +40,8 @@ export class trainerService {
 
     editprofile(data:FormData): Observable<any> {
         
-
+        console.log('ecit profile data is',data);
+        
         return this.http.patch(`${BASE_URL}trainer/editProfile`, data )
     }
 
@@ -61,6 +62,27 @@ export class trainerService {
 
     getClients():Observable<any>{
         return this.http.get(`${BASE_URL}trainer/clients`)
+    }
+
+    getbookings(trainerid:string | null):Observable<any>{
+        return this.http.get(`${BASE_URL}trainer/getbookings`)
+    }
+    editSlot(slotid:string,data:Slot | null):Observable<any>{
+        
+        return this.http.post(`${BASE_URL}trainer/editSlot`,{slotid,data})
+    }
+
+    addCourse(data:FormData):Observable<any>{
+        console.log('Logging FormData entries:');
+        data.forEach((value, key) => {
+          console.log(`${key}: ${value}`);
+        });        
+        return this.http.post(`${BASE_URL}trainer/addCourse`,data)
+    }
+
+    
+    getCourses():Observable<any>{
+        return this.http.get<any>(`${BASE_URL}trainer/getCourses`)
     }
 
 

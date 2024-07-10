@@ -43,10 +43,24 @@ export class UserService {
         return this.http.get<string[]>(`${BASE_URL}searchtrainers?q=${encodeURIComponent(query)}`);
     }
 
-    savePaymentDetails(paymentData: Payment): Observable<any> {        
-        return this.http.post(`${BASE_URL}savepayment`, paymentData)
-      }
+    bookslot(paymentData: Payment): Observable<any> {
+        return this.http.post(`${BASE_URL}bookslot`, paymentData)
+    }
 
-    
+    editprofile(data: FormData): Observable<any> {
+
+        return this.http.post(`${BASE_URL}editprofile`, data)
+    }
+
+    getprofile(): Observable<any> {
+
+        return this.http.get(`${BASE_URL}getprofile`)
+    }
+
+
+
+
+
+
 
 }

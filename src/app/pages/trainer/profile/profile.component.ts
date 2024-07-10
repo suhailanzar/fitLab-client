@@ -24,7 +24,7 @@ export class ProfileComponent {
 
   constructor(private fb: FormBuilder, private http: HttpClient, private service: trainerService, private router: Router, private messageService: MessageService) {
     this.form = this.fb.group({
-      image: ['', [Validators.required, this.imageValidator]],
+      image: ['', [ this.imageValidator]],
       trainername: ['', Validators.required],
       specification: ['', Validators.required],
       phone: ['', Validators.required]

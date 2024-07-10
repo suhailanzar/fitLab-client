@@ -42,7 +42,7 @@
                 </div>
                 
                 <div class="flex justify-end">
-                  <button type="submit" (click)="fullvalid()"  class="px-4 py-2 bg-cyan-900 text-white rounded-md shadow-sm hover:bg-cyan-950 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Add Slot</button>
+                  <button type="submit" (click)="fullValid()"  class="px-4 py-2 bg-cyan-900 text-white rounded-md shadow-sm hover:bg-cyan-950 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Add Slot</button>
                 </div>
               </form>
               
@@ -52,7 +52,7 @@
             <div class="mt-8 bg-white p-6 rounded-lg shadow-md">
               <div class="flex justify-between ">
                 <h2 class="text-xl text-slate-700 font-semibold mb-4">Added Slots</h2>
-                <i class="pi pi-book text-slate-800 hover:cursor-pointer hover:text-blue-700 text-md "> Bookings</i>
+                <i  class="pi pi-book text-slate-800 hover:cursor-pointer hover:text-blue-700 text-md " (click)=" showDialog()" (click)="viewBookings()" > Bookings</i>
               </div>
               <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
@@ -60,7 +60,7 @@
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Start Time</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
-                    <!-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th> -->
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                   </tr>
                 </thead>
@@ -69,9 +69,17 @@
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ slot.date | date: 'yyyy-MM-dd' }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ slot.startTime  }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ slot.price  }} $</td>
-                    <!-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ slot }}</td> -->
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">  
+                     <span *ngIf="slot.status == true" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                      Booked
+                    </span>
+                    <span *ngIf="slot.status == false" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-white-800">
+                      Available
+                    </span>
+                  </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <i class="pi pi-trash text-red-900 " > </i> 
+                        <!-- <i class="pi pi-trash text-red-900 " > </i>  -->
+                        <i class="pi pi-pen-to-square text-red-900 ms-4" (click)="editSlotVisible(slot._id)" > </i> 
                       
                     </td>
                   </tr>
@@ -87,4 +95,104 @@
     </div>
 </div>
 
+
+
+
+<!-- <p-button (click)="showDialog()" label="Show" /> -->
+<p-dialog 
+    header="Bookings" 
+    [modal]="true"
+    [(visible)]="visibleBooking" 
+    [style]="{ width: '50rem' }" 
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <div class="overflow-x-auto">
+
+      <table class="min-w-full bg-white">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              ClientName
+            </th>
+            <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Date
+            </th>
+            <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Time
+            </th>
+            <th class="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Status
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr class="hover:bg-gray-50" *ngFor="let slot of bookedslots">
+            <td class="py-4 px-4 whitespace-nowrap">
+              <div class="text-sm font-medium text-gray-900">{{slot.username}}</div>
+            </td>
+            <td class="py-4 px-4 whitespace-nowrap">
+              <div class="text-sm text-gray-500">{{slot.date | date: 'yyyy-MM-dd'}}</div>
+            </td>
+            <td class="py-4 px-4 whitespace-nowrap">
+              <div class="text-sm text-gray-900">{{slot.startTime}}</div>
+            </td>
+            <td class="py-4 px-4 whitespace-nowrap">
+              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                Booked
+              </span>
+              <!-- <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                cancelled
+              </span> -->
+            </td>
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+
+    </div>
+</p-dialog>
+
+
+
+
+<p-dialog header="" [(visible)]="visibilitySlot" [modal]="true" [style]="{ width: '25rem' }">
+  <ng-template pTemplate="header">
+      
+
+          <span class="font-bold white-space-nowrap text-slate-500">
+              Edit Slot
+          </span>
+  </ng-template>
+  <form [formGroup]="slotForm" (ngSubmit)="onSubmitEditSlot()">
+
+    <div class="flex align-items-center gap-3 mb-3">
+      <label for="Date" class="font-semibold w-6rem">Date</label>
+      <input type="date" formControlName="date" id="Date"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Date" required />
+    </div>
+    
+    <div class="flex align-items-center gap-3 mb-5">
+      <label for="time" class="font-semibold w-6rem">Time</label>
+      <input type="time" formControlName="startTime" id="startTime"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="time" required />
+    </div>
+    
+    <div class="flex align-items-center gap-3 mb-5">
+      <label for="price" class="font-semibold w-6rem">Price</label>
+      <input type="number" formControlName="price" id="price"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="price" required />
+    </div>
+  
+
+
+      <button  type=" button"
+          class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">save</button>
+      <!-- <button (click)="editslotVisible()" type="button"
+          class="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-2 py-1 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800">cancel</button> -->
+
+</form>
+
+</p-dialog>
 

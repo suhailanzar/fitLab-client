@@ -23,6 +23,8 @@ import { DataViewModule } from 'primeng/dataview';
 import { TagModule } from 'primeng/tag';
 import { RatingModule } from 'primeng/rating';
 import { CarouselModule } from 'primeng/carousel';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { AvatarModule } from 'primeng/avatar';
 
 
 import { OtpComponent } from '../../pages/user/otp/otp.component';
@@ -33,7 +35,6 @@ import { CartComponent } from '../../pages/user/cart/cart.component';
 import { ReportsComponent } from '../../pages/user/reports/reports.component';
 import { DietPlansComponent } from '../../pages/user/diet-plans/diet-plans.component';
 import { TrainerDetailsComponentUser } from '../../pages/user/trainer-details/trainer-details.component';
-import { BookSlotComponent } from '../../pages/user/book-slot/book-slot.component';
 import { SubscriptionComponent } from '../../pages/user/subscription/subscription.component';
 import { IstPipe } from '../../core/pipes/ist.pipe';
 import { NgxPayPalModule } from 'ngx-paypal';
@@ -58,11 +59,12 @@ import { UserchatComponent } from '../../pages/user/userchat/userchat.component'
         DietPlansComponent,
         ReportsComponent,
         TrainerDetailsComponentUser,
-        BookSlotComponent,
         SubscriptionComponent,
         IstPipe,
         AvailableSlotsPipe,
         UserchatComponent,
+    SubscriptionComponent,
+
 
     ],
     imports: [
@@ -78,12 +80,14 @@ import { UserchatComponent } from '../../pages/user/userchat/userchat.component'
         CarouselModule,
         sharedAppModule,
         DataViewModule,
+        AvatarModule,
         TagModule,
         RatingModule,
         FormsModule,
         DialogModule,
         NgxPayPalModule,
-        SocketIoModule.forRoot(config)
+        SocketIoModule.forRoot(config),
+        ProgressSpinnerModule
         
     ],
     providers: [MessageService],
