@@ -2,7 +2,7 @@
 import { HttpClient } from "@angular/common/http";
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from "@angular/core";
-import { Payment, User } from "../models/user";
+import { coursePayment, Payment, User } from "../models/user";
 import { Observable, of } from "rxjs";
 import { environment } from "../../../env/environment";
 
@@ -57,10 +57,30 @@ export class UserService {
         return this.http.get(`${BASE_URL}getprofile`)
     }
 
+    getAllCourses(currentpage:number,limit:number): Observable<any> {
 
+        return this.http.get(`${BASE_URL}getCourse`, {
+            params: {
+              page: currentpage.toString(),
+              limit: limit.toString()
+            }
+          });
+    }
+    getCourseDetails(id:string | null): Observable<any> {
+        return this.http.get(`${BASE_URL}getCourseDetails/${id}`)
+    }
 
+    
+    saveCourse(paymentDetails:coursePayment):Observable<any> {
+        console.log('paymetn details are',paymentDetails);
+        
+        return this.http.post(`${BASE_URL}saveCourse`,paymentDetails)
+    }
 
-
+    getPurchasedCourses():Observable<any> {
+        
+        return this.http.get(`${BASE_URL}getPurchasedCourses`)
+    }
 
 
 }

@@ -19,9 +19,9 @@ export class SubscriptionComponent implements OnInit {
     { id: 3, name: 'Premium Plan', description: 'Access to all features', price: 30 }
   ];
 
-  userData: any = {}; // Dummy user data; replace with actual data source
-  selectedSlot: any = {}; // Dummy selected slot; replace with actual data source
-  trainer: any = {}; // Dummy trainer; replace with actual data source
+  userData: any = {}; 
+  selectedSlot: any = {}; 
+  trainer: any = {}; 
   visible: boolean = false;
 
   constructor(
@@ -32,7 +32,8 @@ export class SubscriptionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Initialize user data and other necessary information here
+    console.log('this user data is',this.userData);
+    
   }
 
 

@@ -1,1 +1,82 @@
-<p>diet-plans works!</p>
+<app-sidebar></app-sidebar>
+<div class="p-3 w-full  lg:mt-1 md:mt-5 text-center">
+
+
+    <div class=" h-full">
+
+
+        <div class="bg-white p-4 rounded-lg shadow-md w-full  border-1 border-blue-100 ">
+            <h2 class="text-center text-slate-400 text-2xl font-semibold mb-6">Ready to give it a shot? Let us know your
+                diet.</h2>
+
+            <div class="flex justify-around space-x-8 mb-8">
+                <div *ngFor="let option of dietOptions"
+                    class="border-2 border-blue-200 w-44 px-5 py-3 rounded-lg hover:bg-blue-50 transition duration-300 ease-in-out"
+                    [class.bg-blue-100]="selectedDiet === option.name">
+                    <button class="w-full text-center focus:outline-none group" (click)="selectDiet(option.name)">
+                        <img [src]="option.image" [alt]="option.name" width="40" height="40" class="mx-auto mb-2" />
+                        <span class="text-lg block group-hover:text-blue-600">{{ option.name }}</span>
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="mb-8">
+                <label for="calories" class="block text-gray-700 text-lg mb-2">Select the calories to Eat</label>
+                <select [(ngModel)]="calorieLimit" id="calories"
+                    class="border border-gray-300 rounded px-4 py-2 w-full text-lg">
+                    <option>300</option>
+                    <option>500</option>
+                    <option>1000</option>
+                    <option>1500</option>
+                    <option>2000</option>
+                </select>
+            </div>
+            <div class="mb-8">
+                <label for="meals" class="block text-gray-700 text-lg mb-2">in</label>
+                <select [(ngModel)]="mealtype" id="meals"
+                    class="border border-gray-300 rounded px-4 py-2 w-full text-lg">
+                    <option>Breakfast</option>
+                    <option>lunch</option>
+                    <option>dinner</option>
+                    <option>snack</option>
+                </select>
+            </div>
+            <button (click)="generateMeals()" class="bg-blue-400 hover:bg-blue-600 text-white rounded 
+                   px-2 py-1 sm:py-2 
+                   w-1/2 sm:w-auto md:w-1/2 lg:w-1/3 xl:w-1/4 
+                   text-sm sm:text-base md:text-lg lg:text-xl 
+                   font-semibold transition duration-300 mx-auto sm:mx-0 block sm:inline-block">
+                Generate
+            </button>
+        </div>
+
+
+
+        <div class="flex justify-center">
+            <div
+                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 bg-white p-4 rounded-lg shadow-md w-full border border-blue-100 mt-2">
+                <div *ngFor="let meal of filteredMeals"
+                    class="flex flex-col bg-white shadow-md rounded-xl overflow-hidden">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+                            alt="card-image" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="p-4 flex-grow">
+                        <h5 class="text-lg font-semibold mb-2 text-blue-gray-900">
+                            {{meal.name}} : ({{meal.description}})
+                        </h5>
+                        <p class="text-sm mb-1">Type: {{meal.type}}</p>
+                        <p class="text-sm mb-1">Protein: {{meal.protein}}</p>
+                        <p class="text-sm mb-1">Calories: {{meal.calories}}</p>
+                        <p class="text-sm mb-1">Fats: {{meal.fats}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>

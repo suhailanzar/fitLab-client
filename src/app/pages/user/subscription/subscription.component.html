@@ -1,13 +1,17 @@
 <div class="subscription-container">
-    <h1 class="text-slate-500 font-xl" >Choose Your Subscription Plan</h1>
-    
-    <div class="plans">
-      <div class="plan" *ngFor="let plan of plans">
-        <h2>{{ plan.name }}</h2>
-        <p>{{ plan.description }}</p>
-        <p>Price: {{ plan.price | currency }}</p>
-        <button (click)="checkout(plan.id)">Subscribe</button>
-      </div>
+  <h1 class="text-slate-500  text-xl p-6 font-semibold">Choose Your Subscription Plan</h1>
+
+  <div class="plans">
+    <div *ngFor="let plan of plans"
+      class=" plan bg-white rounded-lg shadow-lg p-6 flex flex-col border-2 border-green-100  w-72">
+      <h2 class="text-2xl font-bold mb-4">{{ plan.name }}</h2>
+      <ul class="mb-6 flex-grow">
+        <li class="mb-2">{{ plan.description }}</li>
+
+      </ul>
+      <p class="text-3xl font-bold mb-4">{{ plan.price | currency }}</p>
+      <button (click)="checkout(plan.id)"
+        class="custom-color text-white py-2 px-4 rounded hover:bg-blue-800">Subscribe</button>
     </div>
   </div>
-  
+</div>

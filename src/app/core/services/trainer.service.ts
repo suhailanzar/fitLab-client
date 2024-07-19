@@ -86,5 +86,9 @@ export class trainerService {
     }
 
 
+    getRevenueData():Observable<any>{
+        return this.http.get<any>(`${BASE_URL}trainer/getRevenueData`)
+    }
+
   
 }

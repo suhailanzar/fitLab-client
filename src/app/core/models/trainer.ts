@@ -40,8 +40,9 @@ export  interface ICourse  {
     courseName: string;
     description: string;
     modules: IModule[];
-    price: number;
+    Price: number;
     trainerId: string;
     createdAt: Date;
     updatedAt: Date;
+    id?:string;
 }

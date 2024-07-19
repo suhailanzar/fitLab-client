@@ -1,1 +1,58 @@
-<p>courses works!</p>
+<app-sidebar></app-sidebar>
+<div class="container mx-auto p-6">
+  <div class="pb-4">
+    <a routerLink="/mycourse" class=" text-blue-600 hover:text-blue-700">my Courses</a>
+
+  </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+      <div *ngFor="let course of courses" class="flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl">
+        <div class="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-36 sm:h-64">
+          <img
+            src="https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=927&amp;q=80"
+            alt="card-image" class="object-cover w-full h-full" />
+        </div>
+        <div class="p-4 flex-grow">
+          <div class="flex items-center justify-between mb-2">
+            <p class="block  text-base antialiased font-medium leading-relaxed text-blue-gray-900">
+              {{course.courseName}}
+            </p>
+         
+          </div>
+          <p class="block font-sans text-sm antialiased font-normal leading-normal text-gray-700 h-10 opacity-75">
+           {{course.description}}
+          </p>
+          <p class="block font-sans text-base antialiased font-semibold leading-relaxed text-slate-600">
+            Price :  {{course.Price}} &#8377; 
+           </p>
+        </div>
+        <div class="p-3 pt-0 mt-auto">
+          <button  [routerLink]="['/coursedetails', course._id]"
+            class="align-middle select-none font-semibold text-center  transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg shadow-gray-900/10 hover:shadow-gray-900/20 focus:opacity-[0.85] active:opacity-[0.85] active:shadow-none block w-full bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
+            type="button">
+            View Details
+          </button>
+        </div>
+      </div>
+    </div>
+
+ 
+    <div class="flex justify-center my-6">
+      <nav aria-label="Page navigation example">
+        <ul class="inline-flex -space-x-px text-base h-10">
+          <li>
+            <a  class="flex items-center justify-center px-4 h-10 ms-0 leading-tight hover:cursor-pointer text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+               (click)="prevPage()" [class.disabled]="currentPage === 1">Previous</a>
+          </li>
+          <li *ngFor="let page of [].constructor(totalPages); let i = index">
+            <a  (click)="goToPage(i + 1)" class="flex items-center justify-center px-4 h-10 leading-tight hover:cursor-pointer text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+               [class.active]="currentPage === i + 1">{{ i + 1 }}</a>
+          </li>
+          <li>
+            <a  class="flex items-center justify-center px-4 h-10 leading-tight hover:cursor-pointer text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+               (click)="nextPage()" [class.disabled]="currentPage === totalPages">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>

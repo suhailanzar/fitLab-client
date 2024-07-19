@@ -1,1 +1,22 @@
-<p>revenue works!</p>
+<div class="flex justify-between">
+    <app-sidebar></app-sidebar>
+    <div class="p-3 w-full lg:ml-[240px] lg:mt-1 md:mt-5 ">
+
+
+        <!-- <div class="flex justify-center mx-auto my-10"  >
+            <p-chart type="pie" class="custom-chart"  height="60vh"  [data]="data" [options]="options" />
+        </div> -->
+
+        <div class="card mb-16">
+            <p-chart type="line" [data]="data" [options]="options" />
+        </div>
+
+
+        <!--         
+       <div>
+            <p-chart type="bar" [data]="basicData" [options]="basicOptions" />
+
+        </div>  -->
+
+    </div>
+</div>

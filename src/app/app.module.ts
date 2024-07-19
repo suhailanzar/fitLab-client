@@ -21,13 +21,12 @@ import { jwtHttpInterceptor } from '../app/core/interceptors/jwt-decode.intercep
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
     PagenotfoundComponent,
- 
-    
+
+
   
   ],
 

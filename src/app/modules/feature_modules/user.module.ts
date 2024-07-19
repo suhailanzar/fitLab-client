@@ -25,11 +25,12 @@ import { RatingModule } from 'primeng/rating';
 import { CarouselModule } from 'primeng/carousel';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { AvatarModule } from 'primeng/avatar';
+import { AccordionModule } from 'primeng/accordion';
 
 
 import { OtpComponent } from '../../pages/user/otp/otp.component';
 import { sharedAppModule } from '../custom_modules/shared.module';
-import { CoursesComponent } from '../../pages/user/courses/courses.component';
+import { CoursesComponentuser } from '../../pages/user/courses/courses.component';
 import { UserProfileComponent } from '../../pages/user/profile/profile.component';
 import { CartComponent } from '../../pages/user/cart/cart.component';
 import { ReportsComponent } from '../../pages/user/reports/reports.component';
@@ -42,6 +43,8 @@ import { AvailableSlotsPipe } from '../../core/pipes/available-slots.pipe';
 import { SocketIoModule } from 'ngx-socket-io';
 import { config } from '../../../../socket-config';
 import { UserchatComponent } from '../../pages/user/userchat/userchat.component';
+import { CoursedetailsComponent } from '../../pages/user/coursedetails/coursedetails.component';
+import { MycourseComponent } from '../../pages/user/mycourse/mycourse.component';
 
 
 @NgModule({
@@ -53,7 +56,7 @@ import { UserchatComponent } from '../../pages/user/userchat/userchat.component'
         LandingpageComponent,
         SidebarComponent,
         TrainersComponentuser,
-        CoursesComponent,
+        CoursesComponentuser,
         UserProfileComponent,
         CartComponent,
         DietPlansComponent,
@@ -64,6 +67,9 @@ import { UserchatComponent } from '../../pages/user/userchat/userchat.component'
         AvailableSlotsPipe,
         UserchatComponent,
     SubscriptionComponent,
+    CoursedetailsComponent,
+    MycourseComponent
+
 
 
     ],
@@ -87,7 +93,8 @@ import { UserchatComponent } from '../../pages/user/userchat/userchat.component'
         DialogModule,
         NgxPayPalModule,
         SocketIoModule.forRoot(config),
-        ProgressSpinnerModule
+        ProgressSpinnerModule,
+        AccordionModule
         
     ],
     providers: [MessageService],

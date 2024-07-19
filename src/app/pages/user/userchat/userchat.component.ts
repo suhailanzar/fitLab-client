@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, OnDestroy, SimpleChanges, OnChanges, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { ChatService } from '../../../core/services/chat.service';
 import { Subscription } from 'rxjs';
-import { Trainer } from '../../../core/models/trainer';
 import { UserService } from '../../../core/services/user.service';
 import { MessageService } from 'primeng/api';
 

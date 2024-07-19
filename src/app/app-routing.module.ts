@@ -28,6 +28,15 @@ import { TraineChatComponent } from './pages/trainer/traine-chat/traine-chat.com
 import { SubscriptionComponent } from './pages/user/subscription/subscription.component';
 import { CoursesComponent } from './pages/trainer/courses/courses.component';
 import { AddCourseComponent } from './pages/trainer/add-course/add-course.component';
+import { DietPlansComponent } from './pages/user/diet-plans/diet-plans.component';
+import { CoursesComponentuser } from './pages/user/courses/courses.component';
+import { AddmealComponent } from './pages/admin/addmeal/addmeal.component';
+import { MealPlansComponent } from './pages/admin/meal-plans/meal-plans.component';
+import { CoursesComponentadmin } from './pages/admin/courses/courses.component';
+import { UsersComponentadmin } from './pages/admin/users/users.component';
+import { CoursedetailsComponent } from './pages/user/coursedetails/coursedetails.component';
+import { RevenueComponent } from './pages/trainer/revenue/revenue.component';
+import { MycourseComponent } from './pages/user/mycourse/mycourse.component';
 
 
 
@@ -46,6 +55,11 @@ const routes: Routes = [
   {path:"profile",component:UserProfileComponent,canActivate: [userAuthGuardService]},
   {path:"chat",component:UserchatComponent,canActivate: [userAuthGuardService]},
   {path:"subscription",component:SubscriptionComponent,canActivate: [userAuthGuardService]},
+  {path:"courses",component:CoursesComponentuser,canActivate: [userAuthGuardService]},
+  {path:"dietplans",component:DietPlansComponent,canActivate: [userAuthGuardService]},
+  {path:"coursedetails/:id",component:CoursedetailsComponent,canActivate: [userAuthGuardService]},
+  {path:"mycourse",component:MycourseComponent,canActivate: [userAuthGuardService]},
+
 
   // trainer routes
   {path:"trainer/login",component:trainerLoginComponent},
@@ -57,6 +71,8 @@ const routes: Routes = [
   {path:"trainer/chat",component:TraineChatComponent,canActivate: [TrainerAuthGuardService]},
   {path:"trainer/courses",component:CoursesComponent,canActivate: [TrainerAuthGuardService]},
   {path:"trainer/addcourse",component:AddCourseComponent,canActivate: [TrainerAuthGuardService]},
+  {path:"trainer/revenue",component:RevenueComponent,canActivate: [TrainerAuthGuardService]},
+  
 
   // admin routes
   {path:"admin/login",component:adminLoginComponent},
@@ -64,6 +80,10 @@ const routes: Routes = [
   {path:"admin/trainer",component:TrainersComponent,canActivate: [adminAuthGuardService]},
   {path:"admin/trainerdetails/:id",component:TrainerDetailsComponent,canActivate: [adminAuthGuardService]},
   {path:"admin/requests",component:RequestsComponent,canActivate: [adminAuthGuardService]},
+  {path:"admin/addmeal",component:AddmealComponent,canActivate: [adminAuthGuardService]},
+  {path:"admin/mealplans",component:MealPlansComponent,canActivate: [adminAuthGuardService]},
+  {path:"admin/courses",component:CoursesComponentadmin,canActivate: [adminAuthGuardService]},
+  {path:"admin/users",component:UsersComponentadmin,canActivate: [adminAuthGuardService]},
   
 
   // wildcard route

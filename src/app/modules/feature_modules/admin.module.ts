@@ -20,13 +20,16 @@ import { SidebarComponent } from '../../pages/admin/sidebarReusable/sidebar.comp
 import { TrainersComponent } from '../../pages/admin/trainers/trainers.component';
 import { TrainerDetailsComponent } from '../../pages/admin/trainer-details/trainer-details.component';
 import { CommonModule } from '@angular/common';
-import { UsersComponent } from '../../pages/admin/users/users.component';
+import { UsersComponentadmin } from '../../pages/admin/users/users.component';
 import { UserdetailsComponent } from '../../pages/admin/userdetails/userdetails.component';
 import { RequestsComponent } from '../../pages/admin/requests/requests.component';
 import { RevenueComponent } from '../../pages/admin/revenue/revenue.component';
-import { CoursesComponent } from '../../pages/admin/courses/courses.component';
+import { CoursesComponentadmin } from '../../pages/admin/courses/courses.component';
 import { ReportsComponent } from '../../pages/admin/reports/reports.component';
-
+import { AddmealComponent } from '../../pages/admin/addmeal/addmeal.component';
+import { MealPlansComponent } from '../../pages/admin/meal-plans/meal-plans.component';
+import { TableModule } from 'primeng/table';
+import { PaginatorModule } from 'primeng/paginator';
 
 
 
@@ -39,12 +42,14 @@ import { ReportsComponent } from '../../pages/admin/reports/reports.component';
       SidebarComponent,
       TrainersComponent,
       TrainerDetailsComponent,
-      UsersComponent,
+      UsersComponentadmin,
       UserdetailsComponent,
       RequestsComponent,
       RevenueComponent,
-      CoursesComponent,
+      CoursesComponentadmin,
       ReportsComponent,
+      AddmealComponent,
+      MealPlansComponent,
       
     ],
     imports: [
@@ -59,7 +64,9 @@ import { ReportsComponent } from '../../pages/admin/reports/reports.component';
     RippleModule,
     BrowserAnimationsModule,
     MessagesModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    TableModule,
+    PaginatorModule
  
     ],
     providers: [MessageService,ConfirmationService],

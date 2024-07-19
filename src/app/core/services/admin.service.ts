@@ -4,6 +4,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { environment } from "../../../env/environment";
+import { Meal } from "../models/admin";
 
 const BASE_URL = environment.BASE_URL
 
@@ -36,6 +37,7 @@ export class adminService {
         
         return this.http.get(`${BASE_URL}admin/getTrainers`)
     }
+   
 
     trainerApproval(id:string): Observable<any> {
 
@@ -46,6 +48,16 @@ export class adminService {
 
        const trainers =  this.http.get(`${BASE_URL}admin/viewtrainer/${id}`)
        return trainers
+    }
+
+    addmeal(data:FormData): Observable<any> {
+        console.log('data in service is',data);
+        
+        return  this.http.post(`${BASE_URL}admin/addmeal`,data)   
+    }
+
+    getMeals(): Observable<any> {
+        return this.http.get(`${BASE_URL}admin/getMeals`)
     }
 
   

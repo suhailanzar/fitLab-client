@@ -1,13 +1,13 @@
 .activelinks{
-    color: #08b12d !important;     
+    color: #5159f8 !important;     
 }
 
 
 .Btn {
-    --black: #000000;
-    --ch-black: #141414;
-    --eer-black: #1b1b1b;
-    --night-rider: #2e2e2e;
+    --black: #0d2bc4d1;
+    --ch-black: #0d2bc4d1;
+    --eer-black: #0d2bc4d1;
+    --night-rider: #0d2bc4d1;
     --white: #ffffff;
     --af-white: #f3f3f3;
     --ch-white: #e1e1e1;

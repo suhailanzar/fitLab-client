@@ -1,0 +1,113 @@
+<div class="flex justify-between">
+    <app-sidebar></app-sidebar>
+    <div class="p-3 w-full lg:ml-[240px] lg:mt-1 md:mt-5 ">
+        <form [formGroup]="mealForm" (ngSubmit)="onSubmit()" class="max-w-3xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+                <div>
+                    <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+                    <select id="type" formControlName="type"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        [ngClass]="{'border-red-500': mealForm.get('type')?.invalid && (mealForm.get('type')?.dirty || mealForm.get('type')?.touched)}">
+                        <option value="">Select a meal type</option>
+                        <option value="breakfast">Breakfast</option>
+                        <option value="lunch">Lunch</option>
+                        <option value="dinner">Dinner</option>
+                        <option value="snack">Snack</option>
+                    </select>
+                    <div *ngIf="mealForm.get('type')?.invalid && (mealForm.get('type')?.dirty || mealForm.get('type')?.touched)" class="text-red-500 text-sm mt-1">
+                        Please select a meal type.
+                    </div>
+                </div> 
+
+                <div>
+                    <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+                    <select id="category" formControlName="category"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        [ngClass]="{'border-red-500': mealForm.get('category')?.invalid && (mealForm.get('category')?.dirty || mealForm.get('category')?.touched)}">
+                        <option value="">Select a meal type</option>
+                        <option value="breakfast">Veg</option>
+                        <option value="lunch">Non-veg</option>
+                    </select>
+                    <div *ngIf="mealForm.get('category')?.invalid && (mealForm.get('category')?.dirty || mealForm.get('category')?.touched)" class="text-red-500 text-sm mt-1">
+                        Please select a category
+                    </div>
+                </div>
+
+                <div>
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Food Name</label>
+                    <input type="text" id="name" formControlName="name"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        [ngClass]="{'border-red-500': mealForm.get('name')?.invalid && (mealForm.get('name')?.dirty || mealForm.get('name')?.touched)}"
+                        required />
+                    <div *ngIf="mealForm.get('name')?.invalid && (mealForm.get('name')?.dirty || mealForm.get('name')?.touched)" class="text-red-500 text-sm mt-1">
+                        Food name is required.
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="image" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">Image</label>
+                    <div class="flex items-center justify-center w-full">
+                        <label for="image" class="flex flex-col items-center justify-center w-full h-44 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                            [ngClass]="{'border-red-500': mealForm.get('image')?.invalid && (mealForm.get('image')?.dirty || mealForm.get('image')?.touched)}">
+                            <!-- ... (SVG and text content) ... -->
+                            <input id="image" type="file" accept="image/*" (change)="onFileSelected($event)" class="hidden" />
+                        </label>
+                    </div>
+                    <div *ngIf="selectedFileName" class="mt-2 text-sm text-gray-500 dark:text-gray-300">
+                        Selected file: {{ selectedFileName }}
+                    </div>
+                    <div *ngIf="mealForm.get('image')?.invalid && (mealForm.get('image')?.dirty || mealForm.get('image')?.touched)" class="text-red-500 text-sm mt-1">
+                        Please select an image.
+                    </div>
+                </div>
+
+                <div>
+                    <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                    <textarea id="description" formControlName="description"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        [ngClass]="{'border-red-500': mealForm.get('description')?.invalid && (mealForm.get('description')?.dirty || mealForm.get('description')?.touched)}"></textarea>
+                    <div *ngIf="mealForm.get('description')?.invalid && (mealForm.get('description')?.dirty || mealForm.get('description')?.touched)" class="text-red-500 text-sm mt-1">
+                        Description is required.
+                    </div>
+                </div>
+
+                <div>
+                    <label for="calories" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Calories</label>
+                    <input id="calories" formControlName="calories" type="number"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        [ngClass]="{'border-red-500': mealForm.get('calories')?.invalid && (mealForm.get('calories')?.dirty || mealForm.get('calories')?.touched)}">
+                    <div *ngIf="mealForm.get('calories')?.invalid && (mealForm.get('calories')?.dirty || mealForm.get('calories')?.touched)" class="text-red-500 text-sm mt-1">
+                        Please enter a valid number of calories.
+                    </div>
+                </div>
+
+                <div>
+                    <label for="protein" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Protein (g)</label>
+                    <input id="protein" formControlName="protein" type="number"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        [ngClass]="{'border-red-500': mealForm.get('protein')?.invalid && (mealForm.get('protein')?.dirty || mealForm.get('protein')?.touched)}">
+                    <div *ngIf="mealForm.get('protein')?.invalid && (mealForm.get('protein')?.dirty || mealForm.get('protein')?.touched)" class="text-red-500 text-sm mt-1">
+                        Please enter a valid amount of protein.
+                    </div>
+                </div>
+
+                <div>
+                    <label for="fats" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fats (g)</label>
+                    <input id="fats" formControlName="fats" type="number"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        [ngClass]="{'border-red-500': mealForm.get('fats')?.invalid && (mealForm.get('fats')?.dirty || mealForm.get('fats')?.touched)}">
+                    <div *ngIf="mealForm.get('fats')?.invalid && (mealForm.get('fats')?.dirty || mealForm.get('fats')?.touched)" class="text-red-500 text-sm mt-1">
+                        Please enter a valid amount of fats.
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-center">
+                <button type="submit"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:opacity-50 disabled:cursor-not-allowed">
+                    Add Meal
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

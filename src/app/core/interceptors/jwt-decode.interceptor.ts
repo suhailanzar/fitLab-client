@@ -59,8 +59,7 @@ export class jwtHttpInterceptor implements HttpInterceptor {
     // Redirect to login page
     this.router.navigate(['/']);
 
-    // Optionally, show a message to the user
-    // You might want to inject a notification service here
+   
     console.log('Your session has expired. Please log in again.');
   }
 }

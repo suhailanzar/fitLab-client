@@ -1,0 +1,11 @@
+/* course-list.component.css */
+a.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  
+  a.active {
+    color: blue;
+    font-weight: bold;
+  }
+  

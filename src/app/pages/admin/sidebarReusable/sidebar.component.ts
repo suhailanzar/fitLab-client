@@ -30,13 +30,14 @@ export class SidebarComponent {
         icon: 'pi pi-exclamation-triangle',
         acceptIcon:"none",
         rejectIcon:"none",
-        rejectButtonStyleClass:"p-button-text",
+        acceptButtonStyleClass:"  text-slate-200 bg-green-800 px-2 py-1 me-3",
+        rejectButtonStyleClass:"  text-slate-200 bg-red-800 px-2 py-1 me-3",
         accept: () => {
             this.logout()
             this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'logout successful' });
         },
         reject: () => {
-            this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'cancelled' });
+            // this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'cancelled' });
         }
     });
 }

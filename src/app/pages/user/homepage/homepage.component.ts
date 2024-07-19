@@ -1,15 +1,16 @@
-import { Component , Input  } from '@angular/core';
+import { Component   } from '@angular/core';
+
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css'
 })
-export class HomepageComponent {
+export class HomepageComponent  {
 
   
   images: string[] = [
-    'assets/illustrations/Running-bro.png', 'assets/illustrations/admin-work.png', 'assets/illustrations/Gym-trainer.png'
+    'assets/img/3d-gym-equipment.jpg', 'assets/img/ketogenic-low-carbs-diet-food-selection-white-wall.jpg', 'assets/img/young-fitness-man-studio.jpg'
   ];
   interval: number = 4000; 
 
@@ -30,6 +31,7 @@ export class HomepageComponent {
       this.bmiCategory = this.getBMICategory(this.bmi);
     }
   }
+
 
   getBMICategory(bmi: number): string {
     if (bmi < 18.5) {

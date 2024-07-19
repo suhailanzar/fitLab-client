@@ -12,6 +12,7 @@ export interface User {
   createdAt?: Date;
   id?:string
   subscription?:Subscription
+  courses?:[string];
 }
 
 export interface Subscription {
@@ -32,3 +33,13 @@ export interface Subscription {
     slotid: string;
     trainerid: string;
   }
+
+  export interface coursePayment {
+    razorpayPaymentId: string;
+    amount: number;
+    currency: string;
+    courseId: string;
+    trainerId:string;
+    courseName: string;
+  }
+  

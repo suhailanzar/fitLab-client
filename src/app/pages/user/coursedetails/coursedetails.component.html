@@ -1,0 +1,93 @@
+<app-sidebar></app-sidebar>
+
+<body class="bg-gray-100 font-sans">
+    <div class="containers w-full px-2 py-1">
+        <div class=" mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+            <!-- Course Header -->
+            <div class="md:flex">
+                <div class="md:flex-shrink-0">
+                    <img class="h-48 w-full object-cover md:w-48 rounded-br-lg	" src="https://via.placeholder.com/300x200"
+                        alt="Course Image">
+                </div>
+                <div class="p-8" *ngIf="course; else loading">
+                    <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Workouts</div>
+                    <h1 class="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl">{{course.courseName}}</h1>
+                    <p class="mt-2 text-gray-600">{{course.description}}</p>
+                </div>
+
+                <ng-template #loading>
+                    <p>Loading course details...</p>
+                  </ng-template>    
+
+            </div>
+
+            <!-- Course Details -->
+            <div class="px-8 py-6 border-t border-gray-200">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                 
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-900">Modules</h2>
+                        <p-accordion [activeIndex]="0" *ngIf="course.modules else loading  ">
+                            <p-accordionTab  *ngFor="let module of course.modules" [header]="module.name">
+
+                                <div class="flex justify-between">
+                                    <p class="m-2 flex items-center">
+                                        <img width="30" height="30" class="m-2"
+                                            src="https://img.icons8.com/ios/50/circled-play--v1.png"
+                                            alt="circled-play--v1" /> {{ module.description }}
+                                    </p>
+
+                                    <img width="30" class="m-3" height="30"
+                                        src="https://img.icons8.com/?size=100&id=AZ2LjCeHqRan&format=png&color=000000"
+                                        alt="locked">
+                                </div>
+
+                            </p-accordionTab>
+                        </p-accordion>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instructor -->
+
+            <div class="px-8 py-6 border-t border-gray-200">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-900">Trainer</h2>
+                        <div class="mt-4 flex items-center">
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">{{course.author}}</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2 class="text-lg font-semibold text-gray-900">Language</h2>
+                        <div class="mt-4 flex items-center">
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">English</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Pricing and CTA -->
+            <div class="px-8 py-6 bg-gray-50">
+                <div class="sm:flex sm:items-center sm:justify-between">
+                    <div>
+                        <p class="text-3xl font-bold text-gray-900">&#8377; {{course.Price}}</p>
+                        <p class="mt-1 text-sm text-gray-600">Pay using UPI</p>
+                    </div>
+                    <div class="mt-4 sm:mt-0">
+                        <button  (click)="checkout(course.id)"
+                            class="w-full sm:w-auto bg-indigo-600 text-white font-semibold py-3 px-6 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-150 ease-in-out">
+                            Purchase Course
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,73 @@
+<div class="flex justify-between">
+    <app-sidebar></app-sidebar>
+    <div class="p-3 w-full lg:ml-[240px] lg:mt-1 md:mt-5 ">
+
+
+        <div class="flex justify-between pb-2 sm:top-6 ">
+
+            <div>
+                <p class="text-xl font-semibold text-slate-400 ">Meal Plans</p>
+            </div>
+
+            <i class="pi pi-plus-circle hover:cursor-pointer text-blue-600 font-semibold"
+                style="color: 'var(--primary-color)'; font-size: 1rem" routerLink="/admin/addmeal"> Add Meals</i>
+
+        </div>
+
+
+        <div class=" overflow-x-auto shadow-md sm:rounded-lg py-4 px-6">
+
+
+            <!-- your-component.html -->
+            <p-table [value]="meals" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]">
+                <ng-template pTemplate="header">
+                    <tr class="bg-blue-400">
+                        <th style="width: 25%;">Image</th>
+                        <th style="width: 25%;">Name</th>
+                        <th style="width: 25%;">Type</th>
+                        <th style="width: 25%;">Description</th>
+                        <th style="width: 25%;">Calories</th>
+                        <th style="width: 25%;">Protein</th>
+                        <th style="width: 25%;">Fats</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-meal>
+                    <tr 
+                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <td class="p-4">
+                        <img [src]="meal.image" class="w-16 md:w-32 max-w-full max-h-full" alt="picture">
+                    </td>
+                    <td class="px-3 py-4 font-semibold text-gray-900 dark:text-white">
+                        {{ meal.name }}
+                    </td>
+                    <td class="px-3 py-4  text-gray-900 dark:text-white">
+                        {{ meal.type }}
+                    </td>
+                    <td class="p-4">
+                        {{ meal.description }}
+                    </td>
+                    <td class="px-3 py-4 font-semibold text-gray-900 dark:text-white">
+                        {{ meal.calories }}
+                    </td>
+                    <td class="px-3 py-4 font-semibold text-gray-900 dark:text-white">
+                        {{ meal.protein }}
+                    </td>
+                    <td class="px-3 py-4 font-semibold text-gray-900 dark:text-white">
+                        {{ meal.fats }}
+                    </td>
+                </tr>
+                </ng-template>
+               
+            </p-table>
+
+
+
+
+
+
+
+        </div>
+
+
+    </div>
+</div>

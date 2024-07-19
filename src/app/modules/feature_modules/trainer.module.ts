@@ -30,7 +30,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { AvatarModule } from 'primeng/avatar';
 import { DataViewModule } from 'primeng/dataview';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-
+import { ChartModule } from 'primeng/chart';
 
 
 import { CommonModule } from '@angular/common';
@@ -78,7 +78,8 @@ import { TraineChatComponent } from '../../pages/trainer/traine-chat/traine-chat
     sharedAppModule,
     FormsModule,
     DataViewModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    ChartModule
 
     ],
     providers: [MessageService ],
