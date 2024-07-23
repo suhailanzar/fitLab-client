@@ -50,7 +50,10 @@ export class trainerService {
         return this.http.get(`${BASE_URL}trainer/getprofile`)
     }
 
-    addSlot(data:Slot): Observable<any> {
+    addSlot(data:Slot[]): Observable<any> {
+        
+
+        console.log('slots are in service is ',data);
         
         return this.http.post(`${BASE_URL}trainer/addslot`,data)
     }

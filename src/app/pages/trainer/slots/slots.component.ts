@@ -22,16 +22,26 @@ export class SlotsComponent implements OnInit, OnDestroy {
   visibilitySlot: boolean = false;
   private slotSubscription: Subscription | null = null;
   currentslotid!: string;
+  minDate!: string;
+  newSlots: Slot[] = []
 
   constructor(private fb: FormBuilder, private router: Router, private messageService: MessageService, private service: trainerService, private cdr: ChangeDetectorRef) {
     this.slotForm = this.fb.group({
       date: ['', Validators.required],
       startTime: ['', Validators.required],
-      price: ['', Validators.required]
+      endTime: ['', Validators.required]
     });
   }
 
   ngOnInit() {
+
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); // Months start at 0!
+    const dd = String(today.getDate()).padStart(2, '0');
+    this.minDate = `${yyyy}-${mm}-${dd}`;
+
+
     this.slotSubscription = this.service.getslots().subscribe({
       next: (res) => {
         if (res && res.message) {
@@ -68,12 +78,13 @@ export class SlotsComponent implements OnInit, OnDestroy {
     });
   }
 
-  addSlot(data: Slot) {
+  addSlot(data: Slot[]) {
     this.slotSubscription = this.service.addSlot(data).subscribe({
       next: (res) => {
         if (res && res.message) {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message });
           this.slotForm.reset();
+          this.newSlots = []
           this.slots.push(res.addedslot);
           this.cdr.detectChanges();
         }
@@ -90,6 +101,64 @@ export class SlotsComponent implements OnInit, OnDestroy {
     this.bookedslots = this.slots.filter(slot => slot.status === true);
   }
 
+  generateSlots(): void {
+    console.log('Entered generate slots');
+  
+    const startTimeStr = this.slotForm.value.startTime;
+    const endTimeStr = this.slotForm.value.endTime;
+  
+    console.log('Start time string:', startTimeStr, 'End time string:', endTimeStr);
+  
+    // Create Date objects for today with the given times
+    const today = new Date();
+    const startTime = this.createDateWithTime(today, startTimeStr);
+    const endTime = this.createDateWithTime(today, endTimeStr);
+    
+    if (startTime >= endTime) {
+      this.messageService.add({ severity: 'error', summary: 'Alert', detail: "Start time must be before end time"  });
+
+      return;
+    }
+  
+    this.newSlots = [];
+  
+    let currentTime = new Date(startTime.getTime());
+    while (currentTime < endTime) {
+      const slotEnd = new Date(currentTime.getTime() + 60 * 60 * 1000); // Add 1 hour
+  
+      if (slotEnd > endTime) {
+        slotEnd.setTime(endTime.getTime());
+      }
+  
+      const slot = {
+        date:new Date(),
+        price:150,
+        status:false,
+        startTime: this.formatTime(currentTime),
+        endTime:this.formatTime(endTime)
+      };
+  
+      this.newSlots.push(slot);
+      currentTime = new Date(slotEnd.getTime());
+    }
+
+    }
+
+
+    addSlotToDb(){
+      this.addSlot(this.newSlots)
+    }
+  
+  private createDateWithTime(date: Date, timeStr: string): Date {
+    const [hours, minutes] = timeStr.split(':').map(Number);
+    const newDate = new Date(date);
+    newDate.setHours(hours, minutes, 0, 0);
+    return newDate;
+  }
+  
+  private formatTime(date: Date): string {
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  }
 
   editSlotVisible(id: string) {
     this.visibilitySlot = true;
@@ -113,10 +182,9 @@ export class SlotsComponent implements OnInit, OnDestroy {
       const formData : Slot = {
         date: this.slotForm.get('date')!.value,
         startTime: this.slotForm.get('startTime')!.value,
-        price: this.slotForm.get('price')!.value,
-        username: '',
+        endTime: this.slotForm.get('endTime')!.value,
         status: false,
-        _id: ''
+        price: 150
       };
       this.editSlot(formData);
     } else {
@@ -150,7 +218,7 @@ export class SlotsComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     if (this.slotForm.valid) {
-      this.addSlot(this.slotForm.value);
+      this.generateSlots()
     } else {
       this.fullValid();
     }

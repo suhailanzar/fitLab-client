@@ -2,14 +2,37 @@
     <app-sidebar></app-sidebar>
     <div class="p-3 w-full lg:ml-[240px] lg:mt-1 md:mt-5 ">
 
+        <div class="revenue-container">
+            <div class="revenue-summary">
+              <div class="revenue-item">
+                <span class="revenue-label">Total Revenue</span>
+                <span class="revenue-value">₹ {{totalRev}}</span>
+              </div>
+              <div class="revenue-item">
+                <span class="revenue-label">Revenue from Slots</span>
+                <span class="revenue-value">₹ {{slotRev}}</span>
+              </div>
+              <div class="revenue-item">
+                <span class="revenue-label">Revenue from Course</span>
+                <span class="revenue-value">₹ {{courseRev}}</span>
+              </div>
+            </div>
+            <div class="revenue-chart">
+
+
+                <div class="card mb-16">
+                    <p-chart type="line" [data]="data" [options]="options" />
+                </div>
+
+            </div>
+          </div>
+
 
         <!-- <div class="flex justify-center mx-auto my-10"  >
             <p-chart type="pie" class="custom-chart"  height="60vh"  [data]="data" [options]="options" />
         </div> -->
 
-        <div class="card mb-16">
-            <p-chart type="line" [data]="data" [options]="options" />
-        </div>
+        
 
 
         <!--         

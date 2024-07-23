@@ -37,6 +37,7 @@ import { UsersComponentadmin } from './pages/admin/users/users.component';
 import { CoursedetailsComponent } from './pages/user/coursedetails/coursedetails.component';
 import { RevenueComponent } from './pages/trainer/revenue/revenue.component';
 import { MycourseComponent } from './pages/user/mycourse/mycourse.component';
+import { MycourseViewComponent } from './pages/user/mycourse-view/mycourse-view.component';
 
 
 
@@ -53,12 +54,13 @@ const routes: Routes = [
   {path:"trainers",component:TrainersComponentuser,canActivate: [userAuthGuardService]},
   {path:"trainersdetails",component:TrainerDetailsComponentUser,canActivate: [userAuthGuardService]},
   {path:"profile",component:UserProfileComponent,canActivate: [userAuthGuardService]},
-  {path:"chat",component:UserchatComponent,canActivate: [userAuthGuardService]},
+  {path:"chat/:id",component:UserchatComponent,canActivate: [userAuthGuardService]},
   {path:"subscription",component:SubscriptionComponent,canActivate: [userAuthGuardService]},
   {path:"courses",component:CoursesComponentuser,canActivate: [userAuthGuardService]},
   {path:"dietplans",component:DietPlansComponent,canActivate: [userAuthGuardService]},
   {path:"coursedetails/:id",component:CoursedetailsComponent,canActivate: [userAuthGuardService]},
   {path:"mycourse",component:MycourseComponent,canActivate: [userAuthGuardService]},
+  {path:"viewCourse/:id",component:MycourseViewComponent,canActivate: [userAuthGuardService]},
 
 
   // trainer routes

@@ -50,7 +50,7 @@ export class MycourseComponent implements OnInit, OnDestroy {
     });
   }
 
-  openVideoModal(id: string) {
+  openVideoModal(id: string ) {
 
 
     this.courseSubscription = this.service.getCourseDetails(id).subscribe({

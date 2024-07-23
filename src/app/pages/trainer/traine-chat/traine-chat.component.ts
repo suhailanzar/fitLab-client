@@ -15,7 +15,6 @@ export class TraineChatComponent implements OnInit, OnDestroy, OnChanges {
   @Input() trainerid!: string;
 
   messages: any[] = [];
-  unreadCounts: { [userId: string]: number } = {};
   newMessage: string = '';
   senderId: string | null;
   receiverId: string = '';
@@ -24,6 +23,9 @@ export class TraineChatComponent implements OnInit, OnDestroy, OnChanges {
   private clientsubscription: Subscription | null = null;
   clients!: User[];
   selectedUser!: User;
+ unreadMessagesCount: number = 0;
+
+
 
   constructor(
     private chatService: ChatService,
@@ -32,19 +34,22 @@ export class TraineChatComponent implements OnInit, OnDestroy, OnChanges {
     private cdr: ChangeDetectorRef
   ) {
     this.senderId = this.getTrainerId();
+    this.messages = [];
+
   }
 
   ngOnInit(): void {
     console.log('chat page init');
 
-   
-
+    this.messages = [];
     this.loadClients();
     this.subscribeToMessages();
 
   }
 
   loadClients(): void {
+    console.log('entered the loadclients');
+
     this.service.getClients().subscribe({
       next: (res) => {
         if (res) {
@@ -61,16 +66,10 @@ export class TraineChatComponent implements OnInit, OnDestroy, OnChanges {
           }
         }
       },
-      error: (err) => {
-        if (err && err.error.message) {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Alert',
-            detail: err.error.message,
-          });
-        }
-      },
+
     });
+    console.log('end of the loadclients');
+
   }
 
   selectedUserFunction(userid: any) {
@@ -79,11 +78,14 @@ export class TraineChatComponent implements OnInit, OnDestroy, OnChanges {
       this.chatService.leaveRoom(this.roomId);
     }
 
-    this.loadMessages()
+    this.unreadMessagesCount = 0;
 
-    if (this.unreadCounts[userid] !== undefined) {
-      this.unreadCounts[userid] = 0;
-    }
+    // this.chatService.markMessagesAsRead(this.senderId, this.receiverId).subscribe(() => {
+    //   // Messages marked as read
+    // });
+
+    // Clear the messages array to avoid showing previous user's messages
+    this.messages = [];
 
     this.receiverId = userid;
     const selecteduser = this.clients.find((user) => user.id === userid);
@@ -98,33 +100,39 @@ export class TraineChatComponent implements OnInit, OnDestroy, OnChanges {
     // Resubscribe to messages
     this.subscribeToMessages();
 
+    // Load messages for the selected user
     this.loadMessages();
   }
 
+
   private subscribeToMessages() {
+    console.log('entered the loadclients');
     if (this.messageSubscription) {
       this.messageSubscription.unsubscribe();
     }
 
     this.messageSubscription = this.chatService.receiveMessage().subscribe((message: any) => {
+      console.log('received message is',message);
+      
       const formattedMessage = {
         message: message.message,
         receiverId: message.receiverId,
         senderId: message.senderId,
         timestamp: message.timestamp,
+        isRead: message.isRead,
         _id: message._id,
       };
 
-      if (this.selectedUser.id !== message.receiverId) {
-        this.unreadCounts[message.senderId] = (this.unreadCounts[message.senderId] || 0) + 1;
-      }
+      if (!formattedMessage.isRead) {
+        this.unreadMessagesCount++;
+    }
 
-      console.log('this.unreadCounts', this.unreadCounts);
 
       this.messages.push(formattedMessage);
       this.cdr.detectChanges(); // Manually trigger change detection
     });
   }
+
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['trainerid'] && !changes['trainerid'].firstChange) {
@@ -144,22 +152,33 @@ export class TraineChatComponent implements OnInit, OnDestroy, OnChanges {
         _id: '',
       };
 
+      this.newMessage = ''
+
+      if (!Array.isArray(this.messages)) {
+        this.messages = []; // Ensure messages is always an array
+      }
+
       this.messages.push(formattedMessage);
       this.newMessage = '';
-      this.cdr.detectChanges(); // Trigger change detection
+      this.cdr.detectChanges();   
     }
   }
 
   loadMessages(): void {
     if (this.senderId && this.receiverId) {
-      this.chatService.getMessages(this.senderId, this.receiverId).subscribe((data: any) => {
-        this.messages = data.messages;
-        this.cdr.detectChanges(); // Trigger change detection
+      console.log('load messages send and receiver id is',this.senderId,this.receiverId);
+      
+      this.chatService.getMessagesTrainer(this.senderId, this.receiverId).subscribe((data: any) => {
+        console.log('messages are', data);
+
+        this.messages = data.messages || []; 
+        this.cdr.detectChanges(); 
       });
     } else {
       console.log('no sender or receiver id');
     }
   }
+
 
   ngOnDestroy(): void {
     if (this.roomId) {

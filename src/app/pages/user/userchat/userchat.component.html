@@ -1,57 +1,72 @@
-<div class="bg-gray-100 w-full h-5/6 flex border-2 border-slate-300  rounded-xl ">
-
-
-    <!-- Main chat area -->
-    <div class="flex-1 flex flex-col rounded-xl">
-        <!-- Chat header -->
-        <div class="bg-white p-4 border-b border-gray-300 rounded-e-xl">
-            <h2 class="text-lg font-semibold">{{ trainer }}</h2>
+<div class="flex flex-col h-screen">
+    <!-- Fixed top bar -->
+    <div class="fixed top-0 left-0 right-0 h-20 z-10" style="background-color: #075E54">
+      <div class="flex items-center p-4">
+        <div>
+          <img class="w-12 h-10 rounded-full" src="https://darrenjameseeley.files.wordpress.com/2014/09/expendables3.jpeg" />
         </div>
-
-        <!-- Messages area -->
-        <div class="flex-1 overflow-y-auto p-4 space-y-4">
-
-            <div *ngIf="messages.length === 0">
-                <p>No messages yet!</p>
-              </div>
-            <div *ngIf="messages &&  messages.length > 0">
-            <div *ngFor="let message of messages">
-
-
-                <!-- Received message -->
-                <div class="flex items-end" *ngIf="message.senderId !== senderId">
-                    <div class="bg-white rounded-lg p-3 max-w-xs">
-                        <p>{{message.message}}</p>
-                    </div>
-                </div>
-
-                <!-- Sent message -->
-                <div class="flex items-end justify-end" *ngIf="message.senderId === senderId">
-                    <div class="bg-blue-500 text-white rounded-lg p-3 max-w-xs">
-                        <p>{{message.message}}</p>
-                    </div>
-                </div>
-
-            </div>
+        <div class="ml-4">
+          <p class="text-white">New Movie! Expendables 4</p>
+          <p class="text-white text-xs mt-1">Andrés, Tom, Harrison, Arnold, Sylvester</p>
         </div>
-
-            <!-- Repeat for more messages -->
-        </div>
-
-        <!-- Message input -->
-        <div class="bg-white p-4 border-t border-gray-300 rounded-e-xl">
-            <div class="flex items-center">
-                <input type="text" [(ngModel)]="newMessage" placeholder="Type a message..."
-                    class="flex-1 border rounded-full py-2 px-4 mr-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <button (click)="sendMessage()"
-                    class="bg-blue-500 text-white rounded-full p-2 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" style="transform: rotate(90deg);" class="h-7 w-8 ms-2"
-                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                    </svg>
-                </button>
-            </div>
-        </div>
+      </div>
     </div>
-</div>
+  
+    <!-- Chat area -->
+    <div class="flex-1 overflow-hidden pt-20">
+      <div class="h-full flex flex-col">
+        <div class="flex-1 overflow-y-auto px-3 py-2" #scrollContainer style="background-color: #DAD3CC">
+          <div class="flex justify-center mt-3 mb-4">
+            <div class="rounded py-2 px-4" style="background-color: #FCF4CB">
+              <p class="text-xs">
+                Messages to this chat and calls are now secured with end-to-end encryption. Tap for more info.
+              </p>
+            </div>
+          </div>
+  
+          <div *ngIf="messages.length === 0">
+            <p>No messages yet!</p>
+          </div>
+          <ng-container *ngFor="let message of messages">
+            <div class="flex items-start justify-start mb-2" *ngIf="message.senderId != senderId">
+              <div>
+                <div class="rounded py-2 px-3" style="background-color: #F2F2F2">
+                  <p class="text-sm text-teal">{{message.message}}</p>
+                </div>
+                <div class="text-right text-xs text-grey-dark mt-1">
+                  {{message.timestamp | date:'shortTime'}}
+                </div>
+              </div>
+            </div>
+  
+            <div class="flex items-end justify-end mb-2" *ngIf="message.senderId == senderId">
+              <div>
+                <div class="rounded py-2 px-3" style="background-color: #E2F7CB">
+                  <p>{{message.message}}</p>
+                </div>
+                <div class="text-right text-xs text-grey-dark mt-1">
+                  {{message.timestamp | date:'shortTime'}}
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+  
+        <!-- Input area -->
+        <div class="bg-white p-4 border-t border-gray-300">
+          <div class="flex items-center">
+            <input type="text" [(ngModel)]="newMessage" placeholder="Type a message..."
+                   class="flex-1 border rounded-full py-2 px-4 mr-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button (click)="sendMessage()" style="background-color: #075E54;"
+                    class="text-white rounded-full p-2 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <svg xmlns="http://www.w3.org/2000/svg" style="transform: rotate(90deg);" class="h-7 w-8 ms-2"
+                   fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -192,14 +192,3 @@
   </div>
 </p-dialog>
 
-
-
-<p-dialog 
-    header="Header" 
-    [modal]="true"
-    [(visible)]="chatvisible" 
-    [style]="{ width: '50rem' }" 
-    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" 
-    [maximizable]="true">
-       <app-userchat [trainerid]="_trainerid" [trainer]="selectedTrainer" (messageSent)="onMessageSent()" *ngIf="isModalVisible" ></app-userchat>
-</p-dialog>

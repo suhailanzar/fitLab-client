@@ -15,6 +15,9 @@ export class RevenueComponent {
   options: any;
   basicOptions: any;
   revenueSubcription:Subscription | null = null;
+  slotRev:number = 0;
+  courseRev:number = 0;
+  totalRev:number = 0;
 
   constructor(
     private service:trainerService
@@ -27,18 +30,32 @@ export class RevenueComponent {
   getRevenueDetails() {
     this.revenueSubcription = this.service.getRevenueData().subscribe({
       next: (res: any) => {
-        console.log('response is', res);
         if (res && res.revenueData) {
+        
+
           const slotPayments = res.revenueData.filter((payment: { slotId: any; }) => payment.slotId);
           const coursePayments = res.revenueData.filter((payment: { courseId: any; }) => payment.courseId);
   
           const slotCounts: Map<string, number> = this.countPaymentsByDate(slotPayments);
-          const courseCounts: Map<string, number> = this.countPaymentsByDate(coursePayments);
-
-          console.log('slotcounts and coursecounts',slotCounts,courseCounts);
-          
+          const courseCounts: Map<string, number> = this.countPaymentsByDate(coursePayments);          
   
           const chartData = this.prepareChartData(slotCounts, courseCounts);
+
+          chartData.forEach(dayData => {
+            console.log('entered forEach');
+
+            console.log('daydata',dayData.slotRevenue);
+            
+            
+            this.slotRev += dayData.slotRevenue;
+            this.courseRev += dayData.courseRevenue;
+          });
+
+          console.log('thsi.slotrev',this.slotRev,this.courseRev);
+          
+        
+          this.totalRev = this.slotRev + this.courseRev;
+          
           this.lineChart(chartData);
         }
       },
@@ -204,7 +221,7 @@ export class RevenueComponent {
                 label += ': ';
               }
               if (context.parsed.y !== null) {
-                label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                label += new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(context.parsed.y);
               }
               return label;
             }
@@ -225,7 +242,7 @@ export class RevenueComponent {
           ticks: {
             color: textColorSecondary3,
             callback: function(value: any) {
-              return '$' + value;
+              return '₹' + value.toLocaleString('en-IN');
             }
           },
           grid: {

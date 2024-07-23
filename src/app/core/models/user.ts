@@ -43,3 +43,18 @@ export interface Subscription {
     courseName: string;
   }
   
+
+  export interface IEnrolledModule {
+    moduleId:string;
+    completed: boolean;
+}
+
+export interface IEnrolledCourse  {
+    userId: string;
+    courseId: string;
+    enrolledAt: Date;
+    completed: boolean;
+    modules: IEnrolledModule[];
+    createdAt: Date;
+    updatedAt: Date;
+}

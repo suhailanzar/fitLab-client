@@ -27,14 +27,11 @@ export class UserService {
         return this.http.post(`${BASE_URL}signup`, FormData)
     }
 
-
-
     userLogin(data: User): Observable<any> {
         return this.http.post(`${BASE_URL}login`, data)
     }
 
     getTrainers(): Observable<any> {
-
         return this.http.get<any>(`${BASE_URL}gettrainers`);
     }
 
@@ -81,6 +78,12 @@ export class UserService {
         
         return this.http.get(`${BASE_URL}getPurchasedCourses`)
     }
+
+    updateModuleCompletion(moduleId: string,courseId:string | null, completed: boolean): Observable<any> {
+        
+        return this.http.put(`${BASE_URL}updateModuleCompletion/${moduleId}/${courseId}`, { completed });
+
+      }
 
 
 }

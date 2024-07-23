@@ -19,8 +19,9 @@ export class jwtHttpInterceptor implements HttpInterceptor {
 
     return next.handle(authReq).pipe(
       catchError((error: HttpErrorResponse) => {
+        console.log('Interceptor caught an error:', error);
         if (error.status === 401) {
-          // Token is likely expired
+          console.log('401 Unauthorized error detected');
           this.handleUnauthorizedError();
         }
         return throwError(error);

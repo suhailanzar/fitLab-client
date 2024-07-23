@@ -18,16 +18,15 @@ import { AdminAppModule } from './modules/feature_modules/admin.module';
 import { sharedAppModule } from './modules/custom_modules/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { jwtHttpInterceptor } from '../app/core/interceptors/jwt-decode.interceptor';
+import { ErrorInterceptor } from '../app/core/interceptors/error-handling.interceptor';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TableModule } from 'primeng/table';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PagenotfoundComponent,
-
-
-  
   ],
 
   imports: [
@@ -46,10 +45,12 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     UserAppModule,
     AdminAppModule,
     sharedAppModule,
+    TableModule
     
   ],
 
-  providers: [MessageService ,  { provide: HTTP_INTERCEPTORS, useClass: jwtHttpInterceptor, multi: true }],
+  providers: [MessageService ,  { provide: HTTP_INTERCEPTORS, useClass: jwtHttpInterceptor, multi: true } , 
+     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor , multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

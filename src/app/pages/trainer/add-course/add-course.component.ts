@@ -34,6 +34,7 @@ export class AddCourseComponent implements OnInit {
     this.courseForm = this.fb.group({
       courseName: ['', Validators.required],
       description: ['', Validators.required],
+      thumbnail: ['', Validators.required],
       Price: ['', Validators.required],
       modules: this.fb.array([])
     });
@@ -148,7 +149,15 @@ export class AddCourseComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
-  
+
+  onFileChangeImage(event: any) {
+    if (event.target.files.length > 0) {
+      const image = event.target.files[0];
+      this.courseForm.patchValue({
+        thumbnail: image
+      });
+    }    
+  }
 
   fullvalid(){
     Object.keys(this.courseForm.controls).forEach(control => {
@@ -179,6 +188,7 @@ export class AddCourseComponent implements OnInit {
       const formData = new FormData();
       formData.append('courseName', this.courseForm.get('courseName')?.value);
       formData.append('description', this.courseForm.get('description')?.value);
+      formData.append('thumbnail', this.courseForm.get('thumbnail')?.value);
       formData.append('Price', this.courseForm.get('Price')?.value);
   
       this.modules.controls.forEach((module, index) => {

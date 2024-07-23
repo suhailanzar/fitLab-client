@@ -30,6 +30,7 @@ import { AddmealComponent } from '../../pages/admin/addmeal/addmeal.component';
 import { MealPlansComponent } from '../../pages/admin/meal-plans/meal-plans.component';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
+import { sharedAppModule } from '../custom_modules/shared.module';
 
 
 
@@ -66,7 +67,8 @@ import { PaginatorModule } from 'primeng/paginator';
     MessagesModule,
     ConfirmDialogModule,
     TableModule,
-    PaginatorModule
+    PaginatorModule,
+    sharedAppModule
  
     ],
     providers: [MessageService,ConfirmationService],

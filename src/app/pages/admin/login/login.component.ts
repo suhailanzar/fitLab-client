@@ -46,11 +46,7 @@ export class adminLoginComponent {
           this.router.navigateByUrl('admin/dashboard')
         }
       },
-      error: (err:any) => {
-        if (err && err.error.message) {
-          this.messageService.add({ severity: 'error', summary: 'Alert', detail: err.error.message });
-        }
-      },
+  
     });
   }
   

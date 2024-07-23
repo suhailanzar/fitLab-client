@@ -14,6 +14,8 @@ import { MessagesModule } from 'primeng/messages';
 
 import { CommonModule } from '@angular/common';
 import { OtpReuseComponent } from '../../shared/otp-reuse/otp-reuse.component';
+import { ReusableTableAdminComponent } from '../../shared/reusable-table-admin/reusable-table-admin.component';
+import { TableModule } from 'primeng/table';
 
 
 
@@ -22,7 +24,9 @@ import { OtpReuseComponent } from '../../shared/otp-reuse/otp-reuse.component';
 
 @NgModule({
     declarations: [
-        OtpReuseComponent
+        OtpReuseComponent,
+        ReusableTableAdminComponent
+        
     ],
     imports: [  
     CommonModule,
@@ -35,9 +39,10 @@ import { OtpReuseComponent } from '../../shared/otp-reuse/otp-reuse.component';
     RippleModule,
     BrowserAnimationsModule,
     MessagesModule,
+    TableModule
  
     ],
-    exports:[OtpReuseComponent],
+    exports:[OtpReuseComponent,ReusableTableAdminComponent],
     providers: [MessageService],
     bootstrap: []
   })

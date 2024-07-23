@@ -48,9 +48,23 @@ export class ChatService {
       });
     });
   }
+
+  markMessagesAsRead(senderId: string | null, receiverId: string): Observable<any> {    
+    const data = {userid:senderId,trainerid:receiverId}
+    return this.http.post(`${this._baseUrl}markMessagesAsRead`, data)
+  }
   
   getMessages(senderid:string,receiverid:string): Observable<any> {    
+    console.log('entered the getmessages',senderid,receiverid);
+    
     const data = {userid:senderid,trainerid:receiverid}
     return this.http.post(`${this._baseUrl}getMessages`, data)
+  }
+
+  getMessagesTrainer(senderid:string,receiverid:string): Observable<any> {    
+    console.log('entered the getmessages',senderid,receiverid);
+    
+    const data = {userid:senderid,trainerid:receiverid}
+    return this.http.post(`${this._baseUrl}trainer/getMessagesTrainer`, data)
   }
 }

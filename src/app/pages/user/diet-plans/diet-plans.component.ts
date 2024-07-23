@@ -13,6 +13,13 @@ export class DietPlansComponent implements OnInit {
   calorieLimit: number = 1000
   mealtype: string = 'Breakfast'
   meals: any[] = [];
+  gender!: string;
+  age!: number;
+  weight!: number;
+  height!: number;
+  goal!: string;
+  bmi!: number;
+  calories!: number;
 
 
   constructor(private adminservice: adminService){}
@@ -67,6 +74,33 @@ export class DietPlansComponent implements OnInit {
     }
     
     return selectedMeals;
+  }
+
+
+  onSubmit() {
+    this.calculateBMI();
+    this.calculateCalories();
+  }
+
+  calculateBMI() {
+    const heightInMeters = this.height / 100;
+    this.bmi = this.weight / (heightInMeters * heightInMeters);
+  }
+
+  calculateCalories() {
+    const baseCalories = this.gender === 'male' ? 10 * this.weight + 6.25 * this.height - 5 * this.age + 5 : 10 * this.weight + 6.25 * this.height - 5 * this.age - 161;
+
+    switch (this.goal) {
+      case 'loss':
+        this.calories = baseCalories - 500;
+        break;
+      case 'maintain':
+        this.calories = baseCalories;
+        break;
+      case 'build':
+        this.calories = baseCalories + 500;
+        break;
+    }
   }
   
   // Helper function to shuffle an array

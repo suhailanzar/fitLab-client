@@ -1,17 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { adminService } from '../../../core/services/admin.service';
 import { TableLazyLoadEvent } from 'primeng/table';
 
 @Component({
   selector: 'app-meal-plans',
   templateUrl: './meal-plans.component.html',
-  styleUrls: ['./meal-plans.component.css']
+  styleUrls: ['./meal-plans.component.css'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class MealPlansComponent implements OnInit {
 
   meals: any[] = [];  
   totalRecords!: number;
   loading: boolean = false;
+
+  columns = [
+    { field: 'image', header: 'Image', width: '10%', type: 'image', alt: 'name' },
+    { field: 'name', header: 'Name', width: '15%' },
+    { field: 'type', header: 'Type', width: '10%' },
+    { field: 'description', header: 'Description', width: '30%' },
+    { field: 'calories', header: 'Calories', width: '10%' },
+    { field: 'protein', header: 'Protein', width: '10%' },
+    { field: 'fats', header: 'Fats', width: '10%' }
+  ];
 
   constructor(private service: adminService) { }
 

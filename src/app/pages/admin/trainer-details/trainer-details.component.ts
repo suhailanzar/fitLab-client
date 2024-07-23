@@ -25,13 +25,7 @@ export class TrainerDetailsComponent  implements OnInit{
           this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message })
           this.trainerDetail = res.trainer
           console.log('trainer details are',this.trainerDetail);
-          
-
-        }
-      }),error: (err => {
-        if(err && err.message){
-          this.messageService.add({ severity: 'error', summary: 'Alert', detail: err.error.message });
-  
+        
         }
       })
     })

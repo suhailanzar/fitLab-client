@@ -6,7 +6,7 @@
             <!-- Course Header -->
             <div class="md:flex">
                 <div class="md:flex-shrink-0">
-                    <img class="h-48 w-full object-cover md:w-48 rounded-br-lg	" src="https://via.placeholder.com/300x200"
+                    <img class="h-48 w-full object-cover md:w-48 rounded-br-lg	" [src]="course.thumbnail"
                         alt="Course Image">
                 </div>
                 <div class="p-8" *ngIf="course; else loading">

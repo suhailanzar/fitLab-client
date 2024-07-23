@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router'; 
+import { RouterModule } from '@angular/router';
 import { LoginComponent } from '../../pages/user/login/login.component';
 import { SignupComponent } from '../../pages/user/signup/signup.component';
 import { HomepageComponent } from '../../pages/user/homepage/homepage.component';
@@ -45,6 +45,8 @@ import { config } from '../../../../socket-config';
 import { UserchatComponent } from '../../pages/user/userchat/userchat.component';
 import { CoursedetailsComponent } from '../../pages/user/coursedetails/coursedetails.component';
 import { MycourseComponent } from '../../pages/user/mycourse/mycourse.component';
+import { MycourseViewComponent } from '../../pages/user/mycourse-view/mycourse-view.component';
+
 
 
 @NgModule({
@@ -66,11 +68,10 @@ import { MycourseComponent } from '../../pages/user/mycourse/mycourse.component'
         IstPipe,
         AvailableSlotsPipe,
         UserchatComponent,
-    SubscriptionComponent,
-    CoursedetailsComponent,
-    MycourseComponent
-
-
+        SubscriptionComponent,
+        CoursedetailsComponent,
+        MycourseComponent,
+        MycourseViewComponent
 
     ],
     imports: [
@@ -95,7 +96,7 @@ import { MycourseComponent } from '../../pages/user/mycourse/mycourse.component'
         SocketIoModule.forRoot(config),
         ProgressSpinnerModule,
         AccordionModule
-        
+
     ],
     providers: [MessageService],
     bootstrap: []

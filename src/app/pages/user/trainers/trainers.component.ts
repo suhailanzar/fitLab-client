@@ -31,14 +31,12 @@ export class TrainersComponentuser {
   hasTypedQuery: boolean = false;
   selectedTrainer: any; // Track the selected trainer here
   visible: boolean = false;
-  chatvisible: boolean = false;
   trainer: Trainer | undefined;
   public payPalConfig?: IPayPalConfig;
   showSuccess: boolean = false;
   selectedSlot: Slot | null = null; // Replace with your actual slot type
   userData!:any;
   _trainerid!:string;
-  isModalVisible: boolean = false;
 
 
   constructor(private service: UserService, private router: Router, private messageService: MessageService , private cdr: ChangeDetectorRef ) {
@@ -249,7 +247,7 @@ export class TrainersComponentuser {
         amount: this.selectedSlot.price * 100 ,
         currency: 'INR',
         userid: this.userData.id,
-        slotid: this.selectedSlot?._id,
+        slotid: this.selectedSlot?._id??'',
         trainerid: this.trainer?._id ?? ''
       };
 
@@ -272,12 +270,9 @@ export class TrainersComponentuser {
       
     }
 
-
-    openchat(trainerid:string){      
-      this._trainerid = trainerid      
-      this.chatvisible = true;
-      this.isModalVisible = true; // Show the modal
-      
+    openchat(trainerId: string) {      
+      this._trainerid = trainerId;      
+      this.router.navigate(['/chat',trainerId ]);      
     }
     
 

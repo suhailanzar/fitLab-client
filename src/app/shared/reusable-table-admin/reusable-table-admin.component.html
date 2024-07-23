@@ -1,0 +1,29 @@
+<div class="table-container overflow-x-auto shadow-lg sm:rounded-lg">
+  <p-table [value]="data"
+           [paginator]="paginator"
+           [rows]="rows"
+           [rowsPerPageOptions]="rowsPerPageOptions">
+    <ng-template pTemplate="header">
+      <tr>
+        <th *ngFor="let col of columns" [style.width]="col.width">{{col.header}}</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData>
+      <tr>
+        <td *ngFor="let col of columns">
+          <ng-container [ngSwitch]="col.type">
+            <img *ngSwitchCase="'image'" [src]="rowData[col.field]" [alt]="rowData[col.alt]" width="100" class="shadow-4" />
+            <ng-container *ngSwitchCase="'actions'">
+              <button *ngFor="let action of col.actions" 
+                      (click)="onActionClick(action.action, rowData)"
+                      [class]="action.buttonClass">
+                {{action.label}}
+              </button>
+            </ng-container>
+            <span *ngSwitchDefault>{{rowData[col.field]}}</span>
+          </ng-container>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

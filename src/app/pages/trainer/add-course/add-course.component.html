@@ -1,4 +1,3 @@
-
 <div class="relative flex justify-between">
   <app-sidebar></app-sidebar>
   <div class="py-3 px-4 w-full lg:ml-[240px] lg:mt-1 md:mt-5">
@@ -30,29 +29,62 @@
             Description:
           </label>
           <textarea id="description" formControlName="description"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Enter course description" required></textarea>
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Enter course description" required></textarea>
           <div class="text-red-600 text-sm mt-1"
             *ngIf="courseForm.get('description')?.invalid && courseForm.get('description')?.touched">
             Description is required
           </div>
         </div>
 
+
+        <div class="lg:flex lg:justify-between mb-3">
+
+          <div class="mb-4">
+            <label for="thumbnail" class="block mb-2 text-md font-medium text-gray-900 dark:text-white">
+              Thumbnail:
+            </label>
+            <div class="flex items-center justify-center w-full">
+              <label for="thumbnail-upload"
+                class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                <div class="flex flex-col items-center justify-center pt-5 pb-6 px-4">
+                  <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                  </svg>
+                  <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to
+                      upload</span> or drag and drop</p>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG or GIF (MAX. 800x400px)</p>
+                </div>
+                <input id="thumbnail-upload" formControlName="thumbnail" type="file" class="hidden" (change)="onFileChangeImage($event)" accept="image/*" />
+              </label>
+            </div>
+
+            <div class="text-red-600 text-sm mt-1"
+            *ngIf="courseForm.get('thumbnail')?.invalid && courseForm.get('thumbnail')?.touched">
+            Thumbnail is required
+          </div>
+          </div>
+
+        </div>
+
+
         <div>
           <label for="Price" class="block mb-2 text-md font-medium text-gray-900 dark:text-white">
             Price:
           </label>
           <input type="number" id="Price" formControlName="Price"
-                 class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                 placeholder="Enter course Price" required>
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Enter course Price" required>
           <div class="text-red-600 text-sm mt-1"
-               *ngIf="courseForm.get('Price')?.invalid && courseForm.get('Price')?.touched">
+            *ngIf="courseForm.get('Price')?.invalid && courseForm.get('Price')?.touched">
             Price is required
           </div>
         </div>
-        
 
-        
+
+
 
 
       </div>
@@ -126,7 +158,8 @@
             </div>
 
 
-            <div *ngIf="errorMessage && module.get('videoFile')?.invalid && module.get('videoFile')?.touched " class="text-red-600 mb-2">{{ errorMessage }}</div>
+            <div *ngIf="errorMessage && module.get('videoFile')?.invalid && module.get('videoFile')?.touched "
+              class="text-red-600 mb-2">{{ errorMessage }}</div>
             <div class="flex justify-between">
               <button (click)="validateAndAddModule()" type="button"
                 class="mt-4 bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 rounded text-md">
@@ -160,14 +193,9 @@
     </form>
   </div>
 
-  
+
   <div class="card flex justify-content-center">
-    <p-progressSpinner *ngIf="isLoading" 
-        class="loading-overlay"
-        styleClass="w-6rem h-6rem" 
-        strokeWidth="7" 
-        fill="var(--surface-ground)" 
-        animationDuration=".5s" />
+    <p-progressSpinner *ngIf="isLoading" class="loading-overlay" styleClass="w-6rem h-6rem" strokeWidth="7"
+      fill="var(--surface-ground)" animationDuration=".5s" />
   </div>
 </div>
-

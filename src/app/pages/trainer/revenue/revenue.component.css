@@ -3,3 +3,57 @@
     height: 400px;
   }
   
+
+  .revenue-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px auto;
+  }
+
+  
+  .revenue-summary {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+  
+  .revenue-item {
+    background-color: #d1d5f687;
+    border-radius: 6px;
+    padding: 15px;
+    text-align: center;
+    flex: 1;
+    margin: 10px;
+    min-width: 150px;
+  }
+  
+  .revenue-label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+  }
+  
+  .revenue-value {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    color: #2c3e50;
+  }
+  
+  .revenue-chart {
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    padding: 20px;
+    text-align: center;
+    min-height: 300px;
+  }
+  
+  @media (max-width: 600px) {
+    .revenue-item {
+      flex-basis: 100%;
+    }
+  }
