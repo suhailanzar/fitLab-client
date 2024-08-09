@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, OnDestroy, SimpleChanges, OnChanges, ChangeDetectorRef } from '@angular/core';
 import { ChatService } from '../../../core/services/chat.service';
 import { Subscription } from 'rxjs';
-import { UserService } from '../../../core/services/user.service';
+import { UserService } from '../../../core/services/module-services/user.service';
 import { MessageService } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
 

@@ -3,6 +3,7 @@ export interface User {
   email: string;
   password: string;
   isblocked: boolean;
+  id:string;
   place?:string;
   age?:number;
   gender?: string; 
@@ -10,9 +11,32 @@ export interface User {
   height?: number;
   image?:string;
   createdAt?: Date;
-  id?:string
   subscription?:Subscription
   courses?:[string];
+}
+
+export interface adminUser {
+  name: string; 
+  email: string;
+  password: string;
+  isblocked: boolean;
+  _id:string;
+  place?:string;
+  age?:number;
+  gender?: string; 
+  weight?: number;
+  height?: number;
+  image?:string;
+  createdAt?: Date;
+  subscription?:Subscription
+  courses?:[string];
+}
+
+export interface signUpUser{
+  name: string; 
+  email: string;
+  password: string;
+  isblocked: boolean;
 }
 
 export interface Subscription {

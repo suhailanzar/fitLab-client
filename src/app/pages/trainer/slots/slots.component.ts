@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
-import { trainerService } from '../../../core/services/trainer.service';
+import { trainerService } from '../../../core/services/module-services/trainer.service';
 import { Slot } from '../../../core/models/trainer';
 import { ChangeDetectorRef } from '@angular/core';
 
@@ -41,17 +41,9 @@ export class SlotsComponent implements OnInit, OnDestroy {
     const dd = String(today.getDate()).padStart(2, '0');
     this.minDate = `${yyyy}-${mm}-${dd}`;
 
+    this.fetchSlots()
 
-    this.slotSubscription = this.service.getslots().subscribe({
-      next: (res) => {
-        if (res && res.message) {
-          this.slots = res.Details.availableslots;
-        }
-      },
-      error: (err) => {
-        console.error('Error fetching slots:', err);
-      }
-    });
+   
   }
 
   getTrainerId(): string | null {
@@ -75,6 +67,19 @@ export class SlotsComponent implements OnInit, OnDestroy {
   fullValid() {
     Object.keys(this.slotForm.controls).forEach(control => {
       this.slotForm.get(control)?.markAsTouched();
+    });
+  }
+
+  fetchSlots(){
+    this.slotSubscription = this.service.getslots().subscribe({
+      next: (res) => {
+        if (res && res.message) {
+          this.slots = res.Details.availableslots;
+        }
+      },
+      error: (err) => {
+        console.error('Error fetching slots:', err);
+      }
     });
   }
 
@@ -135,7 +140,7 @@ export class SlotsComponent implements OnInit, OnDestroy {
         price:150,
         status:false,
         startTime: this.formatTime(currentTime),
-        endTime:this.formatTime(endTime)
+        endTime:this.formatTime(slotEnd)
       };
   
       this.newSlots.push(slot);
@@ -224,8 +229,15 @@ export class SlotsComponent implements OnInit, OnDestroy {
     }
   }
 
-  deleteSlot(slot: Slot) {
-    this.slots = this.slots.filter(s => s !== slot);
+  deleteSlot(slotId:string) {
+
+    this.service.deleteSlot(slotId).subscribe({
+      next: (res) => {
+        if (res && res.message) {
+          this.fetchSlots()
+          this.messageService.add({ severity:'success', summary: 'Success', detail: res.message });
+
+    }}})
   }
 
   ngOnDestroy() {

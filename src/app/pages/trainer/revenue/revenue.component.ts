@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { trainerService } from '../../../core/services/trainer.service';
+import { trainerService } from '../../../core/services/module-services/trainer.service';
 import { Subscription } from 'rxjs';
 import { error } from 'console';
+import { Transaction } from '../../../core/models/trainer';
 
 @Component({
   selector: 'app-revenue',
@@ -18,6 +19,7 @@ export class RevenueComponent {
   slotRev:number = 0;
   courseRev:number = 0;
   totalRev:number = 0;
+  transactions!:Transaction[];
 
   constructor(
     private service:trainerService
@@ -31,8 +33,12 @@ export class RevenueComponent {
     this.revenueSubcription = this.service.getRevenueData().subscribe({
       next: (res: any) => {
         if (res && res.revenueData) {
-        
+          console.log('thsi.transactions are ress',res);
 
+        
+          this.transactions = res.revenueData
+          console.log('thsi.transactions are',this.transactions);
+          
           const slotPayments = res.revenueData.filter((payment: { slotId: any; }) => payment.slotId);
           const coursePayments = res.revenueData.filter((payment: { courseId: any; }) => payment.courseId);
   
@@ -42,16 +48,13 @@ export class RevenueComponent {
           const chartData = this.prepareChartData(slotCounts, courseCounts);
 
           chartData.forEach(dayData => {
-            console.log('entered forEach');
 
-            console.log('daydata',dayData.slotRevenue);
             
             
             this.slotRev += dayData.slotRevenue;
             this.courseRev += dayData.courseRevenue;
           });
 
-          console.log('thsi.slotrev',this.slotRev,this.courseRev);
           
         
           this.totalRev = this.slotRev + this.courseRev;

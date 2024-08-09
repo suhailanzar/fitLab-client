@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { adminService } from '../../../core/services/admin.service';
+import { adminService } from '../../../core/services/module-services/admin.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Trainer } from '../../../core/models/trainer';

@@ -1,40 +1,38 @@
 <app-sidebar></app-sidebar>
-<div class="container mx-auto p-6">
+<div class="container mx-auto p-2">
   <div class="pb-4">
-    <a routerLink="/mycourse" class=" text-blue-600 hover:text-blue-700">my Courses</a>
+    <a routerLink="/mycourse" class=" text-blue-600 hover:text-blue-700">My Courses</a>
 
   </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-      <div *ngFor="let course of courses" class="flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl">
-        <div class="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-36 sm:h-64">
-          <img
-          [src]="course.thumbnail"
-            alt="card-image" class="object-cover w-full h-full" />
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+    <div *ngFor="let course of courses" class="flex flex-col bg-white shadow-md rounded-xl overflow-hidden">
+      <!-- Image Section -->
+      <div class="relative h-36 sm:h-64 overflow-hidden">
+        <img [src]="course.thumbnail" alt="course image" class="object-cover w-full h-full" />
+      </div>
+  
+      <!-- Content Section -->
+      <div class="p-4 flex flex-col flex-grow">
+        <div class="flex items-center justify-between mb-2">
+          <p class="text-lg font-semibold text-blue-gray-900 truncate">{{ course.courseName }}</p>
         </div>
-        <div class="p-4 flex-grow">
-          <div class="flex items-center justify-between mb-2">
-            <p class="block  text-base antialiased font-medium leading-relaxed text-blue-gray-900">
-              {{course.courseName}}
-            </p>
-         
-          </div>
-          <p class="block font-sans text-sm antialiased font-normal leading-normal text-gray-700 h-10 opacity-75">
-           {{course.description}}
-          </p>
-          <p class="block font-sans text-base antialiased font-semibold leading-relaxed text-slate-600">
-            Price :  {{course.Price}} &#8377; 
-           </p>
-        </div>
-        <div class="p-3 pt-0 mt-auto">
-          <button  [routerLink]="['/coursedetails', course._id]"
-            class="align-middle select-none font-semibold text-center  transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg shadow-gray-900/10 hover:shadow-gray-900/20 focus:opacity-[0.85] active:opacity-[0.85] active:shadow-none block w-full bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
-            type="button">
-            View Details
-          </button>
-        </div>
+        <p class="text-sm text-gray-700 truncate mt-1 mb-2 flex-1">{{ course.description }}</p>
+        <p class="text-base font-semibold text-slate-600">Trainer : {{ course.author }} </p>
+
+        <p class="text-base font-semibold text-green-600 p-2">Price: {{ course.Price }} &#8377;</p>
+      </div>
+  
+      <!-- Button Section -->
+      <div class="">
+        <button [routerLink]="['/coursedetails', course._id]"
+          class="w-full py-2 px-4 text-center text-xs font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-gray-200 transition-all"
+          type="button">
+          View Details
+        </button>
       </div>
     </div>
-
+  </div>
+  
  
     <div class="flex justify-center my-6">
       <nav aria-label="Page navigation example">

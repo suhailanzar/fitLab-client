@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { UserService } from '../../../core/services/user.service';
+import { UserService } from '../../../core/services/module-services/user.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { User } from '../../../core/models/user';

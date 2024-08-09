@@ -1,7 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { Trainer } from '../../../core/models/trainer';
 import { ActivatedRoute } from '@angular/router';
-import { adminService } from '../../../core/services/admin.service';
+import { adminService } from '../../../core/services/module-services/admin.service';
 import { MessageService } from 'primeng/api'
 
 @Component({

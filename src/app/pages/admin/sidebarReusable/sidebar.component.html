@@ -5,7 +5,7 @@
     </button>
 </span>
 
-<div class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[230px] rounded-e-md overflow-y-auto text-center bg-gray-900 shadow h-screen md:translate-x-0  z-50 lg:translate-x-0 transition-all duration-2000 ease-in-out" [ngClass]="{'left-0': isSidebarOpen, 'left-[-300px]': !isSidebarOpen}">
+<div class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[230px]  overflow-y-auto text-center bg-gray-900 shadow h-screen md:translate-x-0  z-50 lg:translate-x-0 transition-all duration-2000 ease-in-out" [ngClass]="{'left-0': isSidebarOpen, 'left-[-300px]': !isSidebarOpen}">
     <div class="text-gray-100 text-xl">
         <div class="flex justify-center p-3">
             <img class="h-6" src="assets\logo\fitlab-high-resolution-logo-transparent.png" alt="">
@@ -33,7 +33,7 @@
     
             </a>
 
-            <a routerLink="/admin/trainer" >  
+          <a routerLink="/admin/trainer" >  
             <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600" routerLinkActive="activelinks">
                 <span class="text-[15px] ml-4 text-gray-200">Trainers</span>
             </div>
@@ -42,23 +42,11 @@
             <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600"  routerLinkActive="activelinks">
                 <span class="text-[15px] ml-4 text-gray-200">Users</span>
             </div>
-            </a>
-
-            <a routerLink="/admin/courses" >  
-            <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600" routerLinkActive="activelinks">
-                <span class="text-[15px] ml-4 text-gray-200">Courses</span>
-            </div>
             </a>  
 
             <a routerLink="/admin/mealplans" >  
             <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600"  routerLinkActive="activelinks">
                 <span class="text-[15px] ml-4 text-gray-200">MealPlans</span>
-            </div>
-            </a>  
-
-            <a routerLink="/admin/revenue" >  
-            <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600"  routerLinkActive="activelinks">
-                <span class="text-[15px] ml-4 text-gray-200">Revenue</span>
             </div>
             </a>  
 
@@ -73,8 +61,8 @@
             <hr class="my-4 text-gray-600">
 
           
-            <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
-                <span  (click)="confirm1($event)"  class="text-[15px] ml-4 text-gray-200">Logout</span>
+            <div (click)="confirm1($event)" class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
+                <span    class="text-[15px] ml-4 text-red-400">Logout</span>
             </div>
 
         </div>

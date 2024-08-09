@@ -4,53 +4,51 @@
 
     <div class=" h-full">
 
-
-
         <div class="bg-white p-4 rounded-lg shadow-md w-full  border-1 border-blue-100 ">
             <h2 class="text-center text-slate-400 text-2xl font-semibold mb-6">Ready to give it a shot? Let us know your
                 diet.</h2>
 
 
 
-                <div class="my-8">
-                    <form (ngSubmit)="onSubmit()" class="max-w-lg mx-auto bg-white p-8 shadow-lg rounded-lg">
-                        <div class="mb-4">
-                            <label for="gender" class="block text-gray-700">Gender:</label>
-                            <select id="gender" [(ngModel)]="gender" name="gender"
-                                class="mt-2 block w-full p-2 border border-gray-300 rounded" required>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
-                        </div>
-                        <div class="mb-4">
-                            <label for="age" class="block text-gray-700">Age:</label>
-                            <input type="number" id="age" [(ngModel)]="age" name="age"
-                                class="mt-2 block w-full p-2 border border-gray-300 rounded" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="weight" class="block text-gray-700">Weight (kg):</label>
-                            <input type="number" id="weight" [(ngModel)]="weight" name="weight"
-                                class="mt-2 block w-full p-2 border border-gray-300 rounded" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="height" class="block text-gray-700">Height (cm):</label>
-                            <input type="number" id="height" [(ngModel)]="height" name="height"
-                                class="mt-2 block w-full p-2 border border-gray-300 rounded" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="goal" class="block text-gray-700">Goal:</label>
-                            <select id="goal" [(ngModel)]="goal" name="goal"
-                                class="mt-2 block w-full p-2 border border-gray-300 rounded" required>
-                                <option value="loss">Weight Loss</option>
-                                <option value="maintain">Maintain Weight</option>
-                                <option value="build">Build Muscle</option>
-                            </select>
-                        </div>
-                        <button type="submit"
-                            class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Calculate</button>
-                    </form>
+            <div class="my-8">
+                <form (ngSubmit)="onSubmit()" class="max-w-lg mx-auto bg-white p-8 shadow-lg rounded-lg">
+                    <div class="mb-4">
+                        <label for="gender" class="block text-gray-700">Gender:</label>
+                        <select id="gender" [(ngModel)]="gender" name="gender"
+                            class="mt-2 block w-full p-2 border border-gray-300 rounded" required>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="age" class="block text-gray-700">Age:</label>
+                        <input type="number" id="age" [(ngModel)]="age" name="age"
+                            class="mt-2 block w-full p-2 border border-gray-300 rounded" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="weight" class="block text-gray-700">Weight (kg):</label>
+                        <input type="number" id="weight" [(ngModel)]="weight" name="weight"
+                            class="mt-2 block w-full p-2 border border-gray-300 rounded" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="height" class="block text-gray-700">Height (cm):</label>
+                        <input type="number" id="height" [(ngModel)]="height" name="height"
+                            class="mt-2 block w-full p-2 border border-gray-300 rounded" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="goal" class="block text-gray-700">Goal:</label>
+                        <select id="goal" [(ngModel)]="goal" name="goal"
+                            class="mt-2 block w-full p-2 border border-gray-300 rounded" required>
+                            <option value="loss">Weight Loss</option>
+                            <option value="maintain">Maintain Weight</option>
+                            <option value="build">Build Muscle</option>
+                        </select>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Calculate</button>
+                </form>
 
-                </div>
+            </div>
 
 
             <div *ngIf="calories" class="my-8 p-4 bg-green-100 border border-green-200 rounded">
@@ -62,60 +60,63 @@
 
 
 
-            <div class="flex justify-around space-x-8 mb-8">
-                <div *ngFor="let option of dietOptions"
-                    class="border-2 border-blue-200 w-44 px-5 py-3 rounded-lg hover:bg-blue-50 transition duration-300 ease-in-out"
-                    [class.bg-blue-100]="selectedDiet === option.name">
-                    <button class="w-full text-center focus:outline-none group" (click)="selectDiet(option.name)">
-                        <img [src]="option.image" [alt]="option.name" width="40" height="40" class="mx-auto mb-2" />
-                        <span class="text-lg block group-hover:text-blue-600">{{ option.name }}</span>
-                    </button>
+            <div class="max-w-lg mx-auto bg-white p-8 shadow-lg rounded-lg">
+
+                <div class="flex justify-center space-x-8 mb-8">
+                    <div *ngFor="let option of dietOptions"
+                        class="border-2 border-blue-200 w-44 px-5 py-3 rounded-lg hover:bg-blue-50 transition duration-300 ease-in-out"
+                        [class.bg-blue-100]="selectedDiet === option.name">
+                        <button class="w-full text-center focus:outline-none group" (click)="selectDiet(option.name)">
+                            <img [src]="option.image" [alt]="option.name" width="40" height="40" class="mx-auto mb-2" />
+                            <span class="text-lg block group-hover:text-blue-600">{{ option.name }}</span>
+                        </button>
+                    </div>
                 </div>
-            </div>
 
 
-            <div class="mb-8">
-                <label for="calories" class="block text-gray-700 text-lg mb-2">Select the calories to Eat</label>
-                <select [(ngModel)]="calorieLimit" id="calories"
-                    class="border border-gray-300 rounded px-4 py-2 w-full text-lg">
-                    <option>300</option>
-                    <option>500</option>
-                    <option>1000</option>
-                    <option>1500</option>
-                    <option>2000</option>
-                </select>
+                <div class="mb-8">
+                    <label for="calories" class="block text-gray-700 text-lg mb-2">Select the calories to Eat</label>
+                    <select [(ngModel)]="calorieLimit" id="calories"
+                        class="border border-gray-300 rounded px-4 py-2 w-full text-lg">
+                        <option>300</option>
+                        <option>500</option>
+                        <option>1000</option>
+                        <option>1500</option>
+                        <option>2000</option>
+                    </select>
+                </div>
+                <div class="mb-8">
+                    <label for="meals" class="block text-gray-700 text-lg mb-2">in</label>
+                    <select [(ngModel)]="mealtype" id="meals"
+                        class="border border-gray-300 rounded px-4 py-2 w-full text-lg">
+                        <option>Breakfast</option>
+                        <option>lunch</option>
+                        <option>dinner</option>
+                        <option>snack</option>
+                    </select>
+                </div>
+                <button (click)="generateMeals()" class="bg-blue-400 hover:bg-blue-600 text-white rounded 
+                       px-2 py-1 sm:py-2 
+                       w-1/2 sm:w-auto md:w-1/2 lg:w-1/3 xl:w-1/4 
+                       text-sm sm:text-base md:text-lg lg:text-xl 
+                       font-semibold transition duration-300 mx-auto sm:mx-0 block sm:inline-block">
+                    Generate
+                </button>
             </div>
-            <div class="mb-8">
-                <label for="meals" class="block text-gray-700 text-lg mb-2">in</label>
-                <select [(ngModel)]="mealtype" id="meals"
-                    class="border border-gray-300 rounded px-4 py-2 w-full text-lg">
-                    <option>Breakfast</option>
-                    <option>lunch</option>
-                    <option>dinner</option>
-                    <option>snack</option>
-                </select>
-            </div>
-            <button (click)="generateMeals()" class="bg-blue-400 hover:bg-blue-600 text-white rounded 
-                   px-2 py-1 sm:py-2 
-                   w-1/2 sm:w-auto md:w-1/2 lg:w-1/3 xl:w-1/4 
-                   text-sm sm:text-base md:text-lg lg:text-xl 
-                   font-semibold transition duration-300 mx-auto sm:mx-0 block sm:inline-block">
-                Generate
-            </button>
+
         </div>
 
 
 
-        <div class="flex justify-center">
-            <div
-                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 bg-white p-4 rounded-lg shadow-md w-full border border-blue-100 mt-2">
+        <div class="container mx-auto p-6 px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
                 <div *ngFor="let meal of filteredMeals"
-                    class="flex flex-col bg-white shadow-md rounded-xl overflow-hidden">
+                    class="w-full max-w-sm bg-white shadow-md rounded-xl overflow-hidden">
                     <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhUTExMVFRUXGBcXFRcXFhYVFhcWFxgYFxgXFxYYHiggGBolHRcVITEhJSkrLi4uFx8zODMuNygtLysBCgoKDg0OGhAQGy0lICUrLS0tLS0tKy0wLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALcBEwMBIgACEQEDEQH/xAAcAAACAgMBAQAAAAAAAAAAAAAFBgMEAAIHAQj/xAA+EAACAQIFAQYDBgUCBgMBAAABAhEAAwQFEiExQQYTIlFhcTKBkQcUI0KhsVJiwdHwcuEVFkOCorIkM/EX/8QAGgEAAgMBAQAAAAAAAAAAAAAAAgMAAQQFBv/EADARAAICAgECBAQFBAMAAAAAAAABAhEDEiEEMRMiQVEFYXGBMpGh4fAUI7HRQlLB/9oADAMBAAIRAxEAPwDiArYCvAK3ihHJHjCtKmI2qE1EXNGVlZWVYBkV7FegVIqVAkiMCpUWttNeqKoJHoFShK1Aq1hkmlTdDoKyhdG9axUmKENXltKK+LKrmiJlrQip3FaEUSYDiR6a8ipIrU1YDiaRW4Fa1uBUKSLOXiXFOBwUrSfgtnHvXRcsAZRXM6+bg00dPpI2mmJ+YYKJoMy095/hgKR74hjTujy7xFdVj1Z7hklh710e1hYtD2rn2VJN1R6iurGzFoe1YvimTWUUP6KPlbEbMrfiqthDFyimb24NB8P8dNxvaBc1UhvtLKUu47CQxPnTFlzSlUMWkkisWGbjNofOKaEvFWIY1qq0WzfDQZoaBXdxT2gmcnLDWVGmmtWSpK8NMFlYisqQ1lWUQWhvU15YrzDLvVm7bmglKmMhHylYjaq9XLqbVUiiixeRHlYK9itlSiAoxKs26jVK3WqCPWFeA1jvWgNQsnq/liSaHoaMZKnirN1DqLNOBXJAvHWocipbeH2opmODm5MUVwWVSvFZ59UowQ+OC5MTbyRVYmi+cYUoxFCStbMclKNmXJFp0ak1oTXrCtaaZ5M2FWLNuahVOtXsMdooJukNxx55I7ezU7ZHieKTcQkb0wZJc8IrD1kd8dm3p3UqCWd4oF48qTcyWHPrRHOcQRdNCrz6qLpMWkU/kD1E9rQR7NWpvL711XHJFkVzTsysXAa6fjt8PNcn4rK80TV0irGI2dc0LwtrYmjGZ29Qqo9uFrVilUEiTjcrL+R3ZBrTHbP71HkHBPrU2YrJpLVZWGuYFfHWQ9s+cUqusUz4t9Ipfxq9a39HJrgydTG+SmTWjNWpao2eukc82LVlQmvahQQwVmrSWpJqXCptVvBYeSaw5MvdnQhj7IEYu3ANDIo7mtuAaA1owO42Zs6qRMFrZFqO2DVlbTeVOEmjNWgevXtnyqJ0I6VCHjtWBq1g15UBssq9MnZi3qk+VKgNPv2eWddu75/7Vi6+WmFyNnSc5KCC4LUQaYcDgoWh+VkcHoaYcLEV5jqcsux14pHPu12B8UxSwmCk10btPhtVAsBl8mut0vVVhVmbJh2mKWOwBUTFDrdok0/55l/h2FA1wS2gCeSdq34erUoX6mXJ03mIc0wAtYdDG5IoXhW3pk7b7W7K/wCcUq2jTOmk54tn6tgZ/LlpeiRcxz8UU7P3elArjTV3B3Cm9XlhePUmOfnsn7UDxg0GtPvRLN7utQaF2xuKPAqxpMVmf9zgc8qsRpauhYbx2CPSkjBfAvsKc8iabbV5r4g2/N7M6+JUhZNvcj1rMxwWm0TV1rH4nzormWElAKjz6yiFraYtZPhoUCrOJsQd6K5VhPEBVDtLc0MRUWVzy0iUlEWc3bahvd60PpUmYXpqpg8XpDA+VdrHBqHBhnJOXIHc71rXrnc15XSOa2ZWV5XtQoaMLb8NM2S5dKzFC8rwupRXQcoy+LUx0rzXXdToqR3MUPVnM+1GH0zSkBXRu2WE2J9aVbGCneK6nQ508KbMfU4m58Ae0SDVv7yeIop9yUbkVHbwakzWvxosR4EkDkxEbkVl3FBulOdjsJcu2RcXlvhWN9+N6CXcmNtmR1KuphgeQRR7oDRvgE/eEA4rS26c7VaOVlmgCpcVlJtjdSPcRU2RejKV0oeAKfPs1swLg86QsFl7OwEda6p2SwJtRtG1cv4tkXguCNfRwe2zKmLHdM3vRbK8RKUL7TL4qIZDhz3VcXJHbCpM6CfNFTP78AGhWW4yTVrtqdCL70uZLe8Va+nxKXT7C5TqdDRiIalLHqWxCDprH701A0KuYYd+rfzA0fTSUG/oVlWyX1KX2ir47SjopP7UootOHby7+Mgj8n9aC4awOTXT6OenTRsxZ4bZmUbVg8msxTwIop36HaqOMtqTsafCTk7aFyikqRUe5tFQ2eaIWcv1/mry/lZX8wNNTVCnF3YxZbiJUCn7syn4BPnXN8gy66w1CNIrrGVWNGHUHmK818WqCSXqzq4JNq2CrVmbnzovmdqAPaocssarnzo32gwnwxXMlb83tQ5yqSQDyy1vNJvai8GvsJ42p+S33aEnyrjmfYwtec+ZNbfhkPEyyl7IXnnrEnxWGQjmhN/CKODUdy43nULyRzXpsUdV3OdklfoXMPkOsSGqPGZGyCdQNVLeOuJw1e38wuNya0cmV0YuWOfKsrxcc4EbVlTklI6nkuAhV9hXRcJgos8dKVsFZAdF9QKfLzBVA9hXjorxpSlL2/ydnNLWkjmfarCakO24pJsXAp0kb+VdK7SWtLsPPcVz7EWJvRG/StXQS8jgwsnNSRDj8TEEpxvFaYfPrYLSg34npTtk1r7uo+8WlbVJG0njbnpS92l7PW3sF7CQQ5YOVIBUDdQ3B3jiuzixxiuTFOcm+B5yztJhvu9l7b6nYQ1sGSp2mR0Mj50i55niPjge6KjcNIEsTwazsZk62kt4l3+I6SD0BPSN/nTNmnYhL9wrZdGJMhh6iefStDrsZ4+XktZVhrLBW7ssZkACT84oDniXsXfGGsWgSS0qxVGlBqJ32UAdesitUxV7Ln0atdttiYkCDBM+W36V5gcBeOMbFYNrjMQTrZgq6nHiU9CPT2oPkxlOtkedk8qXvCrCHViGB6EGCKfEwag7UhYTLcVhL127fYB51uJnVq3kHyppwna6xq03JtsANnGmZ6gHpXJ6rBKU217G7HLyqgL2my4htZaADuPSiOQ5haNssCFUNpAJGowOYq9jmsX5BGuQCu8Azx7zXK87cW7sWyZB8SjfTvHIqunwznj0n3LnJJ2OfarAXMVAs2y8eXH1NLGEyh7TEOpRhyDyKZcL2lxdhrWHe33LLpYtc+DQ0GZG2+/XrVzD5umY4117sMiq2q4WCiRuAD161px9NKGJY4vkS8qctn2A2Mw1y1pDgqWErPUV5hbRZ196qXc57q+rYxXu2FNxAA2plj4RJO4FWcrza3cZXCd2DuFmYBJifpSs+Fwg2kNxz2dHva7LdV22QOhpWxuDu8BDFdFzTKr+J8VkKO7XUS7aAQ3GmfiO1UMRmdnDC0r2w90NpurDwRohbi6xqJ1kkrEbberOgT8GLkKztbNI5vhsCz3FTZNTKuptlXUQNTHoBMk+QovnPYu5YvXLZuLcW3pm7bk24f4ZP5d5HuK6bhc8yppufgWmD21XaGuDbVcO3gjyI6EdRGmcdocPeW7c7i/dtXPDZJRVtuUUxsT3hCuH/L0NdJydcGNJbK0cp/4JcUwrGY1bb7ULxJuA+Ik0z9mrlxr9uyl62ve+EtcJ0jaSDtxtG3WK2/4T94du7YFgSHWD4YMT7TSPFnB3Pt7j5YoS4h3PewZd30k7SK6Zi8aF8HpSd2TwX3dz3g06ZL7E6Nwo1GIG5H1o3fdbhJBrgfEf7me64N+GDjBJ9wx2ceXJ9RTFnNwFQaV8iQpJNGlva0NYnKoyivX/AMKnDzKQNz7FrbsljsINc0wOGw2IveNon5U49vGP3Zh6VyNsI/IrsfBoLw3Jv1M/UtqkkdUPYLBOJDkezmlnNexqo8W7sj1g0p2r2IXZblwezNH71uuNvodRZp8ySa7clx5WYod/MHW7AXyNQZTPSqeL7H37QlgD7VHZ7ZYtBAcEeq/2rzFdpcRdHif6CKLzVyCqcuCIZLd/hH1FZUIzC95n9ayp9y/sdjV/xRHQ1YzLN2LhZ4rMpyu9cYOV0rzq3eB5+Gfep27OSQXdkuECAUHdlzwq3NUcmPPwttFeWx9Bnf8Ax4o6s+owp8s87S+OzbvDyhqRcflxueNW0kb10LAWFvYcWi4BuibJI2Y6dTAGem0+8+cCrPZV2Um3esNbAOq7r/DUgTuT0gjeOvpT8XS9RDlR5+wHi46psR8Tn8lbdwmQIEmd/Sma0Uu4a0uJv3NFtiBYRPEQeCSBLbeVAbvZkXQ72zbu6TpJS4PiILAIeH2jg7TuBVrIcHiLaF7zmbiMLWlk2uiCqMSIO3O4Inaea6uKGr2/MRkd+UA4O/Zsrie9GIDQfutsSFRp2ZiflsfI8019he0Vr7u3fbXV+DkFz1APtV7JlF23c760125qA1C0raYgQFYiDJALN4dxzRbF5PaxGq3c7+13q2+7VUREi2DG9sMJ1aiDsW46Vp225M8o6tpkeDzi22GxDX8NcTDKFGpVRgZJLbTMx5evnXP8r7S38A5xKQ9m+LndJ3g2gwjOg4YCi2Q5jYtKqYnSFZdS3E7wsYJEOpfZjsdQXgnypgxmWaWtPZxFoK6OwGIUMpLIINsoDqAiIgxE+VRZESWJxT+YIy/NHzFu+xLWVdLa6Sbi21KkEgbz+JPij5Go7uS4rGCxfa3ebGd6pYXO7CthpL2zbmEaOo9TIihmNsXbDnE4a9Z8NxFAts0sxAJdLbqCVJAn2PSrOU9tO7um8bT3MXPd2NyUbW0kKD4VMMAoURB9aJUwXsix2nfF5hi7l/umsWgEtqrnbw6hAZdidWviY4ob2ezhcPbvpptuLsAhiBBU7huscbbdapdqO1d3EMjd3btBXN1UV3YS51lbgMAtJMmBzFLWYOuzh1l/EygEaGJ3WOgoJY23adDFJKNSQ25h2ixN4BZEKxYHcmP4QTyo2gHypdW82HDN4tbbKQYCgnxagRvIqbLbkIGFxNUbCfMxB8qq4nvrrd2B3k8BAWJ67Abniii/RknFVaNGeCYfpDEGQfP9KL5RlF+w6XrlqUBH4dzWupdJILRBVes1PkHZk271vvFJuHTcFuWQWVDAq1x/4zpdRbA2O5IiK6HmNy/oTQi3WILTqcxomWLCOskaiZJI3AigyPVUFiWz5/yDr32mJcvWUt22ZQqroAVEW6CkbtuV0h19iKoZ9n9wXHV7dkkSF0qGFsEbd3cHofLr8qHdsAi92zYiySAQ4soisAWmNIgE8+1Bs3zGCLSsTb3h4YO8+JGYMYBhwCAAIHE7mntJWgoRhF0yzbs2GNtUQIxJJxD3XuPbedUi0ijV5AQZLCYo9mFg4eynd3bxe4g037lsLIfUWRB8VkCWMA7lpIgg0Dy3JrdwKVa/qWS7QoG0xpBO0ep8944I38vuIBchcRdVdBTEo7KrPvrG+hnA6EQed6l3xZeqi7r7Czd194CLjSAApjxCBp8JUeUj0oqcVibVyziLet+5QDQUOlbdvxL3jCNXLkk/WjOW5tZMo9oWQqAG3cKklpAbYKI8fAgcAxRZcEgQhFWDr2DMTCprMBuRwP8AN88804umjWsOKS2QNzbEjG2fvNoHSwVLqgOg70rqfRIiA20j0oUuHe0om5dDE7A6SAIEcdealv3zg7jD7uLllmU3eTAAJVbbSAhksT6j03iTMLV1SFcpM6kYkwfLVBHSaVKPFrs/uMgudX3X6hjKu1KKvdXZDbAMYgz6+dPGBgKOdxz03rkuc5f3ifhstwpoB9OdRV9pXYfIj1q1lnaDFYUoHbWgAEAgz7zuIkDaRtWLN8PjPz4nz6r/AEVK06f5jV2wUmzcA3IB/Sue3LLW7ww76LTmNTO2lBK6gS3QERvXTEvpiSjq2lWMMYJgjkQOSJH1qj2r7LI1yLeldO6PILeIalA6kHfaCN+m8P6GCx4/MvX8heWOzST5oF2shw/3U3FFxrxZFVEu27janUmAqfEoMEnpx0NAMbkty0tlrjBy6sblu2staIHhBLQGmRx5HmiuHzrGYSA6A2Q5bXoK+IxqO+/Me1E8Lmn3jWVa02o7hvDon+FtXpHEQa1ymo8pFRwN92c0hmMdwzEBiwCnYLuTt0A5PSp/uRRity33ZQEsGaNwA2kdC0Muw33p4v27agqUg7qWBY7NyrEbaTHzFDM3yHSneWroC6iQrQykgr8IYei9OBToZ4y47CZ9LOHN2LS5wQICLHSsqxic6YsZw9ieum0ADtzEbTz86yn6L2Mu7O0NiUW2Gu33B6G0bhkiPAbNpUUqoOnSy9QPStLeb3S91L6tdt7MClogQhUNFsn4pFpttXLRMEVS7F4y2irpWC7eJp7qJ3gkvIUSIRZXwNA3NMWOxFmCrq7kAA+FXhTvLa5BgQSJ6kxvsOyI8bXFCSmeWe8tizcCohhVUSNLamZVsuoEbmRJAjaYFMlvHpcYm7g2dzGpu7S2vOxIvbkcxAJgk6RIpZ7QYHTcOhWBkhQ4e2gA8AKDRoIhVaRtp5WATU+R4tWgXnOqd9DDSI2EMWhp+LniD6Ut9zRrcbCS3lV1H4aaiUKIZWfAwVlCSE+KFDHVp23AFCu02Yly2HS4y3FklSobvNY87Z06yVQ6Sf4YFMd7DC3sr77/ABaWUbj1B5I6eQjahdxlV31G07lS2kBiAFADuRvEhgZImAYmdrU64F+HtyKuAzzFBdIvuVDGVe2sb6pDFwSQQTK7jxECIFN9rFNd7tr7DEyCHWdFpGGy6gvxmBPiJAIMUEXFLbF1/CWiFS5rKkldEqraNQDAk+RPw7TXgxa4PEd2fwrbW01qxZxbJ6E86TuSsTA4qmm+bHPVcJV8/cn7SWkezGi07afAVuWwLYXZm0ghikKPCOdiZjdPy/PjhtSC0ulxpuRMlhHi1MSUMiYgddqP47O2ZZtoVDsi+CXaCwIKK0AfkIAjZl8qXcXgO8YFtSSsnxLelpBaNJltgD6kcdakYprVlNyjyg9mbYe4huKNQua+6RSw+7nZbfeMSBLBbjGTwOOaU8zw1tbgLlgxaSysSywQVgs3x8zvGwjejGBvLYTZkczPiQ6bisDGqX2ZZMQByaVs5xOpzuf9qLG3tSBzRWlsjOkgltRYSWDEcTA0/wAR33qtimU8cjn1PpWkN4diegj/ADmr6ZG8anOmQCAQZMxHIgcjrWjhcsxpyl5Uila1uQF1E8ACST6QKf8AsPbvYVxdQWzdI0E3CHS2rRqbwNuwAOwJO0EUt5BlQ7yblwWhwrSNzPkQdSxq25NM2Dx6i8UvpcUhv+u11SCT4AwTbaV30j5UvJkrsPw4G+JBLCZZob7ybveOSS4F0fE0Dvm7w6e9ILQNh8KgTubyZ8v3a131u8QJLXF0HWmoi2W03NSq28z+aYPIBW9lAYLdVEVvD49R1sGMR3neEySOYgbcxSxmfZy4zC4ttNwZl523nxkzIBiQY67bVmbv8RqjGHpxRvfwmFvF7ltTudRfRupJC6QIJZgPymZ0kgnelzPuzd61BdVIJbw8tpH5tIHhHXaY8hRbCX7uF02w0EgNo0hdOrhu8YiTIB4AMAbhpoymAS7aBLQ5G0N3iAnadCDadPrGobiijw7LmuKfY59YzO5buSmrcwG1SCTyxmIJ8z5Hypow/fXFUm2ytDQQwAMCdKmYUxEckljwNqHZrgAVW4mmZIcTCyoifHHUkGOSZqTKs17te7usBvsynURECCQ28RxHlGxmpkbatIvFBLhsqY/LmveIh7TLzqEjfqBtBP0NT5XnN+0FtlwYkRcAEdIDHeIAEelMVrGo4IJ+8L/ICLnIAIIGr5EQaGZ5kaqr3lIXSPAAAS7HztnYEbSy8yPDO9DHzqpByl4croJZo13EwbillJltBQrvtqM8wCSFj2ilPG5MbZkK6rJltvnsCSI22IHJ38pckx7FwiP3blupGgefIP8AT3p0GOlQt/uixJEgjV8OzmZUg+Lg9D50qKljdDZOMkq/QUsuCafDG/M7MD6kHmjtnBEje3IPkVJ32mYO1BO1GCezdV7YKqADPhECSZIneNxMngSaYuz2KGJVgiE3EidHDg8sNxuAQSOnFBkxS/Eg11EPwsq2j91KW2VxYVzrIc2mXvIBZXUSVWZ3BmI6CmPGZ5YTEKisl60wWbqsHgaSGllBDQVWSSY7z1MUcxVbRDOyk6fAFcMQHXlgZHBPka592mdQym14COkCAf4go2B2G9NwpzWskZ82sfOvyOl3ryOptXzbVSPg1EbdJPvHvFI3aLC4dVIsDSTtsTEeu8ztzxzQvLczvXToduBM9THp86uXcEApJJJjfr6ACmY+n0fcXLOpx4RTyzNMRbXui5a2TqClpg79fmYniT5mpWutcEsx9pn9qoYu3pXkeUjznpU+DKQAWMxwR9a0arvRnjKXY9YL6V7Xrqs8D61lWQc+z+bG20CzbClnNu4ttNWksT+YsFTSDC7GI3aZroy2ri2g63FdSVIfuxcbRqEnwbNA/lOwmegVO0eXYuzcW4t/vFNr8RHW2GRFYQEVAA5UFjxvvtVHsp2kODuXu/I7q5pdAoZfCJAKIxbRq3MbfF0EVnSruNyVkVxX7jLnWVi+OSU1C4wa2bZlSBpJTQQytAEkbk/JOxeHGCxLOlnTbQjQRqYyQutZk6WVmIIYkkHYNvRfOvtCwrLoSx3igbagE3AOkEAnYNB2O+/nSZmPaO5fOlV7tCmlk1MwY/nczvLbbceEVersmNtLk6Jl2c4NsOtx2XUFlxABJACSqgAHyBA55CidKrm/aW2xHc6wADqBhAG3UsBbI16liS89RwSKV7ZLhYEbb7yTpAA3PsBWt6ES5vuVH13FEsfuXaXYsXMzuXWkt8RDE9J2jwx0AHvAr3OcY95md2Ny4xkyImfMDYbRO3lW9tRathiOAAF6k+o6n06e/Fe3bJ1Fvdv6L6etGoorZsji6Cu7SAAGJMgAAAL1AgQPavO4ZTO4McA8QRvt1qfEXQgLt12Ucf8Ad6enpVZCxln2/oOg96ukS2Q6I3MyZjf9aA425JjqJoxj8SeYgdPag2k3CWVdhz/WaKC5sz9RLjUJ9kcZbt3g1wA6QSuqSARuYE7E+fTfrXQ8ux2H7uGDgHw/hurCCAN1Dx1nTpG4+gjsR2VRmD4hWBtuNQURpET+I7bDldgG2BBAmpMVllrCC42hiSJtsdRNvVuNY6wDMr16xScrTlwxvTpqNNfcNY/sbadh+KpHi1akuowY7iCSY2gTvwNjVC92Zs4aWN27dux4W0OxtjcDSgI1sBpAJYAagYol2f7Q94ht6iHSAN9LN4SVIViAXBBmN+Kt4l2DAmY1Hxhe7dfQji4I0jwKY/MKU5S7DoxV2/5+gL7KZurAo4TgCASG5AC6B+GRJHUEQJHmavYo+KCSp0hVDEOIgMocMUub+LTMiIg0nYrCIbxcXEIZwynvbYgaiZCjwx8O0jcQKMWu6aype8bZcMug6WlQxkpGkaBET44I+grh0MyxT8xV7T5fadnFu0EZIYaQVBMoCSGEhSHG0CCsddhGQ5mcKwW6kKdSqzBlWTvPoylhJAkSBtAp9tm5eBtsO/IUlmtneEdQS1tzDNOnaGnSDtvIa5lKrqR9LWSSPHCEGI1O6kjaTuydYnYSdgQfFMv4+6t6z3q2VlSDBNt9hpIOpZAA66oI+RNJ+Jwl0oQLcI3QQLgYHhtQJ2O/kQynrTtkvZf7vZW4rvZ2kXNQuKwI5YKI0/JojnfcN2nwV1V2UINRjQ0I8A7hRt1PiEAy0ihcqLxpXSfAD7PKGIUuJHwnUoY7nwrwZ34nqfSmnHrcNorBH5FDb9QSYJ2899jB8jXP8SmJV+9h0IgB/hA2IB1eynf+U+VOFjGPeVLmHOJFoHu7xuaL9vWtvWYMatp40kb7UEsUm7THSyRVcAD/AJfZXJBCkR4gDpWSNww687EGd4oplmYhdSpc7wyT+INLEcRI2+o+dSYzGsV03Bctqyyt1ot96ILCWYmCUXbqWgQKFWMotgau+KuwLWWIPdPpJBDSAwBgww2J9iKupNVIvaC5oJ47EC9pldPI0gDzPEAAgz7UAzK13VwFWNt4EMko0EDnTE8A8mZojjMVYYFwWDbQNIABIWQSIjeSIHECgeOuFo1GYmJ20/Tb/wDaPBGV2xHUyjVIkw2PZywuHccHqR0nzI33rR7YYMx29f8AP83qhhGDEsZiYG/MVHexoc6F4rXRk345L2V4Ili5IAGw3PPy+VX7pAPJYnc7x+1VluoigeX1PzofiMyUHw7R5byfUmoXaij3N3O36+VeWGAtjfb026+dCsViixqE3DRamd5lZfuYoztJFZQ4ufOsq9RfjMd72LuPuzttxJO239qrXFJMTMf5Fb3H8oA8z+5rRhHXSP8AyPqfKlJJHQbNrNkRO0DYep8/lWWADJ6Tz8uBUOLusQFQR0Uefr7VcsWdICggRz1353P1NWCSowVZIgeXoKgwdvW73X+FY0j+bp9NvrUGZYtUEAln/LPA9YqC3jU8ClvCPE5n4j0Ee+9SibKwpc1O0k8CQeny+vNTpZUbNH8byZiIgft9KormQuuNMATuTAAA3Hz2G1R5tnKBQg3EwfXzJqURyS5Ji3ev3jboPgHn6mquPxyoAD6kDzPmaH3c8MFV2FB7jltyZPrRKImedLt3JsZi2uEneKM5Mi4e0mJkMzFgBpDd2AdJPikaj59B70Iwt8KYJlDzHt/f9qYHwy3UJtsSxIJU6YjyBXaeJMdKrJ2oHAtp7Pk6LkDDEhGv4lbNoBdMkK5Pmg4mepB9utObYNFW5aGHZ1CzbuFlYuSAzBHM8EQSd9uu5rjuKtHS1oMCERF9NomI2+frRbK+1GItIq3IvKO7KhySAUIK8Hn15338qyY0orsbc0ZTaaf2LmVpgreMOvCG9bxD/gXFuKsARqJGv4huWaZB2Pq/4nurvfWkvWzcUkqx3KyogsykB4JjngiQaT8bluX46/avajafWhu2zDWoJP4VsGJl9yePEeKcXxFnDYdLeGKPeQi2iK6Jce4g0upAlQzBIgjp5wadwzLNvjvf6HPMZh7zIxt3zfKglgEWAlsgFg8RsWYkDoRJ6U6Zff7jCJi7IF5Coe7bDAXV1ro0qB4VcNpkAAyW3MChOX4nMrV37vfk2jpt4i73Cstm5iD3jqIP4ghguo7DXxA3NYPEX2xraCl3BAhNIOllYBQdDBfxV1BtiTPi8hIxSQeSTkq49/qv52JsTmljE3BZe6Ld+DFtjZW6nhl1I0bHcQAYYbgxvSJmeS3bWNbDze7m4SbjoSR3DQ1wsziBBBJBJ22kzv0nMeyVlxcg3Ea7Gt0CB/C2tG7yNQ0kAiD5TNLeZWsRgrJS3/8ALsqj600qmhdpLvbCkAqJPVm1Hg7XKPuVhyJcQf2YMt5W2W4xL2LUthGttZW4sMgU6dGpVAAA0g6YJ5aTBh0sZdZuhrTy9tltMLy3Att32E2lHUQPGPOJrm47Ti3ghatoyuXRgrlr1pVSChQXGOlpAEARH6gLvaR7zf8AyG1qgPdrAAUsdTQB0mNvQVVX6BuLfrX84dfudGzfJcEfwLN5TeCFkuG4JUL4oc/CSNgCpBgcbVzXtVj11gAs8ouvUTo1gwe7VTCyoUcfxVLlWItNLXdoPgHA09TQ/PMVhz4LabnrJkHp71ahyEnS739TRs2uMbcIum1AUmSSoIYI/RlkDaOgFbYs3b1xrrMQWJZo8CgkklVA4XfiqmFQwJPHAEbe5862u3hIXY9ZkmPYUzVA7vuR3WUTzMlvQ/5tQm7cZ26mf2/tVnEXNR0pJk9dyf8AaptK2h5tG/1okKlyUsZc0DQp36+W9DwSKnuqXYkA7nceU1FFMRlm7Z6jyfETFbmxPwn61FWK0cVYP1JvuNyCQpMc1C1sjkEe4Iolh86ZeVBHt+tFMNmtq68XYCnYSo8I50ztA259aW5yXdDlixy7Sr6ivWU7pleFcahZaD5HUPLYhln6CvaHx4l/0mQELjwxBZt/IbhfU+Zq7YvIAWcx5aviPrFLT4G8h3tuD/pNV3LdSfnNM1K/qH6oYb+dW1nQJcx4j0Hl/nrVR84OmB7kk7k0IBqRU1dQKvVAePNmr3iTNeazXpsnyn2rRlI5Bq+BTcvU2Fw+de21B5qOvQasq/cJ5dkzXzCMq+rmF9BqjkmB8+g3qriMDcQmUaBPiAOkgGJB6j1qXA5k1oGPWNyIPnzB+dFcHnx8XeEkMIMQRuPUH246mgbkmNUYNd+RcFXMrLG4qqYk9THG/PSi+KOGug+GGJkXATq351IDB+VTYbsoLrMcNi7LaY0d7Nh3aJ0qpnxA7bkA9DU2TXJNJRdou2sc5ZUBHjKkkgSSTt4uQJ9avaPENxAHHsKVlF7D3lTE22VgVfS/hlSZifI7iRxvRlMWZLdCvh/uKzShTOljyqceAph1ZgWHMwI9N5+tQ4THYhXVEJLeMAcj8QaWM9DHXkRU4xRRdiBA3Hn7edRYPMh7eo6L5e5qepfNDM/aHMFwy2u9PhYlnLEuxPAL87f0qZftAxVq2Lam0NKgE6NRLTu3+puszSZfzvxeESBwOg9aHtimYmepq0mC4xrlIfMN9pGLtnUzW31GWDKI2ECAsadgOPIUB7U9rMTiQzlgFKqmlZAOmYkdTJP1oDasvccKoLsegHTqTHQCq/aFu702wwaDyJg+oneir0AekbaR5iMawUbyarWrRJ3+vT/eo0YDk7efM1OmPUdfaaOgXK+5ccADcTty39qpEb8QPQc1tdzNBxBPr5/1qlfzPUOs+dSmC5xXqWbmL0+lU7uMY7KOfqf71TZiTNeGjUTPLK32N31A7yP8868dyTJMmvTeaIJMeXSprNpWHOk9Oq/Pfar7ALnsRC4dvT6/Wj3Z/NMPbJ76yXLbbMABPJ3B34/WqWNyO9aQXGWbRIC3F3QkgGJ56xuOQappYY8Kx9gaGUVNDISljf8AsZsfllm40W0CKJAaSSR0MgAHYeXWg+NyB0PhKsCQAZ0gkxtLRvvHStsLl2K/Ijj9KJJkGLbd9JmB4yWjrt5cdPM0qMZxf4uB+SeKa/DTFrEYVrZh1Kn1H6g9R61GvNPFjIXAGplUgRsPWYg9OdvWpMxyuxcYMy20IERbUW12noOu8fIU1TMzh7CnZMAeJx6K5UfIRtWUyf8ADcMNp/WsqbE0Gj/iZ/MimoLjYV/jsj6Cuc2s8vr+afcVct9pn/MoP6UvSaG7Y2OhyHLrnkp+laf/AM+wz727v/lSqnaJD8SkVbs51aPDFf0q7kitIPsw0fsxuk+C75x51v8A8gYxVClEupr177NEEFRt4VkgwI4+kOAz64D4L7fWf3pksdrsZaUMSGXoWX+1VuR4n6CZiuwGI3Iw7KR0BJX5TvP6QKq4zsPehTbs4j4RqDIph4OqCCPBMRtMTNdOwv2kXB8dlG9jH9KM4P7R8OfjsMPaDVqfzBeN/wDU+fcbkF+0AzowldfwuIWSJMrA3B+lDSpFfVFvtflt34jp/wBSH963OWZRify4dp/0z+tGpfMU416M+VVmiOEzEpHhEzOozPsfMV9IXvsvyq5xYQf6WI/9TQzFfYtl7fB3i+zsf3mrav0Ljk1fDOGZ5nC39P4VtQB8SjxnidTcnrAPFUhj2gLqJRdlUmSoJJ2+tdix/wBh9sb271we+k/0pfxn2OX1+C6D7r/vQ1FKg/EbdoR7mMncyCBuDz9K8+9TwZHkKZMy+z3MT8UXDM6m+LgD4tzEAbelUsJ2Ox6NtYk7dRHrzvVUh3jSBPfMJ8JHmSP3qxllprrgb6SfE3p1g+dN2B7JY1wq3MMmnhgLmnUCZmYMHiix7E4vT4e7t7RpkvA0gEg6REmdunnQOT9ENTj3chYxOIs2STbTSDOnxamA4gnqf70o5vidbA+v0roVz7NLrGbmIA9FX+5qS39m2GXe5eY+5A/aihxyxGWaa1iL/YLG5V+LbzK2x1D8O6oY6fMaV3BPQ7/LmmftH9joe2MRll0X7TKGVCw1ER+V+G9jFTWezGV2viKH/U0/vRjLe1GDwa6LFzSv8KfD9BtNFYqmziOJya9bYo1t1YSIZSpkbRvzU2H7P4l+LLfSK6tmnbewxnuy59v70DxH2gkfBY+pAqbMvw/kLGH7C4x/+nHuaJWPs1xB+N1X9atXPtBxjbIiL8iaqPm+Y3t9bAfyrFTZk0L1v7Ora/8A2Xv2FWbfZ3AWficH3agdvJcbf3NxyPMsY/SrOG+znE3T8Q+cmpfzLqg22cYFF0BlKzMDcTsJjz2H0qe3mOGa2Xstb1DhOCa8wn2Vi2JvXt/ICKo4/shZQ+Fzt1negdLsGvN3BmM7UYheLBH6/tQfE9psSf5fkaYL+CuoPBdn0aDUdvtE6L3F7DW7iwRqCgN70UXZUo12FK9ml5viutUuAJdoOp/aTRzBZXh77AA6D/PXRezmHw2ASLltSTuHUAg+9XsgdWhFtZdcgRhHI84rK6JdzxSSVQx02rKols+fJryaysppnJvurxMbe4ojknZy/imi2B7lgP61lZVN0g4xVj1gvsruWwHuXfFzC15jcFjLZWwdFy0T1gEVlZSJs0Y+9DNgOzFsoS1oAiAYadzVTFdgbhBeze0+SsJH96ysqoFZJNCtmVvGYRtN22jDoVYfsd6duyHZm9ira3XCIGEqPiMeZjisrKNQTBlkko2NX/JTr8Nwr6qSv7Gqp7IZnq/DzK5bXyIV/wB6yso1jQh5pBvLezWKTe7mN656aLQH/pNH7eHVBuzH3/2rKyi1SA3lIq43OMNaH4jAf9rH9hSR2w+0jB4cL3Km65/KFKCPOWAr2spLm26NuLBGtuRKxH2sYpv/AK8NbXylp/aKGYnt3mdz89tB/Kv9yaysqmzRHDFgy9j8fcjXiW38oX9qq3cDcO73Ljbxu55+tZWUDmxixxXoWbuUi1ba4wB0btvJH96B3M5UfCtZWU3GtlbMufI4OkVrmbuegFaWMU7uBMTXtZTdUZvEk3yw/ZzVE/KD6RV0dr+6g2+ByrCR8jWVlL0Q7dhfJ+3Fm6yo6d2WMEgSN/an+3jiqgWzM8civaygmtXwXHzRti5m1zE7sxge4peN5mMcn3rKyrJEI4fJXIl20j03Ne4trCCNOs+ZFe1lAuWEwNjEtvLaAPYRQK9fvWzNu4Y8iZH61lZTUgG2i/Y7eYtFC6LZjaYFZWVlXqgN2f/Z"
                             alt="card-image" class="w-full h-full object-cover" />
                     </div>
-                    <div class="p-4 flex-grow">
+                    <div class="p-4">
                         <h5 class="text-lg font-semibold mb-2 text-blue-gray-900">
                             {{meal.name}} : ({{meal.description}})
                         </h5>

@@ -40,12 +40,11 @@ import { SubscriptionComponent } from '../../pages/user/subscription/subscriptio
 import { IstPipe } from '../../core/pipes/ist.pipe';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { AvailableSlotsPipe } from '../../core/pipes/available-slots.pipe';
-import { SocketIoModule } from 'ngx-socket-io';
-import { config } from '../../../../socket-config';
 import { UserchatComponent } from '../../pages/user/userchat/userchat.component';
 import { CoursedetailsComponent } from '../../pages/user/coursedetails/coursedetails.component';
 import { MycourseComponent } from '../../pages/user/mycourse/mycourse.component';
 import { MycourseViewComponent } from '../../pages/user/mycourse-view/mycourse-view.component';
+import { VideoCallUserComponent } from '../../pages/user/video-call-user/video-call-user.component';
 
 
 
@@ -71,7 +70,8 @@ import { MycourseViewComponent } from '../../pages/user/mycourse-view/mycourse-v
         SubscriptionComponent,
         CoursedetailsComponent,
         MycourseComponent,
-        MycourseViewComponent
+        MycourseViewComponent,
+        VideoCallUserComponent,
 
     ],
     imports: [
@@ -93,7 +93,6 @@ import { MycourseViewComponent } from '../../pages/user/mycourse-view/mycourse-v
         FormsModule,
         DialogModule,
         NgxPayPalModule,
-        SocketIoModule.forRoot(config),
         ProgressSpinnerModule,
         AccordionModule
 

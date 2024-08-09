@@ -49,3 +49,18 @@ export  interface ICourse  {
     updatedAt: Date;
     id?:string;
 }
+
+export interface Transaction {
+  transactionId: string;
+  userId: string;
+  amount: number;
+  currency: string;
+  paymentMethod: string;
+  paymentType: string;
+  paymentDate: Date;
+  createdAt: Date;
+  trainerId: string;
+  slotId: string;
+  courseId: string;
+  id: string;
+}

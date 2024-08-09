@@ -1,7 +1,7 @@
 import { Component , NgZone  } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { UserService } from '../../../core/services/user.service';
+import { UserService } from '../../../core/services/module-services/user.service';
 import { ICourse } from '../../../core/models/trainer';
 import { RZPKEYID } from '../../../../env/environment';
 import { Subscription } from 'rxjs';

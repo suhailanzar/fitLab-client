@@ -12,13 +12,20 @@
       <tr>
         <td *ngFor="let col of columns">
           <ng-container [ngSwitch]="col.type">
-            <img *ngSwitchCase="'image'" [src]="rowData[col.field]" [alt]="rowData[col.alt]" width="100" class="shadow-4" />
+            <img *ngSwitchCase="'image'" [src]="rowData[col.field]" [alt]="rowData[col.alt]" width="70" class="shadow-4" />
             <ng-container *ngSwitchCase="'actions'">
               <button *ngFor="let action of col.actions" 
                       (click)="onActionClick(action.action, rowData)"
-                      [class]="action.buttonClass">
-                {{action.label}}
+                      [class]="action.buttonClass(rowData)">
+                {{action.label(rowData)}}
               </button>
+            </ng-container>
+            <ng-container *ngSwitchCase="'boolean'">
+              <span *ngIf="rowData[col.field]">✔️</span>
+              <span *ngIf="!rowData[col.field]">❌</span>
+            </ng-container>
+            <ng-container *ngSwitchCase="'date'">
+              <span>{{ rowData[col.field] | date:'shortDate' }}</span>
             </ng-container>
             <span *ngSwitchDefault>{{rowData[col.field]}}</span>
           </ng-container>
@@ -27,3 +34,4 @@
     </ng-template>
   </p-table>
 </div>
+

@@ -1,1 +1,19 @@
-<app-sidebar></app-sidebar>
+<div class="flex justify-between">
+    <app-sidebar></app-sidebar>
+    <div class="p-3 w-full lg:ml-[240px] lg:mt-1 md:mt-5 ">
+        <div class="flex justify-between sm:top-6 p-3 bg-white rounded-lg shadow-lg">
+
+            <div>
+                <p class="text-xl font-semibold text-slate-400 ">Users</p>
+            </div>
+
+        </div>
+
+
+        <app-reusable-table-admin [data]="users" [columns]="columns" [paginator]="true" [rows]="7"
+            [rowsPerPageOptions]="[5, 10, 20]" (actionClick)="onUserAction($event)"></app-reusable-table-admin>
+
+
+
+    </div>
+</div>

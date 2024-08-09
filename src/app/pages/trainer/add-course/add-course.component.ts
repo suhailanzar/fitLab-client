@@ -3,7 +3,7 @@ import { IModule } from '../../../core/models/trainer';
 import { FormBuilder, FormGroup, FormArray, AbstractControl, Validators, FormControl } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
-import { trainerService } from '../../../core/services/trainer.service';
+import { trainerService } from '../../../core/services/module-services/trainer.service';
 import { Subscription } from 'rxjs';
 
 
@@ -20,6 +20,7 @@ export class AddCourseComponent implements OnInit {
   errorMessage!:string;
   private coursesub: Subscription | null = null;
   isLoading:boolean= false;
+  selectedImage!:string;
  
 
   constructor(private fb: FormBuilder,private router:Router , private messageService:MessageService ,private service:trainerService ) {}
@@ -82,10 +83,7 @@ export class AddCourseComponent implements OnInit {
     });
     this.errorMessage = 'Please fill in all required fields in the current module before adding a new one.';
 
-
   }
-
-
 
 
   checkModulesValidity(): boolean {
@@ -153,6 +151,7 @@ export class AddCourseComponent implements OnInit {
   onFileChangeImage(event: any) {
     if (event.target.files.length > 0) {
       const image = event.target.files[0];
+      this.selectedImage = URL.createObjectURL(image);
       this.courseForm.patchValue({
         thumbnail: image
       });
@@ -207,6 +206,7 @@ export class AddCourseComponent implements OnInit {
         next:(res)=>{
             if(res && res.message){
               this.stopLoading()
+              this.selectedImage = ""
               this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message });
               this.courseForm.reset();
               this.modules.clear();

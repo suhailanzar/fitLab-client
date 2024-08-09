@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { adminService } from '../../../core/services/admin.service';
+import { adminService } from '../../../core/services/module-services/admin.service';
 
 @Component({
   selector: 'app-diet-plans',

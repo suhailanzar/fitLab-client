@@ -23,14 +23,15 @@ import { CommonModule } from '@angular/common';
 import { UsersComponentadmin } from '../../pages/admin/users/users.component';
 import { UserdetailsComponent } from '../../pages/admin/userdetails/userdetails.component';
 import { RequestsComponent } from '../../pages/admin/requests/requests.component';
-import { RevenueComponent } from '../../pages/admin/revenue/revenue.component';
+import { RevenueComponentAdmin } from '../../pages/admin/revenue/revenue.component';
 import { CoursesComponentadmin } from '../../pages/admin/courses/courses.component';
-import { ReportsComponent } from '../../pages/admin/reports/reports.component';
 import { AddmealComponent } from '../../pages/admin/addmeal/addmeal.component';
 import { MealPlansComponent } from '../../pages/admin/meal-plans/meal-plans.component';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { sharedAppModule } from '../custom_modules/shared.module';
+import { ReportsAdminComponent } from '../../pages/admin/reports-admin/reports-admin.component';
+import { DialogModule } from 'primeng/dialog';
 
 
 
@@ -46,11 +47,11 @@ import { sharedAppModule } from '../custom_modules/shared.module';
       UsersComponentadmin,
       UserdetailsComponent,
       RequestsComponent,
-      RevenueComponent,
+      RevenueComponentAdmin,
       CoursesComponentadmin,
-      ReportsComponent,
       AddmealComponent,
       MealPlansComponent,
+      ReportsAdminComponent
       
     ],
     imports: [
@@ -68,7 +69,8 @@ import { sharedAppModule } from '../custom_modules/shared.module';
     ConfirmDialogModule,
     TableModule,
     PaginatorModule,
-    sharedAppModule
+    sharedAppModule,
+    DialogModule
  
     ],
     providers: [MessageService,ConfirmationService],

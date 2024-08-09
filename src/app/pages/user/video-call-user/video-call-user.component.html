@@ -1,0 +1,22 @@
+  <div class="w-full p-6 bg-white rounded-lg shadow-lg">
+    <div class="flex flex-col items-center w-full">
+      <div class="video-container relative w-full aspect-video bg-gray-900 rounded-lg overflow-hidden mb-4">
+        <video id="remoteVideo" class="absolute inset-0 w-full h-full object-cover" autoplay playsinline></video>
+        <video id="localVideo" class="absolute bottom-4 right-4 w-1/4 h-auto rounded-lg border-2 border-white" autoplay playsinline></video>
+      </div>
+      <div class="flex justify-center w-full space-x-4">
+        <button (click)="startCall()" class="px-6 py-3 text-white bg-green-500 rounded-full hover:bg-green-600 transition duration-300 ease-in-out flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+          </svg>
+          Start Call
+        </button>
+        <button (click)="endCall()" class="px-6 py-3 text-white bg-red-500 rounded-full hover:bg-red-600 transition duration-300 ease-in-out flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+          End Call
+        </button>
+      </div>
+    </div>
+  </div>

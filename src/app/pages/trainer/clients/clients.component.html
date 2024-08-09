@@ -33,7 +33,7 @@
                             [ngClass]="{ 'border-top-1 surface-border': !first }">
                             <div class="md:w-10rem relative">
                                 <img class="block xl:block mx-auto border-round w-full"
-                                    [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' " />
+                                    [src]="user.image" alt="{{user.name}}" />
                             </div>
                             <div
                                 class="flex flex-column md:flex-row justify-content-between md:align-items-center flex-1 gap-4">
@@ -52,10 +52,10 @@
                                 </div>
                                 <div class="flex flex-column md:align-items-end gap-5">
                                     <!-- <span class="text-xl font-semibold text-900">{{ '$' }}</span> -->
-                                    <div class="flex flex-row-reverse md:flex-row gap-2">
+                                    <!-- <div class="flex flex-row-reverse md:flex-row gap-2">
                                         <button
                                             class="px-2 py-1 rounded-md text-white bg-blue-900  hover:bg-blue-600">view</button>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

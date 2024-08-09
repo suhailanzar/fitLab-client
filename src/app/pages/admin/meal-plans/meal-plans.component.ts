@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { adminService } from '../../../core/services/admin.service';
+import { adminService } from '../../../core/services/module-services/admin.service';
 import { TableLazyLoadEvent } from 'primeng/table';
 
 @Component({
@@ -16,7 +16,6 @@ export class MealPlansComponent implements OnInit {
   loading: boolean = false;
 
   columns = [
-    { field: 'image', header: 'Image', width: '10%', type: 'image', alt: 'name' },
     { field: 'name', header: 'Name', width: '15%' },
     { field: 'type', header: 'Type', width: '10%' },
     { field: 'description', header: 'Description', width: '30%' },
@@ -32,6 +31,8 @@ export class MealPlansComponent implements OnInit {
     this.service.getMeals().subscribe({
       next: (data) => {
         this.meals = data.meal;
+        console.log('meals are ',this.meals);
+        
         this.totalRecords = this.meals.length;
         this.loading = false;
       },

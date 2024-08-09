@@ -2,7 +2,7 @@ import { Component  } from '@angular/core';
 import { FormGroup,FormBuilder,Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { Trainer } from '../../../core/models/trainer';
 import { Subscription } from 'rxjs';
-import { trainerService } from '../../../core/services/trainer.service';
+import { trainerService } from '../../../core/services/module-services/trainer.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 

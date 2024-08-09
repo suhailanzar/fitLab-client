@@ -41,5 +41,51 @@
 
         </div>  -->
 
+
+        <div class="container mx-auto px-4 py-8">
+          <div class="bg-white shadow-md rounded-lg p-6">
+            <h2 class="text-2xl text-slate-400 font-semibold mb-6">Transaction History</h2>
+            <div class="overflow-x-auto">
+              <p-table [value]="transactions"
+              [paginator]="true"
+              [rows]="5"
+              [rowsPerPageOptions]="[5, 10, 20]">
+       <ng-template pTemplate="header">
+
+           <tr>
+             <th scope="col" class="px-4 py-3 text-left text-md p-3 font-semibold text-blue-600 uppercase tracking-wider">
+               Date</th>
+             <th scope="col" class="px-4 py-3 text-left text-md p-3 font-semibold text-blue-600 uppercase tracking-wider">
+               Payment For</th>
+             <th scope="col" class="px-4 py-3 text-left text-md p-3 font-semibold text-blue-600 uppercase tracking-wider">
+               Method</th>
+             <th scope="col" class="px-4 py-3 text-left text-md p-3 font-semibold text-blue-600 uppercase tracking-wider">
+               Amout</th>
+             <th scope="col" class="px-4 py-3 text-left text-md p-3 font-semibold text-blue-600 uppercase tracking-wider">
+               transactionId</th>
+           
+           </tr>
+
+       </ng-template>
+       <ng-template pTemplate="body" let-transaction>
+         <tr >
+           <td class="py-4 px-3 border-b border-gray-200">{{transaction.createdAt | date}}</td>
+           <td class="py-4 px-3 border-b border-gray-200">{{transaction.paymentType }}</td>
+           <td class="py-4 px-3 border-b border-gray-200">{{transaction.paymentMethod }}</td>
+           <td class="py-4 px-3 border-b border-gray-200 text-green-500">{{transaction.amount }}</td>
+           <td class="py-4 px-3 border-b border-gray-200">{{transaction.transactionId }}</td>
+          
+         
+         </tr>
+       </ng-template>
+     </p-table>
+            </div>
+          </div>
+        </div>
+
+
+
+        
+
     </div>
 </div>

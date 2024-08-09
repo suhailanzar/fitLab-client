@@ -1,7 +1,7 @@
 import { Component , ViewEncapsulation } from '@angular/core';
 import { FormGroup,FormBuilder,Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { adminService } from '../../../core/services/admin.service';
+import { adminService } from '../../../core/services/module-services/admin.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 

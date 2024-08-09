@@ -11,49 +11,18 @@
         <p class="text-xl font-semibold text-slate-400 ">Meal Plans</p>
       </div>
 
-      <i class="pi pi-plus-circle hover:cursor-pointer text-blue-600 font-semibold"
-        style="color: 'var(--primary-color)'; font-size: 1rem" routerLink="/admin/addmeal"> Add Meals</i>
+       <!-- <div>
+        <img src="http://localhost:5000/meals/{{meals[21].image}}" alt="dumdfasl">
+      </div> -->
+
+      <i class="pi pi-plus-circle hover:cursor-pointer text-blue-500 hover:text-blue-700 transition-colors duration-300 ease-in-out font-semibold rounded-md"
+       routerLink="/admin/addmeal"> <span class="font-semibold text-md font-sans"> Add Meals</span> </i>    
 
     </div>
 
-    <!-- 
-        <div class="table-container overflow-x-auto shadow-lg sm:rounded-lg ">
-
-                <p-table [value]="meals" 
-                         [paginator]="true" 
-                         [rows]="7" 
-                         [rowsPerPageOptions]="[5, 10, 20]" 
-                         >
-                  <ng-template pTemplate="header">
-                    <tr>
-                      <th style="width: 10%;">Image</th>
-                      <th style="width: 15%;">Name</th>
-                      <th style="width: 10%;">Type</th>
-                      <th style="width: 30%;">Description</th>
-                      <th style="width: 10%;">Calories</th>
-                      <th style="width: 10%;">Protein</th>
-                      <th style="width: 10%;">Fats</th>
-                    </tr>
-                  </ng-template>
-                  <ng-template pTemplate="body" let-meal>
-                    <tr>
-                      <td>
-                        <img [src]="meal.image" [alt]="meal.name" width="100" class="shadow-4" />
-                      </td>
-                      <td>{{meal.name}}</td>
-                      <td>{{meal.type}}</td>
-                      <td>{{meal.description}}</td>
-                      <td>{{meal.calories}}</td>
-                      <td>{{meal.protein}}</td>
-                      <td>{{meal.fats}}</td>
-                    </tr>
-                  </ng-template>
-                </p-table>
-              </div> -->
 
     <app-reusable-table-admin [data]="meals" [columns]="columns" [paginator]="true" [rows]="7"
       [rowsPerPageOptions]="[7, 10, 20]"></app-reusable-table-admin>
-
 
 
   </div>

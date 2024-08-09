@@ -1,6 +1,6 @@
 import { Component , OnInit  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { adminService } from '../../../core/services/admin.service';
+import { adminService } from '../../../core/services/module-services/admin.service';
 import { MessageService } from 'primeng/api';
 import { Trainer } from '../../../core/models/trainer';
 
@@ -18,7 +18,9 @@ export class TrainerDetailsComponent  implements OnInit{
   constructor(private route: ActivatedRoute, private service:adminService , private messageService:MessageService) {}
 
   ngOnInit() {
-    this.trainerId = this.route.snapshot.paramMap.get('id');     
+    this.trainerId = this.route.snapshot.paramMap.get('id');  
+        
+    
        this.service.viewtrainers(this.trainerId).subscribe({
       next:(res=>{
         if(res){

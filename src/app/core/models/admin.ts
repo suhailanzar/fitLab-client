@@ -10,3 +10,18 @@ export interface Meal {
        date: Date,
        _id?: string,
   }
+
+
+export interface Reports {
+    userId:string,
+    userName:string,
+    trainerName:string,
+    date:Date,
+    reportType:string,
+    description:string,
+    evidence:string,
+    isReported:boolean,
+    _id:string
+}
+
+  

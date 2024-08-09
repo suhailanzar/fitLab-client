@@ -14,12 +14,19 @@ export class ReusableTableAdminComponent {
   @Input() rows: number = 10;
   @Input() rowsPerPageOptions: number[] = [5, 10, 20];
   @Output() actionClick = new EventEmitter<{action: string, item: any}>();
+  @Output() action = new EventEmitter<{ action: string, rowData: any }>();
 
 
-  onActionClick(action: string, item: string) {
+
+  onActionClick(action: string, item: string) {    
         this.actionClick.emit({action, item});
       }
-    
+
+
+emitAction(action: string, rowData: any) {
+  this.action.emit({ action, rowData });
+}
+
 
 }
 

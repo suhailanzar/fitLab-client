@@ -40,6 +40,10 @@ import { AddCourseComponent } from '../../pages/trainer/add-course/add-course.co
 import { EditCourseComponent } from '../../pages/trainer/edit-course/edit-course.component';
 import { ResetPasswordComponent } from '../../pages/trainer/reset-password/reset-password.component';
 import { TraineChatComponent } from '../../pages/trainer/traine-chat/traine-chat.component';
+import { CoursedetailsAdminComponent } from '../../pages/trainer/coursedetails-admin/coursedetails-admin.component';
+import { AccordionModule } from 'primeng/accordion';
+import { VideoCallTrainerComponent } from '../../pages/trainer/video-call-trainer/video-call-trainer.component';
+import { TableModule } from 'primeng/table';
 
 
 @NgModule({
@@ -58,6 +62,9 @@ import { TraineChatComponent } from '../../pages/trainer/traine-chat/traine-chat
       ResetPasswordComponent,
       SidebarComponent,
       TraineChatComponent,
+      CoursedetailsAdminComponent,
+      VideoCallTrainerComponent,
+
 
     ],
     imports: [
@@ -79,7 +86,10 @@ import { TraineChatComponent } from '../../pages/trainer/traine-chat/traine-chat
     FormsModule,
     DataViewModule,
     ProgressSpinnerModule,
-    ChartModule
+    ChartModule,
+    AccordionModule,
+    TableModule
+
 
     ],
     providers: [MessageService ],

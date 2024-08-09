@@ -4,7 +4,7 @@ import {  FormGroup,Validators ,FormBuilder } from '@angular/forms';
 import { numericValidator } from '../../../core/utils/otpvalidator';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { trainerService } from '../../../core/services/trainer.service';
+import { trainerService } from '../../../core/services/module-services/trainer.service';
 import { MessageService } from 'primeng/api';
 
 

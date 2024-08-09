@@ -1,111 +1,118 @@
+<div class="bg-gray-100 w-full flex border-2 border-slate-300  rounded-xl ">
+    <!-- Sidebar -->
+    <div class="w-1/4 bg-white border-r border-gray-300 rounded-s-xl  ">
+        <!-- User profile -->
 
+        <div class="p-4 h-24 border-b border-gray-300  rounded-ss-lg" style="background-color: #075E54;">
+            <div class="flex items-center">
+                <img src="https://via.placeholder.com/40" alt="User" class=" h-10 rounded-full mr-3">
+                <div class="text-white">
+                    <h2 class="text-md font-semibold">John Doe</h2>
 
-        <div class="bg-gray-100 w-full flex border-2 border-slate-300  rounded-xl ">
-            <!-- Sidebar -->
-            <div class="w-1/4 bg-white border-r border-gray-300 rounded-s-xl  ">
-                <!-- User profile -->
+                </div>
+            </div>
+        </div>
 
-                <div class="p-4 h-24 border-b border-gray-300  rounded-ss-lg" style="background-color: #075E54;">
-                    <div class="flex items-center">
-                        <img src="https://via.placeholder.com/40" alt="User" class=" h-10 rounded-full mr-3">
-                        <div class="text-white">
-                            <h2 class="text-md font-semibold">John Doe</h2>
-                            
+        <!-- Contact list -->
+        <div class="overflow-y-auto h-[calc(100vh-72px)]">
+            <div *ngFor="let user of clients" class="flex items-center p-3 hover:bg-gray-100 cursor-pointer"
+                (click)="selectedUserFunction(user.id)"
+                [ngClass]="{'bg-gray-200': user.id === receiverId, 'hover:bg-gray-100': user.id !== receiverId}">
+                <img src="https://via.placeholder.com/40" alt="Contact" class="h-10 rounded-full mr-3">
+                <div *ngIf="user && user.id" class="flex justify-between items-center w-full">
+                    <div>
+                        <h3 class="font-medium">{{ user.name }}</h3>
+                    </div>
+                    <div *ngIf="getUnreadCountForUser(user.id) > 0">
+                        <div
+                            class="w-6 h-6 flex items-center justify-center text-xs font-bold p-2 text-white bg-green-500 rounded-full">
+                            {{ getUnreadCountForUser(user.id) }}
                         </div>
                     </div>
                 </div>
-
-                <!-- Contact list -->
-                <div class="overflow-y-auto h-[calc(100vh-72px)] ">
-                    <div *ngFor="let user of clients" class="flex items-center p-3 hover:bg-gray-100 cursor-pointer"
-                        (click)="selectedUserFunction(user.id)"
-                        [ngClass]="{'bg-gray-200': user.id === receiverId, 'hover:bg-gray-100': user.id !== receiverId}">
-                        <img src="https://via.placeholder.com/40" alt="Contact" class="h-10 rounded-full mr-3">
-                        <div class="flex justify-between items-center w-full">
-                            <div>
-                              <h3 class="font-medium">{{ user.name }}</h3>
-                            </div>
-                            <div 
-                              class="flex items-center justify-center w-1 h-6 text-xs font-bold text-white bg-green-500 border-2 border-white rounded-full dark:border-gray-900">
-                             {{unreadMessagesCount}}
-                            </div>
-                          </div>
-                          
-                    </div>
-                </div>
-
-
-                
             </div>
+        </div>
 
-             <!-- Main chat area -->
-        <div class="flex-1 flex flex-col rounded-xl" *ngIf="selectedUser;">
-            <!-- Chat header -->
-            <div class=" p-4 h-24 border-b border-gray-300 rounded-e-xl" style="background-color: #075E54" *ngIf="selectedUser; ">
+
+
+
+    </div>
+
+    <!-- Main chat area -->
+    <div class="flex-1 flex flex-col rounded-xl" *ngIf="selectedUser;">
+        <!-- Chat header -->
+        <div class="flex justify-between p-4 h-24 border-b border-gray-300 rounded-e-xl" style="background-color: #075E54"
+            *ngIf="selectedUser; ">
+            <div>
                 <h2 class="text-lg font-semibold text-white">{{selectedUser.name}}</h2>
                 <p class="text-sm text-white">Online</p>
             </div>
+           
+            <div>
+                <button [routerLink]="['/trainer/VideoCallTrainer',selectedUser.id]" class="flex items-center">
+                    <i class="pi pi-video" style="font-size: 1.5rem"></i>
+                </button>
+            </div>
+
+         
+        </div>
 
 
 
-            <!-- Messages area -->
-            <div class="flex-1  overflow-hidden p-4 space-y-4" style="background-color: #DAD3CC">
-                <div>
+        <!-- Messages area -->
+        <div class="flex-1  overflow-hidden p-4 space-y-4" style="background-color: #DAD3CC">
+            <div>
 
-                    <div *ngIf="messages.length === 0">
-                            <p>No messages yet!</p>
+                <div *ngIf="messages.length === 0">
+                    <p>Loading...</p>
+                </div>
+                <div *ngIf="messages && messages.length > 0">
+                    <ng-container *ngFor="let message of messages">
+                        <div class="flex items-start justify-start mb-2" *ngIf="message.senderId != senderId">
+                            <div>
+                                <div class="rounded py-2 px-3" style="background-color: #ffffff">
+                                    <p class="text-sm text-teal">{{message.message}}</p>
+                                </div>
+                                <div class="text-right text-xs text-grey-dark mt-1">
+                                    {{message.timestamp | date:'shortTime'}}
+                                </div>
+                            </div>
                         </div>
-                        <div *ngIf="messages && messages.length > 0">
-                        <ng-container  *ngFor="let message of messages">
-                            <div class="flex items-start justify-start mb-2" *ngIf="message.senderId != senderId">
-                                <div>
-                                    <div class="rounded py-2 px-3" style="background-color: #ffffff" >
-                                        <p class="text-sm text-teal">{{message.message}}</p>
-                                    </div>
-                                    <div class="text-right text-xs text-grey-dark mt-1">
-                                        {{message.timestamp | date:'shortTime'}}
-                                    </div>
+
+                        <div class="flex items-end justify-end mb-2" *ngIf="message.senderId == senderId">
+                            <div>
+                                <div class="rounded py-2 px-3" style="background-color: #E2F7CB">
+                                    <p>{{message.message}}</p>
+                                </div>
+                                <div class="text-right text-xs text-grey-dark mt-1">
+                                    {{message.timestamp | date:'shortTime'}}
                                 </div>
                             </div>
-
-                            <div class="flex items-end justify-end mb-2" *ngIf="message.senderId == senderId">
-                                <div>
-                                    <div class="rounded py-2 px-3" style="background-color: #E2F7CB" >
-                                        <p>{{message.message}}</p>
-                                    </div>
-                                    <div class="text-right text-xs text-grey-dark mt-1">
-                                        {{message.timestamp | date:'shortTime'}}
-                                    </div>
-                                </div>
-                            </div>
-                        </ng-container>
-                    </div>
-
-
+                        </div>
+                    </ng-container>
                 </div>
-            </div>
 
-            <!-- Message input -->
-            <div class="bg-white p-4 border-t border-gray-300 rounded-e-xl">
-                <div class="flex items-center">
-                    <input type="text" [(ngModel)]="newMessage" placeholder="Type a message..."
-                        class="flex-1 border rounded-full py-2 px-4 mr-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <button (click)="sendMessage()" style="background-color: #075E54;"
-                        class=" text-white rounded-full p-2 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" style="transform: rotate(90deg);" class="h-7 w-8 ms-2"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                        </svg>
-                    </button>
-                </div>
+
             </div>
         </div>
 
-
-
+        <!-- Message input -->
+        <div class="bg-white p-4 border-t border-gray-300 rounded-e-xl">
+            <div class="flex items-center">
+                <input type="text" [(ngModel)]="newMessage" placeholder="Type a message..."
+                    class="flex-1 border rounded-full py-2 px-4 mr-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button (click)="sendMessage()" style="background-color: #075E54;"
+                    class=" text-white rounded-full p-2 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="transform: rotate(90deg);" class="h-7 w-8 ms-2"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    </svg>
+                </button>
+            </div>
         </div>
+    </div>
 
-       
 
 
+</div>

@@ -1,1 +1,79 @@
-<p>userdetails works!</p>
+<div class="flex justify-between">
+    <app-sidebar></app-sidebar>
+    <div class="p-3 w-full lg:ml-[240px] lg:mt-1 md:mt-5 ">
+
+
+
+        <div class="px-12 ">
+            <div class="p-8 bg-white shadow mt-10">
+
+
+                <div
+                    class=" relative h-44 w-44 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500">
+                    <img [src]="userDetail.image" class="h-44 w-44 rounded-full object-cover" alt="Profile picture">
+                </div>
+
+                <div class="mt-20 text-center border-b pb-12">
+
+                    <h1 class="text-4xl font-medium text-gray-700 mt-12">{{userDetail.username}} ,
+                        <span class="font-light text-gray-500">{{userDetail.age}}</span>
+                    </h1>
+                    <p class="font-light text-gray-600 mt-3">{{userDetail.place}}</p>
+
+                </div>
+
+                <div class="grid grid-cols-3 text-center order-last md:order-first mt-10 p-6 md:mt-0">
+                    <div>
+                        <p class="font-bold text-gray-700 text-xl">Gender </p>
+                        <p class="text-gray-400  text-lg ">{{userDetail.gender}}</p>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-700 text-xl">Weight</p>
+                        <p class="text-gray-400  text-lg">{{userDetail.weight}} Kg</p>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-700 text-xl">Height</p>
+                        <p class="text-gray-400  text-lg">{{userDetail.height}} Cm</p>
+                    </div>
+                </div>
+
+
+                <div class="mt-12 flex flex-col justify-center">
+
+
+                    <h1 class="text-3xl font-medium text-center text-gray-700 mt-12">Subcription Plans :
+                        {{userDetail.subscription?.name}}
+                    </h1>
+
+                    <p class="text-gray-600 text-center p-3 font-light lg:px-16">Purchase Date :
+                        {{userDetail.subscription?.startDate | date}}
+                    </p>
+                    <p class="text-gray-600 text-center font-light lg:px-16">Expire Date :
+                        {{userDetail.subscription?.endDate | date }}
+                    </p>
+
+                    <div class="flex justify-center p-3 px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        <ng-container *ngIf="userDetail.subscription">
+                            <span *ngIf="userDetail.subscription.isActive"
+                                class="px-4 inline-flex text-md leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                Active
+                            </span>
+                            <span *ngIf="!userDetail.subscription.isActive"
+                                class="px-4 inline-flex text-md leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                Expired
+                            </span>
+                        </ng-container>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>

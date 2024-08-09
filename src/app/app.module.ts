@@ -21,12 +21,16 @@ import { jwtHttpInterceptor } from '../app/core/interceptors/jwt-decode.intercep
 import { ErrorInterceptor } from '../app/core/interceptors/error-handling.interceptor';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TableModule } from 'primeng/table';
+import { SocketIoModule } from 'ngx-socket-io';
+import { config } from '../../socket-config';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PagenotfoundComponent,
+    
+ 
   ],
 
   imports: [
@@ -45,7 +49,9 @@ import { TableModule } from 'primeng/table';
     UserAppModule,
     AdminAppModule,
     sharedAppModule,
-    TableModule
+    TableModule,
+    SocketIoModule.forRoot(config),
+
     
   ],
 

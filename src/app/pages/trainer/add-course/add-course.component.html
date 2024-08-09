@@ -18,7 +18,7 @@
           <input id="courseName" formControlName="courseName" type="text"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Enter course name" required />
-          <div class="text-red-600 text-md mt-1"
+            <div class="text-red-600 text-md mt-1"
             *ngIf="courseForm.get('courseName')?.invalid && courseForm.get('courseName')?.touched">
             Course Name is required
           </div>
@@ -61,6 +61,7 @@
               </label>
             </div>
 
+
             <div class="text-red-600 text-sm mt-1"
             *ngIf="courseForm.get('thumbnail')?.invalid && courseForm.get('thumbnail')?.touched">
             Thumbnail is required
@@ -80,6 +81,14 @@
           <div class="text-red-600 text-sm mt-1"
             *ngIf="courseForm.get('Price')?.invalid && courseForm.get('Price')?.touched">
             Price is required
+          </div>
+
+          
+          <div class="p-4">
+            <div *ngIf="selectedImage" class="max-w-sm mx-auto overflow-hidden rounded-lg shadow-lg">
+              <img class="object-cover w-full h-48" src="{{selectedImage}}" alt="Image description">
+            
+            </div>
           </div>
         </div>
 

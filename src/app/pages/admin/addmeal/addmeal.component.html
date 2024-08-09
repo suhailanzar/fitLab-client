@@ -25,8 +25,8 @@
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         [ngClass]="{'border-red-500': mealForm.get('category')?.invalid && (mealForm.get('category')?.dirty || mealForm.get('category')?.touched)}">
                         <option value="">Select a meal type</option>
-                        <option value="breakfast">Veg</option>
-                        <option value="lunch">Non-veg</option>
+                        <option value="Veg">Veg</option>
+                        <option value="Non-veg">Non-veg</option>
                     </select>
                     <div *ngIf="mealForm.get('category')?.invalid && (mealForm.get('category')?.dirty || mealForm.get('category')?.touched)" class="text-red-500 text-sm mt-1">
                         Please select a category

@@ -1,0 +1,16 @@
+.status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ffc107;
+    display: inline-block;
+  }
+  
+  .status-text {
+    font-weight: bold;
+    color: #ffc107;
+  }
+  
+  .send-response-btn:hover {
+    transition: background-color 0.3s ease;
+  }

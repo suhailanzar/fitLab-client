@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
-import { User } from '../../../core/models/user';
+import { signUpUser, User } from '../../../core/models/user';
 import { Subscription } from 'rxjs';
-import { UserService } from '../../../core/services/user.service';
+import { UserService } from '../../../core/services/module-services/user.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
@@ -14,13 +14,10 @@ import { MessageService } from 'primeng/api';
 })
 export class SignupComponent {
 
-  user: User = {
+  user: signUpUser = {
     name: '', email: '', password: '',
     isblocked: false,
-    gender: '',
-    weight: 0,
-    height: 0,
-    createdAt: new Date(),  };
+    };
 
   signupForm!: FormGroup
   private signupSubscription: Subscription | null = null;

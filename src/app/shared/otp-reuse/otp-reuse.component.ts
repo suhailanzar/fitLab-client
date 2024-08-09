@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import {  FormGroup,Validators ,FormBuilder } from '@angular/forms';
 import { Subscription , timer  } from 'rxjs';
 import { Router } from '@angular/router';
-import { ReusableService } from '../../core/services/reusable.service';
+import { ReusableService } from '../../core/services/module-services/reusable.service';
 import { MessageService } from 'primeng/api';
 
 @Component({

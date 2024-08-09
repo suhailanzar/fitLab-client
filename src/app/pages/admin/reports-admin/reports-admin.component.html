@@ -1,0 +1,73 @@
+<div class="flex justify-between">
+  <app-sidebar></app-sidebar>
+  <div class="p-3 w-full lg:ml-[240px] lg:mt-1 md:mt-5 ">
+
+    <div class="flex justify-between sm:top-6 p-3 bg-white rounded-lg shadow-lg ">
+
+      <div>
+        <p class="text-xl font-semibold text-slate-400 ">Reports</p>
+      </div>
+
+    </div>
+
+    <app-reusable-table-admin [data]="reports" [columns]="columns" [paginator]="true" [rows]="7"
+      [rowsPerPageOptions]="[7, 10, 20]" (actionClick)="onAction($event)"></app-reusable-table-admin>
+
+
+  </div>
+
+
+  <p-dialog header="Report Status" [modal]="true" [(visible)]="visibleBooking" [style]="{ width: '50rem' }"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <div class="overflow-x-auto">
+
+      <div class="report-status-container w-full bg-white shadow-lg rounded-lg p-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div class="flex items-center">
+            <span class="font-semibold mr-2">Status:</span>
+            <span class="status-dot"></span>
+            <span class="status-text ml-2">Pending</span>
+          </div>
+          <div>
+            <span class="font-semibold">User Name:</span>
+            <span>{{selectedReport?.userName}}</span>
+          </div>
+          <div>
+            <span class="font-semibold">Trainer Name:</span>
+            <span>{{selectedReport?.trainerName}}</span>
+          </div>
+          <div>
+            <span class="font-semibold">Report Type:</span>
+            <span>{{selectedReport?.reportType}}</span>
+          </div>
+          <div>
+            <span class="font-semibold">Date:</span>
+            <span>{{selectedReport?.date | date:'mediumDate'}}</span>
+          </div>
+
+
+        </div>
+
+        <div class="flex gap-64">
+          <div class="mb-6">
+            <h3 class="text-lg font-semibold mb-2">Description:</h3>
+            <p class="text-gray-700">{{selectedReport?.description}}</p>
+          </div>
+          <div *ngIf="selectedReport?.evidence" class="mb-6">
+            <h3 class="text-lg font-semibold mb-2">Evidence:</h3>
+            <img src="http://localhost:5000/reports/{{selectedReport?.evidence}}" alt="Evidence"
+              class="max-w-full h-auto rounded-lg shadow-md">
+
+          </div>
+
+        </div>
+
+        <button (click)="sendMail(selectedReport?.userId)"
+          class="send-response-btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+          Send Response
+        </button>
+      </div>
+
+
+    </div>
+  </p-dialog>

@@ -38,7 +38,13 @@ import { CoursedetailsComponent } from './pages/user/coursedetails/coursedetails
 import { RevenueComponent } from './pages/trainer/revenue/revenue.component';
 import { MycourseComponent } from './pages/user/mycourse/mycourse.component';
 import { MycourseViewComponent } from './pages/user/mycourse-view/mycourse-view.component';
-
+import { CoursedetailsAdminComponent } from './pages/trainer/coursedetails-admin/coursedetails-admin.component';
+import { VideoCallUserComponent } from './pages/user/video-call-user/video-call-user.component';
+import { VideoCallTrainerComponent } from './pages/trainer/video-call-trainer/video-call-trainer.component';
+import { ReportsComponent } from './pages/user/reports/reports.component';
+import { ReportsAdminComponent } from './pages/admin/reports-admin/reports-admin.component';
+import { RevenueComponentAdmin } from './pages/admin/revenue/revenue.component';
+import { UserdetailsComponent } from './pages/admin/userdetails/userdetails.component';
 
 
 const routes: Routes = [
@@ -61,6 +67,8 @@ const routes: Routes = [
   {path:"coursedetails/:id",component:CoursedetailsComponent,canActivate: [userAuthGuardService]},
   {path:"mycourse",component:MycourseComponent,canActivate: [userAuthGuardService]},
   {path:"viewCourse/:id",component:MycourseViewComponent,canActivate: [userAuthGuardService]},
+  {path:"VideoCallUser/:id",component:VideoCallUserComponent,canActivate: [userAuthGuardService]},
+  {path:"reports",component:ReportsComponent,canActivate: [userAuthGuardService]},
 
 
   // trainer routes
@@ -74,6 +82,8 @@ const routes: Routes = [
   {path:"trainer/courses",component:CoursesComponent,canActivate: [TrainerAuthGuardService]},
   {path:"trainer/addcourse",component:AddCourseComponent,canActivate: [TrainerAuthGuardService]},
   {path:"trainer/revenue",component:RevenueComponent,canActivate: [TrainerAuthGuardService]},
+  {path:"trainer/coursedetailsAdmin/:id",component:CoursedetailsAdminComponent,canActivate: [TrainerAuthGuardService]},
+  {path:"trainer/VideoCallTrainer/:id",component:VideoCallTrainerComponent,canActivate: [TrainerAuthGuardService]},
   
 
   // admin routes
@@ -86,6 +96,9 @@ const routes: Routes = [
   {path:"admin/mealplans",component:MealPlansComponent,canActivate: [adminAuthGuardService]},
   {path:"admin/courses",component:CoursesComponentadmin,canActivate: [adminAuthGuardService]},
   {path:"admin/users",component:UsersComponentadmin,canActivate: [adminAuthGuardService]},
+  {path:"admin/userDetails/:id",component:UserdetailsComponent,canActivate: [adminAuthGuardService]},
+  {path:"admin/reports",component:ReportsAdminComponent,canActivate: [adminAuthGuardService]},
+  {path:"admin/revenue",component:RevenueComponentAdmin,canActivate: [adminAuthGuardService]},
   
 
   // wildcard route

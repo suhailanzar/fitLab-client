@@ -1,7 +1,7 @@
 import { Component , NgZone  } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { UserService } from '../../../core/services/user.service';
+import { UserService } from '../../../core/services/module-services/user.service';
 import { ICourse, IModule } from '../../../core/models/trainer';
 import { Subscription } from 'rxjs';
 import { IEnrolledCourse, IEnrolledModule } from '../../../core/models/user';
@@ -40,8 +40,8 @@ export class MycourseViewComponent {
 
 
 
-  toggleCompletion(module: IEnrolledModule) {
-    module.completed = !module.completed;
+  updateCompletion(module: IEnrolledModule) {
+    module.completed = true
     this.updateModuleCompletion(module);
   }
 
@@ -49,7 +49,6 @@ export class MycourseViewComponent {
     if(module.moduleId!=undefined){
       this.service.updateModuleCompletion(module.moduleId, this.courseId, module.completed).subscribe({
         next: (response) => {
-          console.log('response is',response);
           this.calculateProgress( this.purchasedCourses);
           
         },
@@ -109,11 +108,18 @@ export class MycourseViewComponent {
 
     this.courseSubscription = this.service.getCourseDetails(this.courseId).subscribe({
       next: (res) => {
+
+
         
-        const videoDetails = res.course.modules.find((module: any) => module.id === id);  
-        this.coursevideo =  videoDetails.videoUrl
-        console.log('course video is',this.coursevideo);
-             
+        const ModuleDetails = res.course.modules.find((module: any) => module.id === id);
+        console.log('enrolled  course is',this.purchasedCourses);
+        
+        const selectedModule = this.purchasedCourses.modules.find(module => module.moduleId === id);
+        if(selectedModule)
+        this.updateCompletion(selectedModule)        
+        
+        this.coursevideo =  ModuleDetails.videoUrl
+
         this.showVideoModal = true;
         this.isLoading = false;
       },

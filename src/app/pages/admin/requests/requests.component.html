@@ -1,32 +1,43 @@
-<div class="container mx-auto mt-10 ">
-    <div class="bg-white shadow-md rounded-lg p-6">
-      <h2 class="text-xl font-semibold mb-4 text-slate-700">Trainer Requests </h2>
-      <table class="table-fixed w-full">
-        <thead>
-            <tr class="bg-gray-200">
-                <th class="w-1/5 px-4 py-3 text-center">Name</th>
-                <th class="w-1/5 px-4 py-3 text-center">Email</th>
-                <th class="w-1/5 px-4 py-3 text-center">status</th>
-                <th class="w-1/5 px-4 py-3 text-center">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="hover:bg-gray-100" *ngFor="let trainer of trainers;  let i = index">
-                <td class="border px-4 py-2 text-center">{{trainer.trainername}}</td>
-                <td class="border px-4 py-2 text-center">{{trainer.email}}</td>
-                <td class="border px-4 py-2 text-center">
-                    <span class="text-green-500" *ngIf="trainer && trainer.isapproved">Approved</span>
-                    <span class="text-red-500" *ngIf="trainer &&!trainer.isapproved">Not Approved</span>
-                </td>
-                <td class="border px-4 py-2 text-center flex justify-center"  *ngIf="trainer && !trainer.isapproved">
-                    <p></p>
-                    <button class="bg-green-700 text-white px-4 py-1 rounded mx-2 w-5" (click)="trainerApproval(trainer._id,i )"  >Approve</button>
-                    <!-- <button class="bg-red-700 text-white px-4 py-1 rounded w-3" (click)="deny(trainer)">Deny</button> -->
-                </td>
-            </tr>
-            
-        </tbody>
-    </table>
-      
+<div class="flex justify-between">
+    <app-sidebar></app-sidebar>
+    <div class="p-3 w-full lg:ml-[240px] lg:mt-1 md:mt-5 ">
+
+
+        <div class="flex justify-between sm:top-6 p-3 bg-white rounded-lg shadow-lg">
+
+            <div>
+                <p class="text-xl font-semibold text-slate-400 ">Reports</p>
+            </div>
+
+        </div>
+
+        <table class="table-fixed w-full mt-3">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="w-1/5 px-4 py-3 text-center">Name</th>
+                    <th class="w-1/5 px-4 py-3 text-center">Email</th>
+                    <th class="w-1/5 px-4 py-3 text-center">status</th>
+                    <th class="w-1/5 px-4 py-3 text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="hover:bg-gray-100" *ngFor="let trainer of trainers;  let i = index">
+                    <td class="border px-4 py-2 text-center">{{trainer.trainername}}</td>
+                    <td class="border px-4 py-2 text-center">{{trainer.email}}</td>
+                    <td class="border px-4 py-2 text-center">
+                        <span class="text-green-500" *ngIf="trainer && trainer.isapproved">Approved</span>
+                        <span class="text-red-500" *ngIf="trainer &&!trainer.isapproved">Not Approved</span>
+                    </td>
+                    <td class="border px-4 py-2 text-center flex justify-center" *ngIf="trainer && !trainer.isapproved">
+                        <p></p>
+                        <button class="bg-green-700 text-white px-4 py-1 rounded mx-2 w-5"
+                            (click)="trainerApproval(trainer._id,i )">Approve</button>
+                        <!-- <button class="bg-red-700 text-white px-4 py-1 rounded w-3" (click)="deny(trainer)">Deny</button> -->
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
     </div>
-  </div>
+</div>

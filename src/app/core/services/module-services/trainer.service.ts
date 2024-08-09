@@ -2,11 +2,12 @@
 import { HttpClient } from "@angular/common/http";
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from "@angular/core";
-import { Trainer } from "../models/trainer";
+import { Trainer } from "../../models/trainer";
 import { Observable, of } from "rxjs";
-import { environment } from "../../../env/environment";
-import { Slot } from "../models/trainer";
-import { ICourse } from "../models/trainer"
+import { environment } from "../../../../env/environment";
+import { Slot } from "../../models/trainer";
+import { ICourse } from "../../models/trainer"
+import { response } from "../../../interfaces/IadminService";
 
 const BASE_URL = environment.BASE_URL
 
@@ -91,6 +92,10 @@ export class trainerService {
 
     getRevenueData():Observable<any>{
         return this.http.get<any>(`${BASE_URL}trainer/getRevenueData`)
+    }
+
+    deleteSlot(slotId:string):Observable<response>{
+        return this.http.get<response>(`${BASE_URL}trainer/deleteSlot/${slotId}`)
     }
 
   
