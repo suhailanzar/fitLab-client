@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { trainerService } from '../../../core/services/module-services/trainer.service';
 import { Subscription } from 'rxjs';
-import { error } from 'console';
 import { Transaction } from '../../../core/models/trainer';
 
 @Component({
