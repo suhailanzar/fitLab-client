@@ -4,7 +4,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { environment } from "../../../../env/environment";
-import { reports, response, userResponse } from "../../../interfaces/IadminService";
+import { adminLogin, GetTrainers, reports, response, userResponse, viewTrainer } from "../../../interfaces/IadminService";
 
 const BASE_URL = environment.BASE_URL
 
@@ -23,19 +23,19 @@ export class adminService {
     ) { }
 
     
-    adminLogin(data:number): Observable<any> {
+    adminLogin(data:number): Observable<adminLogin> {
         
-        return this.http.post(`${BASE_URL}admin/login`, data)
+        return this.http.post<adminLogin>(`${BASE_URL}admin/login`, data)
     }
 
-    get_requests(): Observable<any> {
+    get_requests(): Observable<GetTrainers> {
         
-        return this.http.get(`${BASE_URL}admin/getTrainersReq`)
+        return this.http.get<GetTrainers>(`${BASE_URL}admin/getTrainersReq`)
     }
 
-    getTrainers(): Observable<any> {
+    getTrainers(): Observable<GetTrainers> {
         
-        return this.http.get(`${BASE_URL}admin/getTrainers`)
+        return this.http.get<GetTrainers>(`${BASE_URL}admin/getTrainers`)
     }
     blockTrainer(id:string): Observable<response> {
         return this.http.get<response>(`${BASE_URL}admin/blockTrainer/${id}`)
@@ -51,14 +51,14 @@ export class adminService {
     }
    
 
-    trainerApproval(id:string): Observable<any> {
+    trainerApproval(id:string): Observable<response> {
 
-       const approval =  this.http.put(`${BASE_URL}admin/trainerApproval/${id}`,id)
+       const approval =  this.http.put<response>(`${BASE_URL}admin/trainerApproval/${id}`,id)
        return approval
     }
-    viewtrainers(id:string): Observable<any> {
+    viewtrainers(id:string): Observable<viewTrainer> {
 
-       const trainers =  this.http.get(`${BASE_URL}admin/viewtrainer/${id}`)
+       const trainers =  this.http.get<viewTrainer>(`${BASE_URL}admin/viewtrainer/${id}`)
        return trainers
     }
     viewUser(id:string): Observable<any> {

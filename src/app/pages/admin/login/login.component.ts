@@ -39,7 +39,7 @@ export class adminLoginComponent {
   sendLoginData(data: any) {
     this.LoginSubscription = this.service.adminLogin(data).subscribe({
       next: (res) => {        
-        if (res && res.message) {   
+        if (res && res.message) {            
             this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message });
           this.loginForm.reset();
           localStorage.setItem('adminToken',res.token)

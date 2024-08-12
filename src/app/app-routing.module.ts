@@ -82,7 +82,7 @@ const routes: Routes = [
   {path:"trainer/courses",component:CoursesComponent,canActivate: [TrainerAuthGuardService]},
   {path:"trainer/addcourse",component:AddCourseComponent,canActivate: [TrainerAuthGuardService]},
   {path:"trainer/revenue",component:RevenueComponent,canActivate: [TrainerAuthGuardService]},
-  {path:"trainer/coursedetailsAdmin/:id",component:CoursedetailsAdminComponent,canActivate: [TrainerAuthGuardService]},
+  {path:"trainer/coursedetailsAdmin/:id",component:CoursedetailsAdminComponent},
   {path:"trainer/VideoCallTrainer/:id",component:VideoCallTrainerComponent,canActivate: [TrainerAuthGuardService]},
   
 

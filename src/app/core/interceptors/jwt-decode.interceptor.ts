@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class jwtHttpInterceptor implements HttpInterceptor {
-    constructor(private authService: AuthService , private router:Router) {}
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {    
+  constructor(private authService: AuthService, private router: Router) { }
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     const userToken = localStorage.getItem('userToken') || undefined;
     const trainerToken = localStorage.getItem('trainerToken') || undefined;
@@ -36,16 +36,18 @@ export class jwtHttpInterceptor implements HttpInterceptor {
         headers: authReq.headers.set('authorization-user', `Bearer ${userToken}`)
       });
     }
-    if (trainerToken) {
+    else if (trainerToken) {
       authReq = authReq.clone({
         headers: authReq.headers.set('authorization-trainer', `Bearer ${trainerToken}`)
       });
     }
-    if (adminToken) {
-      authReq = authReq.clone({
-        headers: authReq.headers.set('authorization-Admin', `Bearer ${adminToken}`)
-      });
-    }
+    else if 
+      (adminToken) {
+        authReq = authReq.clone({
+          headers: authReq.headers.set('authorization-Admin', `Bearer ${adminToken}`)
+        });
+      
+    } 
     return authReq;
   }
 
@@ -60,7 +62,7 @@ export class jwtHttpInterceptor implements HttpInterceptor {
     // Redirect to login page
     this.router.navigate(['/']);
 
-   
+
     console.log('Your session has expired. Please log in again.');
   }
 }

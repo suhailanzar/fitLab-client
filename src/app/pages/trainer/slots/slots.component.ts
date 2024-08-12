@@ -169,15 +169,14 @@ export class SlotsComponent implements OnInit, OnDestroy {
     this.visibilitySlot = true;
     this.currentslotid = id;
   
-    // Fetch the slot details and populate the form
     const slot = this.slots.find(s => s._id === id);
     if (slot) {
       this.slotForm.patchValue({
         date: slot.date,
         startTime: slot.startTime,
-        price: slot.price
+        endTime: slot.endTime
       });
-    }
+    }  
   }
   
 
@@ -191,6 +190,7 @@ export class SlotsComponent implements OnInit, OnDestroy {
         status: false,
         price: 150
       };
+   
       this.editSlot(formData);
     } else {
       this.fullValid();
