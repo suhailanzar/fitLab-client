@@ -36,12 +36,12 @@ export class jwtHttpInterceptor implements HttpInterceptor {
         headers: authReq.headers.set('authorization-user', `Bearer ${userToken}`)
       });
     }
-    else if (trainerToken) {
+   if (trainerToken) {
       authReq = authReq.clone({
         headers: authReq.headers.set('authorization-trainer', `Bearer ${trainerToken}`)
       });
     }
-    else if 
+    if 
       (adminToken) {
         authReq = authReq.clone({
           headers: authReq.headers.set('authorization-Admin', `Bearer ${adminToken}`)

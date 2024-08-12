@@ -21,8 +21,6 @@ import { jwtHttpInterceptor } from '../app/core/interceptors/jwt-decode.intercep
 import { ErrorInterceptor } from '../app/core/interceptors/error-handling.interceptor';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TableModule } from 'primeng/table';
-import { SocketIoModule } from 'ngx-socket-io';
-import { config } from '../../socket-config';
 
 
 @NgModule({
@@ -50,8 +48,6 @@ import { config } from '../../socket-config';
     AdminAppModule,
     sharedAppModule,
     TableModule,
-    SocketIoModule.forRoot(config),
-
     
   ],
 
