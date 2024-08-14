@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { signUpUser, User } from '../../../core/models/user';
 import { Subscription } from 'rxjs';
@@ -12,7 +12,7 @@ import { MessageService } from 'primeng/api';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit,OnDestroy {
 
   user: signUpUser = {
     name: '', email: '', password: '',

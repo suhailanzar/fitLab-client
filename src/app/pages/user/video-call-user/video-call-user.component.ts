@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { VideoCallService } from '../../../core/services/video-call.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -30,11 +30,14 @@ export class VideoCallUserComponent implements OnInit , OnDestroy {
   private offerSubscription!: Subscription;
   private answerSubscription!: Subscription;
   private candidateSubscription!: Subscription
+  offerReceived: boolean = false;
+
 
 
   constructor(
     private videoCallService: VideoCallService,
     private route: ActivatedRoute,
+    private router:Router
   ) { }
 
 
@@ -44,14 +47,12 @@ export class VideoCallUserComponent implements OnInit , OnDestroy {
     ]
   };
 
-  async ngOnInit() {
-    this.initializeCall();
-
-    console.log('room id is ',this.roomId);
-    console.log('sender id is ',this.senderId);
-    console.log('reciever id is ',this.receiverId);    
+   ngOnInit() {
+    this.initializeCall(); 
 
     this.offerSubscription = this.videoCallService.receiveOffer().subscribe(async (offer) => {
+      console.log('entered teh offer subscription');
+      this.offerReceived = true;
       if (this.peerConnection) {
         await this.peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
         const answer = await this.peerConnection.createAnswer();
@@ -104,6 +105,7 @@ export class VideoCallUserComponent implements OnInit , OnDestroy {
 
 
   async startCall() {
+    this.offerReceived = false;
     this.createPeerConnection();
     // Request local media stream
     try {
@@ -125,6 +127,7 @@ export class VideoCallUserComponent implements OnInit , OnDestroy {
 
   async answerCall() {
     this.createPeerConnection();
+
   };
 
   createPeerConnection() {
@@ -179,15 +182,24 @@ export class VideoCallUserComponent implements OnInit , OnDestroy {
 
 
       this.videoCallService.leaveRoom(this.roomId);
+
     }
+    this.router.navigate(['trainers'])
   };
 
   toggleCamera() {
     if (this.localStream) {
       const videoTrack = this.localStream.getVideoTracks()[0];
-      videoTrack.enabled = !videoTrack.enabled;
+      if (videoTrack) {
+        if (videoTrack.enabled) {
+          videoTrack.enabled = false; 
+        } else {
+          videoTrack.enabled = true;  
+        }
+      }
     }
-  };
+  }
+  
 
   ngOnDestroy(): void {
     this.messageSubscription?.unsubscribe();

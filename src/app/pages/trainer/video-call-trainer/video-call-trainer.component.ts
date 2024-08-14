@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { VideoCallService } from '../../../core/services/video-call.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../../core/models/user';
 import { Subscription } from 'rxjs';
 
@@ -24,12 +24,14 @@ export class VideoCallTrainerComponent implements OnInit , OnDestroy {
 
   private localStream!: MediaStream;
   private remoteStream!: MediaStream;
+  offerReceived: boolean = false;
 
   private peerConnection: RTCPeerConnection | null = null;
 
   constructor(
     private videoCallService: VideoCallService,
     private route: ActivatedRoute,
+    private router:Router
   ) {}
 
   
@@ -51,6 +53,7 @@ export class VideoCallTrainerComponent implements OnInit , OnDestroy {
 
     
     this.offerSubscription = this.videoCallService.receiveOffer().subscribe(async (offer) => {
+      // this.offerReceived = true;
       if (this.peerConnection) {
         await this.peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
         const answer = await this.peerConnection.createAnswer();
@@ -125,8 +128,24 @@ export class VideoCallTrainerComponent implements OnInit , OnDestroy {
     }
   };
 
+  async toggleCamera() {
+    if (this.localStream) {
+      const videoTrack = this.localStream.getVideoTracks()[0];
+      if (videoTrack) {
+        if (videoTrack.enabled) {
+          videoTrack.enabled = false; 
+        } else {
+          videoTrack.enabled = true;  
+        }
+      }
+    }
+  }
+  
+
   async answerCall() {
     this.createPeerConnection();
+    // this.offerReceived = false; 
+
   };
 
   createPeerConnection() {
@@ -181,15 +200,12 @@ export class VideoCallTrainerComponent implements OnInit , OnDestroy {
 
 
       this.videoCallService.leaveRoom(this.roomId);
+
     }
+    this.router.navigate(['trainer/chat'])
+
   };
 
-  toggleCamera() {
-    if (this.localStream) {
-      const videoTrack = this.localStream.getVideoTracks()[0];
-      videoTrack.enabled = !videoTrack.enabled;
-    }
-  };
 
   ngOnDestroy(): void {
     this.messageSubscription?.unsubscribe();

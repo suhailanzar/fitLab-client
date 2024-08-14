@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService, } from 'primeng/api';
 import { Router } from '@angular/router';
 import { trainerService } from '../../../core/services/module-services/trainer.service';
 import { Slot } from '../../../core/models/trainer';
@@ -25,8 +25,8 @@ export class SlotsComponent implements OnInit, OnDestroy {
   minDate!: string;
   newSlots: Slot[] = []
 
-  constructor(private fb: FormBuilder, private router: Router, private messageService: MessageService, private service: trainerService, private cdr: ChangeDetectorRef) {
-    this.slotForm = this.fb.group({
+  constructor(private formBuilder: FormBuilder, private confirmationService: ConfirmationService , private changeDetector: ChangeDetectorRef, private router: Router, private messageService: MessageService, private service: trainerService, private cdr: ChangeDetectorRef) {
+    this.slotForm = this.formBuilder.group({
       date: ['', Validators.required],
       startTime: ['', Validators.required],
       endTime: ['', Validators.required]
@@ -165,19 +165,59 @@ export class SlotsComponent implements OnInit, OnDestroy {
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   }
 
+  private convertTo24HourFormat(time: string): string {
+    const [timePart, modifier] = time.split(' '); // Split into time and AM/PM
+    let [hours, minutes] = timePart.split(':');
+  
+    if (hours === '12') {
+      hours = modifier === 'AM' ? '00' : '12';
+    } else if (modifier === 'PM') {
+      hours = String(Number(hours) + 12).padStart(2, '0');
+    }
+  
+    return `${hours}:${minutes}`;
+  }
+  
+
   editSlotVisible(id: string) {
     this.visibilitySlot = true;
     this.currentslotid = id;
   
     const slot = this.slots.find(s => s._id === id);
-    if (slot) {
+    if (slot) { 
+      const formattedDate = new Date(slot.date).toISOString().split('T')[0];  
+      console.log('slot time is',slot.endTime);
+                                                                                        
       this.slotForm.patchValue({
-        date: slot.date,
-        startTime: slot.startTime,
-        endTime: slot.endTime
+        date: formattedDate,
+        startTime:this.convertTo24HourFormat(slot.startTime),
+        endTime:this.convertTo24HourFormat( slot.endTime)
       });
+
+      console.log('this. slot fomr value is',this.slotForm);
+      
+
+      this.changeDetector.markForCheck();
+
     }  
   }
+
+  confirmDeletion(slotId:string) {
+    this.confirmationService.confirm({
+        // target: slotId as String,
+        message: 'Are you sure that you want to delete the slot?',
+        header: 'Confirmation',
+        icon: 'pi pi-exclamation-triangle',
+        acceptIcon:"none",
+        rejectIcon:"none",
+        acceptButtonStyleClass:"  text-slate-200 bg-green-800 px-2 py-1 me-3",
+        rejectButtonStyleClass:"  text-slate-200 bg-red-800 px-2 py-1 me-3",
+        accept: () => {
+            this.deleteSlot(slotId)
+            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'deletion successful' });
+        }
+    });
+}
   
 
   onSubmitEditSlot() {
@@ -235,8 +275,6 @@ export class SlotsComponent implements OnInit, OnDestroy {
       next: (res) => {
         if (res && res.message) {
           this.fetchSlots()
-          this.messageService.add({ severity:'success', summary: 'Success', detail: res.message });
-
     }}})
   }
 

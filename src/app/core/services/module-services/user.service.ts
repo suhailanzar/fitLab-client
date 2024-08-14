@@ -5,7 +5,8 @@ import { Injectable } from "@angular/core";
 import { coursePayment, Payment, User } from "../../models/user";
 import { Observable, of } from "rxjs";
 import { environment } from "../../../../env/environment";
-import { reportResponse } from "../../../interfaces/IuserService";
+import { reportResponse, saveMealResponse } from "../../../interfaces/IuserService";
+import { Meal } from "../../models/admin";
 
 const BASE_URL = environment.BASE_URL
 
@@ -91,7 +92,11 @@ export class UserService {
         
         return this.http.post<reportResponse>(`${BASE_URL}submitReport`, data);
     }
-    
 
-
+    saveMeal(name:string,meal:Meal[]): Observable<saveMealResponse>{
+        console.log('meals in teh service are',name,meal);
+        
+        return this.http.post<saveMealResponse>(`${BASE_URL}saveMeal`,{name,meal})
+    }
+  
 }

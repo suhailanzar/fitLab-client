@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { adminService } from '../../../core/services/module-services/admin.service';
+import { Subscription } from 'rxjs';
+import { UserService } from '../../../core/services/module-services/user.service';
+import { Meal } from '../../../core/models/admin';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-diet-plans',
@@ -9,7 +13,7 @@ import { adminService } from '../../../core/services/module-services/admin.servi
 export class DietPlansComponent implements OnInit {
 
   selectedDiet!: string 
-  filteredMeals: any[] = [];
+  filteredMeals: Meal[] = [];
   calorieLimit: number = 1000
   mealtype: string = 'Breakfast'
   meals: any[] = [];
@@ -20,9 +24,16 @@ export class DietPlansComponent implements OnInit {
   goal!: string;
   bmi!: number;
   calories!: number;
+  saveMeal:boolean = false;
+  visibleSaveMeal:boolean = false;
+
+  saveMealsubscrition!:Subscription
+  mealForm!: FormGroup;
 
 
-  constructor(private adminservice: adminService){}
+
+  constructor(private adminservice: adminService, private userService:UserService,private formbuilder: FormBuilder){
+  }
 
   dietOptions = [
     { name: 'Non-veg', image: 'https://img.icons8.com/cotton/64/steak-rare--v1.png' },
@@ -35,6 +46,10 @@ export class DietPlansComponent implements OnInit {
       this.meals = data.meal;   
       
     });
+
+    this.mealForm = this.formbuilder.group({
+      mealName:['',[Validators.required]]
+    })
   }
 
 
@@ -44,8 +59,13 @@ export class DietPlansComponent implements OnInit {
 
 
   generateMeals() {
+    console.log('entered the generate meal');
+    
   
     this.filteredMeals = this.filterMeals(this.meals, this.selectedDiet, this.calorieLimit, this.mealtype);
+    console.log('filtered meals are',this.filteredMeals);
+    
+    this.saveMeal = true
     }
 
   filterMeals(meals: any[], category: string, calorieLimit: number, mealType: string): any[] {
@@ -74,6 +94,27 @@ export class DietPlansComponent implements OnInit {
     }
     
     return selectedMeals;
+  }
+
+  saveMealModal(){
+    this.visibleSaveMeal = true;
+  }
+  SaveMealtoDb() {
+    console.log('entered the mealform validation');
+    console.log('meal form value is',this.mealForm.value);
+    
+    
+    this.mealForm.markAllAsTouched(); 
+    
+    if (this.mealForm.valid) {
+      console.log('entered the meal form valid');
+      
+      this.visibleSaveMeal = false;    
+      this.saveMealsubscrition = this.userService.saveMeal(this.mealForm.value, this.filteredMeals).subscribe(data => {
+        this.filteredMeals = [];
+        this.saveMeal = false;
+      });
+    }
   }
 
 

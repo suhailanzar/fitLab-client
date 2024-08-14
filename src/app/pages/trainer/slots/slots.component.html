@@ -135,7 +135,7 @@
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium" *ngIf="slot._id">
                 <i class="pi pi-trash text-red-900 cursor-pointer transition-all duration-300 ease-in-out hover:text-red-600 hover:scale-110" 
-                (click)="deleteSlot(slot._id)">
+                (click)="confirmDeletion(slot._id)">
              </i> 
              <i class="pi pi-pen-to-square text-blue-900 ms-4 cursor-pointer transition-all duration-300 ease-in-out hover:text-blue-600 hover:scale-110" 
                 (click)="editSlotVisible(slot._id)">
