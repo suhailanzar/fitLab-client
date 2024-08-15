@@ -17,12 +17,12 @@
           <input type="text" id="simple-search"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search Trainers..." required [formControl]="searchControl" />
-      
+
         </div>
-       
+
       </form>
- 
-      
+
+
       <div *ngIf="results.length > 0"
         class="absolute  left-0 right-0 top-full  max-w-sm mx-auto mt-2 bg-white rounded-md shadow-md z-50">
         <ul class="divide-y divide-gray-200">
@@ -40,99 +40,77 @@
 
 
 
+
+
+
+
+
+
     <div class="card">
-      <ng-container *ngIf="selectedTrainer">
-        <!-- Display selected trainer details -->
-        <div class="flex flex-column sm:flex-row sm:align-items-center p-4 gap-3 hover:bg-violet-100 ">
-          <div class="md:w-10rem relative hover:cursor-pointer"
-            [routerLink]="['/trainersdetails', selectedTrainer._id]">
-            <img class="block xl:block mx-auto border-round  h-16 w-8"
-              [src]="selectedTrainer.image && selectedTrainer.image.trim() !== '' ? selectedTrainer.image : 'assets/img/no-dp.png'" />
-          </div>
-          <div class="flex flex-column md:flex-row justify-content-between md:align-items-center flex-1 gap-4">
-            <div
-              class="flex flex-row md:flex-column justify-content-between align-items-start gap-2 hover:cursor-pointer "
-              [routerLink]="['/trainersdetails', selectedTrainer._id]">
-              <div>
-                <span class="font-medium text-secondary text-sm">{{ selectedTrainer.trainername }}</span>
-                <div class="text-lg font-medium text-900 mt-2">{{ selectedTrainer.specification }}</div>
-              </div>
+
+
+      <div class="container mx-auto p-4">
+        <div *ngIf="selectedTrainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          <div  class=" bg-white shadow-md rounded-lg overflow-hidden">
+            <div class="relative h-32 overflow-hidden">
+              <img class="w-full h-full object-cover"
+                   [src]="selectedTrainer.image && selectedTrainer.image.trim() !== '' ? selectedTrainer.image : 'assets/img/no-dp.png'" />
             </div>
-            <div class="flex flex-column md:align-items-end gap-5">
-              <div class="flex flex-row-reverse md:flex-row gap-2">
-
-    
-                <button [routerLink]="['/VideoCallUser',selectedTrainer._id]" class="flex items-center">
-                  <i class="pi pi-video" style="font-size: 1.5rem"></i>
-                </button>
-
-                <button (click)="openchat(selectedTrainer._id)" class="flex items-center space-x-2 button2 bg-blue-700  text-white font-semibold py-1 px-2 rounded-lg ">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" />
-                  </svg>
-                  chat
-                </button>
-              
-                <button class="button2 px-2 py-1" (click)="openslot(selectedTrainer._id)">Book Slot</button>
-              </div>
+            <div class="p-3">
+              <h5 class="text-base font-semibold text-blue-gray-900">
+                {{ selectedTrainer.trainername }}
+              </h5>
+              <p class="text-xs mb-1">Specification: {{ selectedTrainer.specification }}</p>
+            </div>
+            <div class="flex justify-content-center gap-2 my-4">
+              <button [routerLink]="['/VideoCallUser', selectedTrainer._id]" class="text-blue-600 hover:text-blue-800">
+                <i class="pi pi-video text-xl"></i>
+              </button>
+              <button (click)="openchat(selectedTrainer._id)" class="button2 bg-blue-700 text-white font-semibold py-1 px-2 rounded-lg text-xs">
+                Chat
+              </button>
+              <button class="button2 bg-green-600 text-white font-semibold py-1 px-2 rounded-lg text-xs" (click)="openslot(selectedTrainer._id)">
+                Book Slot
+              </button>
             </div>
           </div>
         </div>
-      </ng-container>
-
-      <ng-container *ngIf="!selectedTrainer">
-        <!-- Display all trainers -->
-        <p-dataView #dv [value]="trainers">
-          <ng-template pTemplate="list" let-trainers>
-            <div class="grid grid-nogutter ">
-              <div class="col-12" *ngFor="let trainer of trainers; let first = first" class="col-12">
-                <div class="flex flex-column sm:flex-row sm:align-items-center p-4 gap-3 hover:bg-violet-100"
-                  [ngClass]="{ 'border-top-1 surface-border': !first }">
-
-                  <div class="md:w-10rem relative hover:cursor-pointer"
-                    [routerLink]="['/trainersdetails', trainer._id]">
-                    <img class="block xl:block mx-auto border-round  h-16 w-8"
-                      [src]="trainer.image && trainer.image.trim() !== '' ? trainer.image : 'assets/img/no-dp.png'" />
-                  </div>
+      </div>
+      
 
 
-                  <div class="flex flex-column md:flex-row justify-content-between md:align-items-center flex-1 gap-4">
-                    <div [routerLink]="['/trainersdetails', trainer._id]"
-                      class="hover:cursor-pointer flex flex-row md:flex-column justify-content-between align-items-start gap-2">
-                      <div>
-                        <span class="font-medium text-secondary text-sm">{{ trainer.trainername }}</span>
-                        <div class="text-lg font-medium text-900 mt-2">{{ trainer.specification }}</div>
-                      </div>
-                    </div>
-
-                    <div class="flex flex-column md:align-items-end gap-5">
-                      <div class="flex justify-between align-items-center md:flex-row gap-2">
-
-                        
-                        <button [routerLink]="['/VideoCallUser', trainer._id]" class="flex items-center">
-                          <i class="pi pi-video" style="font-size: 1.5rem"></i>
-                      </button>
-
-                        <button (click)="openchat(trainer._id)" class="flex items-center space-x-2 button2 bg-blue-700  text-white font-semibold py-1 px-2 rounded-lg ">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" />
-                          </svg>
-                          chat
-                        </button>
-                       
-                        <button class="button2 px-2 py-1 " (click)="openslot(trainer._id)">Book Slot</button>
-
-
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
+      <div class="container mx-auto p-4">
+        <div *ngIf="!selectedTrainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          <div *ngFor="let trainer of trainers" class=" bg-white shadow-md rounded-lg overflow-hidden">
+            <div class="relative h-32 overflow-hidden">
+              <img class="w-full h-full object-cover"
+                   [src]="trainer.image && trainer.image.trim() !== '' ? trainer.image : 'assets/img/no-dp.png'" />
             </div>
-          </ng-template>
-        </p-dataView>
-      </ng-container>
+            <div class="p-3">
+              <h5 class="text-base font-semibold text-blue-gray-900">
+                {{ trainer.trainername }}
+              </h5>
+              <p class="text-xs mb-1">Specification: {{ trainer.specification }}</p>
+            </div>
+            <div class="flex justify-content-center gap-2 my-4">
+              <button [routerLink]="['/VideoCallUser', trainer._id]" class="text-blue-600 hover:text-blue-800">
+                <i class="pi pi-video text-xl"></i>
+              </button>
+              <button (click)="openchat(trainer._id)" class="button2 bg-blue-700 text-white font-semibold py-1 px-2 rounded-lg text-xs">
+                Chat
+              </button>
+              <button class="button2 bg-green-600 text-white font-semibold py-1 px-2 rounded-lg text-xs" (click)="openslot(trainer._id)">
+                Book Slot
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+
+
     </div>
 
 
@@ -203,4 +181,3 @@
     </ng-template>
   </div>
 </p-dialog>
-

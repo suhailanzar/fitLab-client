@@ -5,10 +5,22 @@
     background-color: #ffc107;
     display: inline-block;
   }
+.status-dot-success {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #0ba203;
+    display: inline-block;
+  }
   
   .status-text {
     font-weight: bold;
     color: #ffc107;
+  }
+
+  .status-text-success {
+    font-weight: bold;
+    color: #0ba203;
   }
   
   .send-response-btn:hover {

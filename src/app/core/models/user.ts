@@ -1,3 +1,5 @@
+import { Meal } from "./admin";
+
 export interface User {
   name: string; 
   email: string;
@@ -13,6 +15,7 @@ export interface User {
   createdAt?: Date;
   subscription?:Subscription
   courses?:[string];
+  savedDiets?: { mealName: string; meals: Meal[] }[]
 }
 
 export interface adminUser {

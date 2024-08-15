@@ -15,6 +15,7 @@ export class UserProfileComponent implements OnInit {
   visible: boolean = false;
   form!: FormGroup;
    editprofilesub: Subscription | null = null;
+   profileSubscription: Subscription | null = null;
   profile!: User;
   @ViewChild('fileInput') fileInput: ElementRef | undefined;
   imageUrl!: string | undefined
@@ -42,7 +43,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     console.log('profile initiated');
 
-    this.service.getprofile().subscribe({
+   this.profileSubscription = this.service.getprofile().subscribe({
       next: (res) => {
         if (res && res.message) {
           console.log('resposne is',res);
@@ -61,6 +62,7 @@ export class UserProfileComponent implements OnInit {
             createdAt: new Date(),
             subscription:res.profile.subscription,
             id: res.profile._id,
+            savedDiets:res.profile.savedDiets
           };
 
           this.profile = userProfile;
@@ -160,5 +162,6 @@ export class UserProfileComponent implements OnInit {
     if (this.editprofilesub) {
       this.editprofilesub.unsubscribe();
     }
+    if(this.profileSubscription) this.profileSubscription.unsubscribe();
   }
 }

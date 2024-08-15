@@ -43,6 +43,7 @@ import { VideoCallTrainerComponent } from './pages/trainer/video-call-trainer/vi
 import { ReportsComponent } from './pages/user/reports/reports.component';
 import { ReportsAdminComponent } from './pages/admin/reports-admin/reports-admin.component';
 import { UserdetailsComponent } from './pages/admin/userdetails/userdetails.component';
+import { ShowSavedPlansComponent } from './pages/user/show-saved-plans/show-saved-plans.component';
 
 
 const routes: Routes = [
@@ -67,6 +68,7 @@ const routes: Routes = [
   {path:"viewCourse/:id",component:MycourseViewComponent,canActivate: [userAuthGuardService]},
   {path:"VideoCallUser/:id",component:VideoCallUserComponent,canActivate: [userAuthGuardService]},
   {path:"reports",component:ReportsComponent,canActivate: [userAuthGuardService]},
+  {path:"savedDiets",component:ShowSavedPlansComponent,canActivate: [userAuthGuardService]},
 
 
   // trainer routes

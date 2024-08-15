@@ -21,32 +21,31 @@
     [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
     <div class="overflow-x-auto">
 
-      <div class="report-status-container w-full bg-white shadow-lg rounded-lg p-4">
+      <div *ngIf="selectedReport" class="report-status-container w-full bg-white shadow-lg rounded-lg p-4">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <div class="flex items-center">
             <span class="font-semibold mr-2">Status:</span>
-            <span class="status-dot"></span>
-            <span class="status-text ml-2">Pending</span>
+            <span *ngIf="selectedReport.isReported" class="status-dot-success"></span>
+            <span *ngIf="!selectedReport.isReported" class="status-dot"></span>
+            <span *ngIf="selectedReport.isReported" class="status-text-success ml-2">Success</span>
+            <span *ngIf="!selectedReport.isReported" class="status-text ml-2">Pending</span>
           </div>
           <div>
             <span class="font-semibold">User Name:</span>
-            <span>{{selectedReport?.userName}}</span>
+            <span>{{selectedReport.userName}}</span>
           </div>
-          <!-- <div>
-            <span class="font-semibold">Email:</span>
-            <span>{{selectedReport?.email}}</span>
-          </div> -->
+       
           <div>
             <span class="font-semibold">Trainer Name:</span>
-            <span>{{selectedReport?.trainerName}}</span>
+            <span>{{selectedReport.trainerName}}</span>
           </div>
           <div>
             <span class="font-semibold">Report Type:</span>
-            <span>{{selectedReport?.reportType}}</span>
+            <span>{{selectedReport.reportType}}</span>
           </div>
           <div>
             <span class="font-semibold">Date:</span>
-            <span>{{selectedReport?.date | date:'mediumDate'}}</span>
+            <span>{{selectedReport.date | date:'mediumDate'}}</span>
           </div>
 
 
@@ -55,18 +54,18 @@
         <div class="flex gap-64">
           <div class="mb-6">
             <h3 class="text-lg font-semibold mb-2">Description:</h3>
-            <p class="text-gray-700">{{selectedReport?.description}}</p>
+            <p class="text-gray-700">{{selectedReport.description}}</p>
           </div>
-          <div *ngIf="selectedReport?.evidence" class="mb-6">
+          <div *ngIf="selectedReport.evidence" class="mb-6">
             <h3 class="text-lg font-semibold mb-2">Evidence:</h3>
-            <img src="http://localhost:5000/reports/{{selectedReport?.evidence}}" alt="Evidence"
+            <img src="http://localhost:5000/reports/{{selectedReport.evidence}}" alt="Evidence"
               class="max-w-full h-auto rounded-lg shadow-md">
 
           </div>
 
         </div>
 
-        <button (click)="sendMail(selectedReport?.userId)"
+        <button *ngIf="!selectedReport.isReported" (click)="sendMail(selectedReport.userId,selectedReport._id)"
           class="send-response-btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
           Send Response
         </button>

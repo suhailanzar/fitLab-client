@@ -83,8 +83,8 @@ export class adminService {
         return this.http.get<reports>(`${BASE_URL}${adminApi}/getReports`)
     }
 
-    sendMail(id:string): Observable<response> {
-        return this.http.get<response>(`${BASE_URL}${adminApi}/sendMail/${id}`)
+    sendMail(userId:string,reportId:string): Observable<response> {        
+        return this.http.get<response>(`${BASE_URL}${adminApi}/sendMail/${userId}/${reportId}`)
     }
 
   

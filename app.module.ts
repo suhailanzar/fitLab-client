@@ -22,7 +22,6 @@ import { ErrorInterceptor } from './src/app/core/interceptors/error-handling.int
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TableModule } from 'primeng/table';
 
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,0 +1,31 @@
+
+    <app-sidebar></app-sidebar>
+  
+    <!-- Main content -->
+    <div class="p-3 w-full lg:mt-1 md:mt-5 text-center">
+
+        <div class="container mx-auto px-4 py-2">
+            <h1 class="text-3xl font-bold text-slate-500 mb-6">Saved Diet Plans</h1>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Repeat this card for each meal in savedDiets -->
+              <div *ngFor="let meal of profile.savedDiets" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-96 flex flex-col">
+                <div class="bg-gradient-to-r from-blue-400 to-blue-800 px-6 py-4 h-20">
+                  <h2 class="text-xl font-semibold text-white truncate">{{meal.mealName}}</h2>
+                </div>
+                <div class="p-6 overflow-y-auto">
+                  <ul class="space-y-2">
+                    <!-- List the meals or details here -->
+                    <li *ngFor="let item of meal.meals" class="flex items-center">
+                      <svg class="h-5 w-5 flex-shrink-0 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <span class="text-gray-700 truncate">{{item.name}}</span>
+                    </li>
+                  </ul>
+                </div>
+              
+              </div>
+            </div>
+          </div>
+    </div>
+  

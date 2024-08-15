@@ -88,16 +88,15 @@ export class ReportsAdminComponent implements OnInit, OnDestroy {
     }
   }
 
-  sendMail(id: string | undefined) {
+  sendMail(userid: string ,ReportId:string) {
     this.visibleBooking = false;
-    if (id) {
-      this.reportSubscription = this.service.sendMail(id).subscribe({
+    if (userid) {
+      this.reportSubscription = this.service.sendMail(userid,ReportId).subscribe({
         next: (res) => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message });
         },
         error: (err) => {
           console.error('Error sending mail:', err);
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to send mail' });
         }
       });
     } else {

@@ -7,14 +7,14 @@
 
         <div class="bg-white p-4 rounded-lg shadow-md w-full  border-1 border-slate-100 ">
 
-            
-        <div class="flex justify-start m-3 hover:cursor-pointer ">
-            <div class=" bg-slate-200 rounded-lg px-2 py-1 ">
-                <p class="text-blue-500 hover:text-blue-800  font-semibold">my Diet Plans</p>
-            </div>
-          
-        </div>
-
+                <div class="flex justify-start m-3 hover:cursor-pointer">
+                    <button [routerLink]="['/savedDiets']">
+                  <div class="bg-slate-200 rounded-lg px-2 py-1">
+                    <p class="text-blue-500 hover:text-blue-800 font-semibold">my Diet Plans</p>
+                  </div>
+                </button>
+                </div>
+              
             <h2 class="text-center text-slate-400 text-2xl font-semibold mb-6">Ready to give it a shot? Let us know your
                 diet.</h2>
 
@@ -71,7 +71,7 @@
 
 
             <div class="max-w-lg mx-auto bg-white p-4 shadow-lg rounded-lg">
-                    <h5 class="text-center text-slate-400 text-2xl font-semibold mb-6">Generate Diet Plans</h5>
+                <h5 class="text-center text-slate-400 text-2xl font-semibold mb-6">Generate Diet Plans</h5>
 
                 <div class="flex justify-center space-x-8 mb-8">
                     <div *ngFor="let option of dietOptions"
@@ -155,27 +155,24 @@
 <p-dialog header="Save Your Meal" [modal]="true" [(visible)]="visibleSaveMeal" [style]="{ width: '25rem' }">
     <div [formGroup]="mealForm" class="flex align-items-center gap-3 mb-3">
         <label for="mealName" class="font-semibold w-6rem">Meal Name</label>
-        <input formControlName="mealName"
-          type="text" id="mealName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-          placeholder="Meal Name" required />
-      </div>
-      <div
-        *ngIf="mealForm.get('mealName')?.invalid && (mealForm.get('mealName')?.dirty || mealForm.get('mealName')?.touched)"
-        class="text-red-600 text-sm"
-      >
+        <input formControlName="mealName" type="text" id="mealName"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Meal Name" required />
+    </div>
+    <div *ngIf="mealForm.get('mealName')?.invalid && (mealForm.get('mealName')?.dirty || mealForm.get('mealName')?.touched)"
+        class="text-red-600 text-sm">
         Meal Name is required.
-      </div>
+    </div>
     <div class="flex justify-content-end gap-2">
-        <button 
-        class="bg-gray-500 text-white font-semibold py-1 px-2 rounded hover:bg-gray-600 transition duration-200"
-        (click)="visibleSaveMeal = false">
-        Cancel
-    </button>
-    <button 
-        class="bg-blue-500 text-white font-semibold py-1 px-2 rounded hover:bg-blue-600 transition duration-200 ml-2"
-        (click)="SaveMealtoDb()">
-        Save
-    </button>
-    
+        <button class="bg-gray-500 text-white font-semibold py-1 px-2 rounded hover:bg-gray-600 transition duration-200"
+            (click)="visibleSaveMeal = false">
+            Cancel
+        </button>
+        <button
+            class="bg-blue-500 text-white font-semibold py-1 px-2 rounded hover:bg-blue-600 transition duration-200 ml-2"
+            (click)="SaveMealtoDb()">
+            Save
+        </button>
+
     </div>
 </p-dialog>
