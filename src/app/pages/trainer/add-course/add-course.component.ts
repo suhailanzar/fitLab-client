@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IModule } from '../../../core/models/trainer';
 import { FormBuilder, FormGroup, FormArray, AbstractControl, Validators, FormControl } from '@angular/forms';
 import { MessageService } from 'primeng/api';
@@ -12,13 +12,13 @@ import { Subscription } from 'rxjs';
   templateUrl: './add-course.component.html',
   styleUrl: './add-course.component.css'
 })
-export class AddCourseComponent implements OnInit {
+export class AddCourseComponent implements OnInit,OnDestroy {
 
 
   myDate = new Date();
   courseForm!: FormGroup;
   errorMessage!:string;
-  private coursesub: Subscription | null = null;
+  coursesub: Subscription | null = null;
   isLoading:boolean= false;
   selectedImage!:string;
  
@@ -202,7 +202,7 @@ export class AddCourseComponent implements OnInit {
       });
       
 
-      this.service.addCourse(formData).subscribe({
+      this.coursesub =  this.service.addCourse(formData).subscribe({
         next:(res)=>{
             if(res && res.message){
               this.stopLoading()
@@ -213,11 +213,6 @@ export class AddCourseComponent implements OnInit {
               this.addModule();
 
               }    
-        },
-        error: (err) => {
-          this.stopLoading();
-          console.error('Error:', err);
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'An error occurred' });
         }
       })
 
@@ -227,6 +222,9 @@ export class AddCourseComponent implements OnInit {
       console.log('Form errors:', this.courseForm.errors);
       console.log('Modules errors:', this.modules.errors);
     }
+  }
+  ngOnDestroy(): void {
+    if(this.coursesub) this.coursesub.unsubscribe()
   }
   
 }

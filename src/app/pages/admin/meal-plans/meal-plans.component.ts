@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { adminService } from '../../../core/services/module-services/admin.service';
 import { TableLazyLoadEvent } from 'primeng/table';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-meal-plans',
@@ -9,11 +10,12 @@ import { TableLazyLoadEvent } from 'primeng/table';
   encapsulation: ViewEncapsulation.None
 
 })
-export class MealPlansComponent implements OnInit {
+export class MealPlansComponent implements OnInit,OnDestroy {
 
   meals: any[] = [];  
   totalRecords!: number;
   loading: boolean = false;
+  private getMealSub!:Subscription
 
   columns = [
     { field: 'name', header: 'Name', width: '15%' },
@@ -28,7 +30,7 @@ export class MealPlansComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.service.getMeals().subscribe({
+    this.getMealSub = this.service.getMeals().subscribe({
       next: (data) => {
         this.meals = data.meal;
         console.log('meals are ',this.meals);
@@ -49,5 +51,11 @@ export class MealPlansComponent implements OnInit {
     const end = start + (event.rows ?? 5);
     this.meals = this.meals.slice(start, end);
     this.loading = false;
+  }
+
+
+  ngOnDestroy(): void {
+    if(this.getMealSub) this.getMealSub.unsubscribe()
+
   }
 }

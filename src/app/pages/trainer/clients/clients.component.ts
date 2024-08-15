@@ -20,10 +20,9 @@ export class ClientsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.service.getClients().subscribe({
+   this.clientsubscription = this.service.getClients().subscribe({
       next:(res =>{
         if(res){
-          // this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message });          
           this.clients = res.clients.map((client: any) => ({
             name: client.username,
             email: client.email,
@@ -34,18 +33,13 @@ export class ClientsComponent implements OnInit, OnDestroy {
           
 
         }
-      }),error: (err =>{
-        if(err && err.error.message){
-          this.messageService.add({ severity: 'error', summary: 'Alert', detail: err.error.message });
-          
-        }
       })
     })
 
   }
 
   ngOnDestroy(): void {
-    
+    if(this.clientsubscription) this.clientsubscription.unsubscribe()
   }
 
 }

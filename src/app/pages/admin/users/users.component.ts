@@ -16,7 +16,10 @@ export class UsersComponentadmin implements OnInit, OnDestroy {
 
   
   private userSubscription: Subscription | null = null;
+  private userBlockSubscription: Subscription | null = null;
   public users: any[] = [];
+
+  
   columns = [
     { field: 'username', header: 'Name', width: '20%', type: 'text' },
     { field: 'email', header: 'Email', width: '20%' },
@@ -47,11 +50,7 @@ export class UsersComponentadmin implements OnInit, OnDestroy {
     this.loadUsers();
   }
 
-  ngOnDestroy(): void {
-    if (this.userSubscription) {
-      this.userSubscription.unsubscribe();
-    }
-  }
+ 
 
   loadUsers(): void {
     this.userSubscription = this.service.getusers().subscribe({
@@ -66,7 +65,7 @@ export class UsersComponentadmin implements OnInit, OnDestroy {
   }
 
   blockUser(id:string,isBlocked: boolean): void {    
-    this.userSubscription = this.service.blockUser(id).subscribe({
+    this.userBlockSubscription = this.service.blockUser(id).subscribe({
       next: (res) => {
         this.updateUserStatus(id, !isBlocked);
       },
@@ -112,6 +111,15 @@ export class UsersComponentadmin implements OnInit, OnDestroy {
     return 'w-20 text-white bg-gradient-to-r from-blue-400 via-blue-500 w-100 to-blue-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-3 py-1.5 text-center me-2 mb-2';  
   }
 
+
+  ngOnDestroy(): void {
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+    if (this.userBlockSubscription) {
+      this.userBlockSubscription.unsubscribe();
+    }
+  }
 
 
 }

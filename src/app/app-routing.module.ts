@@ -32,7 +32,6 @@ import { DietPlansComponent } from './pages/user/diet-plans/diet-plans.component
 import { CoursesComponentuser } from './pages/user/courses/courses.component';
 import { AddmealComponent } from './pages/admin/addmeal/addmeal.component';
 import { MealPlansComponent } from './pages/admin/meal-plans/meal-plans.component';
-import { CoursesComponentadmin } from './pages/admin/courses/courses.component';
 import { UsersComponentadmin } from './pages/admin/users/users.component';
 import { CoursedetailsComponent } from './pages/user/coursedetails/coursedetails.component';
 import { RevenueComponent } from './pages/trainer/revenue/revenue.component';
@@ -43,7 +42,6 @@ import { VideoCallUserComponent } from './pages/user/video-call-user/video-call-
 import { VideoCallTrainerComponent } from './pages/trainer/video-call-trainer/video-call-trainer.component';
 import { ReportsComponent } from './pages/user/reports/reports.component';
 import { ReportsAdminComponent } from './pages/admin/reports-admin/reports-admin.component';
-import { RevenueComponentAdmin } from './pages/admin/revenue/revenue.component';
 import { UserdetailsComponent } from './pages/admin/userdetails/userdetails.component';
 
 
@@ -94,11 +92,9 @@ const routes: Routes = [
   {path:"admin/requests",component:RequestsComponent,canActivate: [adminAuthGuardService]},
   {path:"admin/addmeal",component:AddmealComponent,canActivate: [adminAuthGuardService]},
   {path:"admin/mealplans",component:MealPlansComponent,canActivate: [adminAuthGuardService]},
-  {path:"admin/courses",component:CoursesComponentadmin,canActivate: [adminAuthGuardService]},
   {path:"admin/users",component:UsersComponentadmin,canActivate: [adminAuthGuardService]},
   {path:"admin/userDetails/:id",component:UserdetailsComponent,canActivate: [adminAuthGuardService]},
   {path:"admin/reports",component:ReportsAdminComponent,canActivate: [adminAuthGuardService]},
-  {path:"admin/revenue",component:RevenueComponentAdmin,canActivate: [adminAuthGuardService]},
   
 
   // wildcard route

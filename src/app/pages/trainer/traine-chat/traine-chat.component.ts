@@ -129,21 +129,6 @@ export class TraineChatComponent implements OnInit, OnDestroy, OnChanges {
       console.log('room id from messages is',formattedMessage.roomId);
       console.log('room id from component is',this.roomId);
       
-
-      // // Ensure the message is for the current room
-      // if (formattedMessage.roomId !== this.roomId) {
-      //   return;
-      // }
-
-      // if (formattedMessage.senderId !== this.receiverId) {
-      //   const currentStatus = this.unreadMessageCounts.get(formattedMessage.senderId) || { count: 0, isRead: false };
-      //   this.unreadMessageCounts.set(formattedMessage.senderId, { count: currentStatus.count + 1, isRead: false });
-      // } else {
-      //   formattedMessage.isRead = true;
-      // }
-
-      // this.messages.push(formattedMessage);
-      // this.cdr.detectChanges(); // Manually trigger change detection
       
 
         // Ensure the message is for the current room
@@ -212,19 +197,7 @@ export class TraineChatComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  ngOnDestroy(): void {
-    if (this.roomId) {
-      this.chatService.leaveRoom(this.roomId);
-    }
-
-    if (this.messageSubscription) {
-      this.messageSubscription.unsubscribe();
-    }
-
-    if (this.clientsubscription) {
-      this.clientsubscription.unsubscribe();
-    }
-  }
+ 
 
   private getTrainerId(): string | null {
     const userString = localStorage.getItem('trainer');
@@ -243,6 +216,21 @@ export class TraineChatComponent implements OnInit, OnDestroy, OnChanges {
 
   private generateRoomId(userId1: string, userId2: string): string {
     return [userId1, userId2].sort().join('_');
+  }
+
+
+  ngOnDestroy(): void {
+    if (this.roomId) {
+      this.chatService.leaveRoom(this.roomId);
+    }
+
+    if (this.messageSubscription) {
+      this.messageSubscription.unsubscribe();
+    }
+
+    if (this.clientsubscription) {
+      this.clientsubscription.unsubscribe();
+    }
   }
 }
 

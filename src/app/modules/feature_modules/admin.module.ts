@@ -23,8 +23,6 @@ import { CommonModule } from '@angular/common';
 import { UsersComponentadmin } from '../../pages/admin/users/users.component';
 import { UserdetailsComponent } from '../../pages/admin/userdetails/userdetails.component';
 import { RequestsComponent } from '../../pages/admin/requests/requests.component';
-import { RevenueComponentAdmin } from '../../pages/admin/revenue/revenue.component';
-import { CoursesComponentadmin } from '../../pages/admin/courses/courses.component';
 import { AddmealComponent } from '../../pages/admin/addmeal/addmeal.component';
 import { MealPlansComponent } from '../../pages/admin/meal-plans/meal-plans.component';
 import { TableModule } from 'primeng/table';
@@ -47,8 +45,6 @@ import { DialogModule } from 'primeng/dialog';
       UsersComponentadmin,
       UserdetailsComponent,
       RequestsComponent,
-      RevenueComponentAdmin,
-      CoursesComponentadmin,
       AddmealComponent,
       MealPlansComponent,
       ReportsAdminComponent

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { adminService } from '../../../core/services/module-services/admin.service';
 import { Router } from '@angular/router';
@@ -11,48 +11,37 @@ import { Trainer } from '../../../core/models/trainer';
   styleUrl: './requests.component.css',
   encapsulation: ViewEncapsulation.None
 })
-export class RequestsComponent {
-  private trainerSubscription: Subscription | null = null;
+
+export class RequestsComponent implements OnInit, OnDestroy {
+  private trainerRequestsSubscription: Subscription | null = null;
+  private trainerApprovalSubscription: Subscription | null = null;
   trainers: Trainer[] = [];
 
   constructor(private service: adminService, private router: Router, private messageService: MessageService) { }
 
-
   ngOnInit(): void {
-    this.service.get_requests().subscribe({
+    this.trainerRequestsSubscription = this.service.get_requests().subscribe({
       next: (res => {
         if (res) {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message });
-          this.trainers = res.trainers
-
+          this.trainers = res.trainers;
         }
-      }), error: (err => {
-        if (err && err.error.message) {
-          this.messageService.add({ severity: 'error', summary: 'Alert', detail: err.error.message });
-          console.log('error', err);
+      }), 
+    });
+  }
+
+  trainerApproval(id: string, index: number): void {
+    this.trainerApprovalSubscription = this.service.trainerApproval(id).subscribe({
+      next: (res => {
+        if (res) {   
+          this.trainers[index].isapproved = true;       
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message });
         }
       })
     });
   }
 
-  trainerApproval(id:string,index:number){
-    this.service.trainerApproval(id).subscribe({
-      next: (res => {
-        if (res) {   
-          this.trainers[index].isapproved = true       
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message });
-
-        }
-      }), error: (err => {
-        if (err && err.error.message) {
-          this.messageService.add({ severity: 'error', summary: 'Alert', detail: err.error.message });
-          console.log('error', err);
-
-        }
-      })
-
-    })
+  ngOnDestroy(): void {
+    if(this.trainerRequestsSubscription) this.trainerRequestsSubscription.unsubscribe();
+    if(this.trainerApprovalSubscription) this.trainerApprovalSubscription.unsubscribe();
   }
-
-
 }

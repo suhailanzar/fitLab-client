@@ -1,8 +1,9 @@
-import { Component , OnInit  } from '@angular/core';
+import { Component , OnDestroy, OnInit  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { adminService } from '../../../core/services/module-services/admin.service';
 import { MessageService } from 'primeng/api';
 import { Trainer } from '../../../core/models/trainer';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -11,17 +12,18 @@ import { Trainer } from '../../../core/models/trainer';
   styleUrl: './trainer-details.component.css',
   
 })
-export class TrainerDetailsComponent  implements OnInit{
+export class TrainerDetailsComponent  implements OnInit ,OnDestroy{
 
   public trainerId: any;
   public trainerDetail?: Trainer;
+  viewTrainerSub!: Subscription;
   constructor(private route: ActivatedRoute, private service:adminService , private messageService:MessageService) {}
 
   ngOnInit() {
     this.trainerId = this.route.snapshot.paramMap.get('id');  
         
     
-       this.service.viewtrainers(this.trainerId).subscribe({
+      this.viewTrainerSub =  this.service.viewtrainers(this.trainerId).subscribe({
       next:(res=>{
         if(res){
           this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message })
@@ -34,5 +36,8 @@ export class TrainerDetailsComponent  implements OnInit{
 
   }
 
+  ngOnDestroy(): void {
+    if(this.viewTrainerSub) this.viewTrainerSub.unsubscribe()
+  }
   
 }

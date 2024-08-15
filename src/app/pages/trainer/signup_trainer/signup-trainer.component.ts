@@ -84,11 +84,7 @@ constructor(private fb: FormBuilder , private service:trainerService  , private 
             this.router.navigateByUrl('trainer/otp')
         }
       },
-      error: (err:any) => {
-        if (err && err.error.message) {
-          this.messageService.add({ severity: 'error', summary: 'Alert', detail: err.error.message });
-        }
-      },
+     
     }); 
   }
 
@@ -107,7 +103,6 @@ constructor(private fb: FormBuilder , private service:trainerService  , private 
   }
 
   ngOnDestroy() {
-    console.log('signuppage destroyued');
     
     if (this.signupSubscription) {
       this.signupSubscription.unsubscribe();

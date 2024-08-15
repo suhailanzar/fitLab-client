@@ -64,7 +64,7 @@ import { TableModule } from 'primeng/table';
       TraineChatComponent,
       CoursedetailsAdminComponent,
       VideoCallTrainerComponent,
-
+ 
 
     ],
     imports: [

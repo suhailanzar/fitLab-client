@@ -1,8 +1,9 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { adminService } from '../../../core/services/module-services/admin.service';
 import { MessageService } from 'primeng/api';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -10,10 +11,11 @@ import { MessageService } from 'primeng/api';
   templateUrl: './addmeal.component.html',
   styleUrl: './addmeal.component.css'
 })
-export class AddmealComponent implements OnInit {
+export class AddmealComponent implements OnInit,OnDestroy {
 
   mealForm!: FormGroup;
   selectedFileName: string | null = null;
+  addMealSubscription!:Subscription
 
   constructor(private fb: FormBuilder , private service:adminService ,  private messageService: MessageService) {}
 
@@ -54,7 +56,7 @@ export class AddmealComponent implements OnInit {
       formData.append('protein', this.mealForm.get('protein')!.value); 
       formData.append('fats', this.mealForm.get('fats')!.value); 
 
-      this.service.addmeal(formData).subscribe({
+      this.addMealSubscription = this.service.addmeal(formData).subscribe({
         next:(res) =>{
           if(res && res.message){
             console.log('res is ',res);
@@ -75,5 +77,13 @@ export class AddmealComponent implements OnInit {
         control?.markAsTouched();
       });
     }
+  }
+
+
+  ngOnDestroy(): void {
+    if(this.addMealSubscription){
+      this.addMealSubscription.unsubscribe();
+    }
+    
   }
 }
