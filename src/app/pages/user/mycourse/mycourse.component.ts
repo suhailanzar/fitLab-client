@@ -23,12 +23,7 @@ export class MycourseComponent implements OnInit, OnDestroy {
     this.fetchPurchasedCourses();
   }
 
-  ngOnDestroy(): void {
-    // Unsubscribe to prevent memory leaks
-    if (this.courseSubscription) {
-      this.courseSubscription.unsubscribe();
-    }
-  }
+
 
   fetchPurchasedCourses(): void {
     this.isLoading = true;
@@ -74,5 +69,12 @@ export class MycourseComponent implements OnInit, OnDestroy {
   closeVideoModal() {
     this.showVideoModal = false;
     this.coursevideo = ""
+  }
+
+  ngOnDestroy(): void {
+    // Unsubscribe to prevent memory leaks
+    if (this.courseSubscription) {
+      this.courseSubscription.unsubscribe();
+    }
   }
 }

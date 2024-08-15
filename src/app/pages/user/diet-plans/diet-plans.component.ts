@@ -27,7 +27,7 @@ export class DietPlansComponent implements OnInit {
   saveMeal:boolean = false;
   visibleSaveMeal:boolean = false;
 
-  saveMealsubscrition!:Subscription
+  saveMealsubscription!:Subscription
   mealForm!: FormGroup;
 
 
@@ -110,7 +110,7 @@ export class DietPlansComponent implements OnInit {
       console.log('entered the meal form valid');
       
       this.visibleSaveMeal = false;    
-      this.saveMealsubscrition = this.userService.saveMeal(this.mealForm.value, this.filteredMeals).subscribe(data => {
+      this.saveMealsubscription = this.userService.saveMeal(this.mealForm.value, this.filteredMeals).subscribe(data => {
         this.filteredMeals = [];
         this.saveMeal = false;
       });
@@ -153,4 +153,9 @@ export class DietPlansComponent implements OnInit {
     return array;
   }
 
+  ngOnDestroy(): void {
+    if(this.saveMealsubscription){
+      this.saveMealsubscription.unsubscribe();
+    }
+  }
 }

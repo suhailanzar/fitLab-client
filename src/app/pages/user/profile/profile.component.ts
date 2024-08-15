@@ -14,7 +14,7 @@ import { User } from '../../../core/models/user';
 export class UserProfileComponent implements OnInit {
   visible: boolean = false;
   form!: FormGroup;
-  private editprofilesub: Subscription | null = null;
+   editprofilesub: Subscription | null = null;
   profile!: User;
   @ViewChild('fileInput') fileInput: ElementRef | undefined;
   imageUrl!: string | undefined
@@ -67,19 +67,7 @@ export class UserProfileComponent implements OnInit {
           this.imageUrl = this.profile.image;           
           this.form.patchValue(this.profile);
           this.cdr.detectChanges(); 
-
-
-          console.log('img',this.profile.image);
           
-        }
-      },
-      error: (err: any) => {
-        if (err && err.error.message) {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Alert',
-            detail: err.error.message,
-          });
         }
       },
     });
@@ -164,15 +152,13 @@ export class UserProfileComponent implements OnInit {
           this.form.patchValue(this.profile);
         }
       },
-      error: (err: any) => {
-        if (err && err.error.message) {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Alert',
-            detail: err.error.message,
-          });
-        }
-      },
+  
     });
+  }
+
+  ngOnDestroy() {
+    if (this.editprofilesub) {
+      this.editprofilesub.unsubscribe();
+    }
   }
 }

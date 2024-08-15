@@ -32,7 +32,6 @@ import { OtpComponent } from '../../pages/user/otp/otp.component';
 import { sharedAppModule } from '../custom_modules/shared.module';
 import { CoursesComponentuser } from '../../pages/user/courses/courses.component';
 import { UserProfileComponent } from '../../pages/user/profile/profile.component';
-import { CartComponent } from '../../pages/user/cart/cart.component';
 import { ReportsComponent } from '../../pages/user/reports/reports.component';
 import { DietPlansComponent } from '../../pages/user/diet-plans/diet-plans.component';
 import { TrainerDetailsComponentUser } from '../../pages/user/trainer-details/trainer-details.component';
@@ -59,7 +58,6 @@ import { VideoCallUserComponent } from '../../pages/user/video-call-user/video-c
         TrainersComponentuser,
         CoursesComponentuser,
         UserProfileComponent,
-        CartComponent,
         DietPlansComponent,
         ReportsComponent,
         TrainerDetailsComponentUser,

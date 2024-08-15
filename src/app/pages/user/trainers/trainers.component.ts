@@ -23,7 +23,7 @@ declare var Razorpay: any;
 
 
 export class TrainersComponentuser {
-  private trainerSubscription: Subscription | null = null;
+  getTrainersSub: Subscription | null = null;
   trainers: Trainer[] = [];
   filteredTrainers: Trainer[] = [];
   searchControl = new FormControl();
@@ -48,7 +48,7 @@ export class TrainersComponentuser {
     this.userData = JSON.parse(userdat);
     
 
-    this.service.getTrainers().subscribe({
+   this.getTrainersSub = this.service.getTrainers().subscribe({
       next: (res => {
         if (res) {
                    
@@ -108,9 +108,6 @@ export class TrainersComponentuser {
         this.results = results;
         this.hasTypedQuery = true;
       },
-      error: error => {
-        console.error('Error fetching search results', error);
-      }
     });
   }
 
@@ -251,7 +248,6 @@ export class TrainersComponentuser {
         trainerid: this.trainer?._id ?? ''
       };
 
-      console.log('payment details are ',paymentData);
       
 
       this.service.bookslot(paymentData).subscribe({
@@ -262,10 +258,6 @@ export class TrainersComponentuser {
           this.ngOnInit()
 
         },
-        error: (error) => {
-          this.messageService.add({ severity: 'error', summary: 'Payment', detail: "Payment Successful but Failed to Save Details" });
-          console.error('Error saving payment details:', error);
-        }
       });
       
     }
@@ -274,7 +266,12 @@ export class TrainersComponentuser {
       this._trainerid = trainerId;      
       this.router.navigate(['/chat',trainerId ]);      
     }
-    
+
+    ngOnDestroy(): void {
+      if (this.getTrainersSub) {
+        this.getTrainersSub.unsubscribe();
+      }
+    }
 
  
 }

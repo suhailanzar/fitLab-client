@@ -26,8 +26,6 @@ export class SignupComponent {
   constructor(private fb: FormBuilder, private service: UserService, private router: Router, private messageService: MessageService) { }
 
   ngOnInit() {
-    console.log('signup page initialized');
-
     this.signupForm = this.fb.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],

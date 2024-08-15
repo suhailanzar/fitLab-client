@@ -4,6 +4,7 @@ import { RZPKEYID } from '../../../../env/environment';
 import { MessageService } from 'primeng/api';
 import { ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 declare var Razorpay: any;
 
@@ -23,6 +24,7 @@ export class SubscriptionComponent implements OnInit {
   selectedSlot: any = {}; 
   trainer: any = {}; 
   visible: boolean = false;
+  subscriptionSub!:Subscription
 
   constructor(
     private subscriptionService: SubscriptionService,
@@ -78,15 +80,15 @@ export class SubscriptionComponent implements OnInit {
 
     console.log('Payment details are', paymentData);
 
-    this.subscriptionService.subscription(paymentData).subscribe({
+   this.subscriptionSub = this.subscriptionService.subscription(paymentData).subscribe({
       next: (result) => {
         this.router.navigateByUrl('/userhome')
         this.messageService.add({ severity: 'success', summary: 'Payment', detail: 'Payment Successful and Saved' });
       },
-      error: (error) => {
-        this.messageService.add({ severity: 'error', summary: 'Payment', detail: 'Payment Successful but Failed to Save Details' });
-        console.error('Error saving payment details:', error);
-      }
+    
     });
+  }
+  ngOnDestroy() {
+    if(this.subscriptionSub) this.subscriptionSub.unsubscribe();
   }
 }

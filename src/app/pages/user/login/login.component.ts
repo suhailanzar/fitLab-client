@@ -52,11 +52,7 @@ export class LoginComponent implements OnInit,OnDestroy {
 
         }
       },
-      error: (err:any) => {
-        if (err && err.error.message) {
-          this.messageService.add({ severity: 'error', summary: 'Alert', detail: err.error.message });
-        }
-      },
+     
     });
   }
   
@@ -70,7 +66,6 @@ export class LoginComponent implements OnInit,OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('signuppage destroyed');
     
     if (this.LoginSubscription) {
       this.LoginSubscription.unsubscribe();

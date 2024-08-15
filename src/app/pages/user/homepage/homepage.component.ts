@@ -51,9 +51,7 @@ export class HomepageComponent  {
     this.startTimer();
   }
 
-  ngOnDestroy() {
-    this.stopTimer();
-  }
+
 
   startTimer() {
     this.timer = setInterval(() => {
@@ -87,5 +85,7 @@ export class HomepageComponent  {
     this.startTimer();
   }
 
- 
+  ngOnDestroy() {
+    this.stopTimer();
+  }
 }

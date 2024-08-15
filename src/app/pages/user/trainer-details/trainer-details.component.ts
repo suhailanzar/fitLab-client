@@ -3,6 +3,7 @@ import { Trainer } from '../../../core/models/trainer';
 import { ActivatedRoute } from '@angular/router';
 import { adminService } from '../../../core/services/module-services/admin.service';
 import { MessageService } from 'primeng/api'
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-trainer-details',
@@ -14,12 +15,14 @@ export class TrainerDetailsComponentUser {
   
   public trainerId: any;
   public trainerDetail?: Trainer;
+  private viewtrainerSub!:Subscription
+  
   constructor(private route: ActivatedRoute, private service:adminService , private messageService:MessageService) {}
 
 
   ngOnInit() {
     this.trainerId = this.route.snapshot.paramMap.get('id');     
-       this.service.viewtrainers(this.trainerId).subscribe({
+     this.viewtrainerSub =  this.service.viewtrainers(this.trainerId).subscribe({
       next:(res=>{
         if(res){
           this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message })
@@ -28,14 +31,14 @@ export class TrainerDetailsComponentUser {
           
 
         }
-      }),error: (err => {
-        if(err && err.message){
-          this.messageService.add({ severity: 'error', summary: 'Alert', detail: err.error.message });
-  
-        }
       })
     })
 
+  }
+
+  ngOnDestroy(): void {
+    // unsubscribe to ensure no memory leaks
+    this.viewtrainerSub.unsubscribe();
   }
   
 }
