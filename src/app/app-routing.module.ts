@@ -44,6 +44,7 @@ import { ReportsComponent } from './pages/user/reports/reports.component';
 import { ReportsAdminComponent } from './pages/admin/reports-admin/reports-admin.component';
 import { UserdetailsComponent } from './pages/admin/userdetails/userdetails.component';
 import { ShowSavedPlansComponent } from './pages/user/show-saved-plans/show-saved-plans.component';
+import { MyReportsComponent } from './pages/user/my-reports/my-reports.component';
 
 
 const routes: Routes = [
@@ -69,6 +70,7 @@ const routes: Routes = [
   {path:"VideoCallUser/:id",component:VideoCallUserComponent,canActivate: [userAuthGuardService]},
   {path:"reports",component:ReportsComponent,canActivate: [userAuthGuardService]},
   {path:"savedDiets",component:ShowSavedPlansComponent,canActivate: [userAuthGuardService]},
+  {path:"myReports",component:MyReportsComponent,canActivate: [userAuthGuardService]},
 
 
   // trainer routes

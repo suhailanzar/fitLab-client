@@ -45,6 +45,7 @@ import { MycourseComponent } from '../../pages/user/mycourse/mycourse.component'
 import { MycourseViewComponent } from '../../pages/user/mycourse-view/mycourse-view.component';
 import { VideoCallUserComponent } from '../../pages/user/video-call-user/video-call-user.component';
 import { ShowSavedPlansComponent } from '../../pages/user/show-saved-plans/show-saved-plans.component';
+import { MyReportsComponent } from '../../pages/user/my-reports/my-reports.component';
 
 
 
@@ -72,6 +73,8 @@ import { ShowSavedPlansComponent } from '../../pages/user/show-saved-plans/show-
         MycourseViewComponent,
         VideoCallUserComponent,
         ShowSavedPlansComponent,
+        MyReportsComponent,
+
 
 
     ],

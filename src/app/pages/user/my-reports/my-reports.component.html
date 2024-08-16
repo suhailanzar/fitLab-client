@@ -1,0 +1,31 @@
+<app-sidebar></app-sidebar>
+
+<div class="container mx-auto p-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div *ngFor="let report of reports" class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="flex items-center justify-between bg-gray-100 p-4">
+          <h3 class="text-md font-semibold text-gray-700">Report ID: {{ report._id }}</h3>
+          <i class="pi pi-file text-gray-500 text-xl"></i>
+        </div>
+        <div class="p-4">
+          <p class="text-gray-800 text-sm mb-2">
+            <i class="pi pi-calendar mr-2 text-blue-500"></i>
+            Date Submitted: {{ report.date | date:'mediumDate' }}
+          </p>
+          <p class="text-md mb-4" [ngClass]="report.isReported ? 'text-green-500' : 'text-red-500'">
+            <i class="pi pi-info-circle mr-2" [ngClass]="report.isReported ? 'text-green-500' : 'text-red-500'"></i>
+            Status: {{ report.isReported ? 'Rectified' : 'Pending' }}
+          </p>
+          
+          <p class="text-gray-600 text-sm">
+           Trainer : {{ report.trainerName }}
+          </p>
+          <p class="text-gray-600 text-xs">
+            {{ report.description | slice:0:100 }}
+          </p>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+  
