@@ -24,6 +24,11 @@ export class ClientsComponent implements OnInit, OnDestroy {
       next:(res =>{
         if(res){
           this.clients = res.clients.map((client: any) => ({
+            id: client._id,
+            place: client.place,
+            age: client.age,
+            gender: client.gender,
+            weight: client.weight,
             name: client.username,
             email: client.email,
             password: client.password,

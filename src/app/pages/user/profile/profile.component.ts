@@ -44,7 +44,7 @@ export class UserProfileComponent implements OnInit {
     console.log('profile initiated');
 
    this.profileSubscription = this.service.getprofile().subscribe({
-      next: (res) => {
+      next: (res:any) => {
         if (res && res.message) {
           console.log('resposne is',res);
           

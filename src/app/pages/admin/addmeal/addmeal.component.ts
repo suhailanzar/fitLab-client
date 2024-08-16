@@ -59,17 +59,11 @@ export class AddmealComponent implements OnInit,OnDestroy {
       this.addMealSubscription = this.service.addmeal(formData).subscribe({
         next:(res) =>{
           if(res && res.message){
-            console.log('res is ',res);
             this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message });
             this.mealForm.reset();
           }
 
         },
-      error: (err:any) => {
-        if (err && err.error.message) {
-          this.messageService.add({ severity: 'error', summary: 'Alert', detail: err.error.message });
-        }
-      },
       })
     } else {
       Object.keys(this.mealForm.controls).forEach(key => {

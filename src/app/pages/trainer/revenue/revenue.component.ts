@@ -30,13 +30,10 @@ export class RevenueComponent {
 
   getRevenueDetails() {
     this.revenueSubcription = this.service.getRevenueData().subscribe({
-      next: (res: any) => {
+      next: (res:any) => {
         if (res && res.revenueData) {
-          console.log('thsi.transactions are ress',res);
-
         
           this.transactions = res.revenueData
-          console.log('thsi.transactions are',this.transactions);
           
           const slotPayments = res.revenueData.filter((payment: { slotId: any; }) => payment.slotId);
           const coursePayments = res.revenueData.filter((payment: { courseId: any; }) => payment.courseId);

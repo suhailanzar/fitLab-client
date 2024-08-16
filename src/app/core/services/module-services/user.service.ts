@@ -5,7 +5,7 @@ import { Injectable } from "@angular/core";
 import { coursePayment, Payment, User } from "../../models/user";
 import { Observable, of } from "rxjs";
 import { environment } from "../../../../env/environment";
-import { reportResponse, reports, saveMealResponse } from "../../../interfaces/IuserService";
+import { completeModule, courseDetailsRes, editProfileRes, getPurchasedCoursesRes, GetTrainersUser, reportResponse, reports, saveMealResponse, userCourseResponse, userLogin, userResponse } from "../../../interfaces/IuserService";
 import { Meal } from "../../models/admin";
 
 const BASE_URL = environment.BASE_URL
@@ -24,17 +24,17 @@ export class UserService {
         private http: HttpClient,
     ) { }
 
-    userSignup(FormData: User): Observable<any> {
+    userSignup(FormData: User): Observable<userResponse> {
 
-        return this.http.post(`${BASE_URL}signup`, FormData)
+        return this.http.post<userResponse>(`${BASE_URL}signup`, FormData)
     }
 
-    userLogin(data: User): Observable<any> {
-        return this.http.post(`${BASE_URL}login`, data)
+    userLogin(data: User): Observable<userLogin> {
+        return this.http.post<userLogin>(`${BASE_URL}login`, data)
     }
 
-    getTrainers(): Observable<any> {
-        return this.http.get<any>(`${BASE_URL}gettrainers`);
+    getTrainers(): Observable<GetTrainersUser> {
+        return this.http.get<GetTrainersUser>(`${BASE_URL}gettrainers`);
     }
 
 
@@ -42,48 +42,45 @@ export class UserService {
         return this.http.get<string[]>(`${BASE_URL}searchtrainers?q=${encodeURIComponent(query)}`);
     }
 
-    bookslot(paymentData: Payment): Observable<any> {
-        return this.http.post(`${BASE_URL}bookslot`, paymentData)
+    bookslot(paymentData: Payment): Observable<userResponse> {
+        return this.http.post<userResponse>(`${BASE_URL}bookslot`, paymentData)
     }
 
-    editprofile(data: FormData): Observable<any> {
+    editprofile(data: FormData): Observable<editProfileRes> {
 
-        return this.http.post(`${BASE_URL}editprofile`, data)
+        return this.http.post<editProfileRes>(`${BASE_URL}editprofile`, data)
     }
 
-    getprofile(): Observable<any> {
-
-        return this.http.get(`${BASE_URL}getprofile`)
+    getprofile(): Observable<editProfileRes> {
+        return this.http.get<editProfileRes>(`${BASE_URL}getprofile`)
     }
 
-    getAllCourses(currentpage: number, limit: number): Observable<any> {
+    getAllCourses(currentpage: number, limit: number): Observable<userCourseResponse> {
 
-        return this.http.get(`${BASE_URL}getCourse`, {
+        return this.http.get<userCourseResponse>(`${BASE_URL}getCourse`, {
             params: {
                 page: currentpage.toString(),
                 limit: limit.toString()
             }
         });
     }
-    getCourseDetails(id: string | null): Observable<any> {
-        return this.http.get(`${BASE_URL}getCourseDetails/${id}`)
+    getCourseDetails(id: string | null): Observable<courseDetailsRes> {
+        return this.http.get<courseDetailsRes>(`${BASE_URL}getCourseDetails/${id}`)
     }
 
 
-    saveCourse(paymentDetails: coursePayment): Observable<any> {
-        console.log('paymetn details are', paymentDetails);
-
-        return this.http.post(`${BASE_URL}saveCourse`, paymentDetails)
+    saveCourse(paymentDetails: coursePayment): Observable<userResponse> {
+        return this.http.post<userResponse>(`${BASE_URL}saveCourse`, paymentDetails)
     }
 
-    getPurchasedCourses(): Observable<any> {
+    getPurchasedCourses(): Observable<getPurchasedCoursesRes> {
 
-        return this.http.get(`${BASE_URL}getPurchasedCourses`)
+        return this.http.get<getPurchasedCoursesRes>(`${BASE_URL}getPurchasedCourses`)
     }
 
-    updateModuleCompletion(moduleId: string, courseId: string | null, completed: boolean): Observable<any> {
+    updateModuleCompletion(moduleId: string, courseId: string | null, completed: boolean): Observable<completeModule> {
 
-        return this.http.put(`${BASE_URL}updateModuleCompletion/${moduleId}/${courseId}`, { completed });
+        return this.http.put<completeModule>(`${BASE_URL}updateModuleCompletion/${moduleId}/${courseId}`, { completed });
 
     }
 

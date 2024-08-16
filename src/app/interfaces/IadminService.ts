@@ -1,4 +1,4 @@
-import { Reports } from "../core/models/admin";
+import { Meal, Reports } from "../core/models/admin";
 import { Trainer } from "../core/models/trainer";
 import { User } from "../core/models/user";
 
@@ -26,4 +26,12 @@ export interface viewTrainer {
 export interface adminLogin {
     message: string,
     token: string
+}
+export interface viewUser {
+    message: string,
+    user: User
+}
+export interface getmealsResponse {
+    message: string,
+    meal: Meal[]
 }

@@ -60,7 +60,7 @@ export class MycourseViewComponent {
   
   fetchPurchasedCourses(): void {
     this.courseSubscription = this.service.getPurchasedCourses().subscribe({
-      next: (res) => {
+      next: (res:any) => {
         const enrolledCourses = res.Enrolled;
 
         const targetCourse = enrolledCourses.find((enrolledCourse: { courseId: string | null; }) => enrolledCourse.courseId === this.courseId);
@@ -107,7 +107,7 @@ export class MycourseViewComponent {
 
 
     this.courseSubscription = this.service.getCourseDetails(this.courseId).subscribe({
-      next: (res) => {
+      next: (res:any) => {
 
 
         

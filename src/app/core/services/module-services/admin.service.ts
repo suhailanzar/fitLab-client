@@ -4,7 +4,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { environment } from "../../../../env/environment";
-import { adminLogin, GetTrainers, reports, response, userResponse, viewTrainer } from "../../../interfaces/IadminService";
+import { adminLogin, getmealsResponse, GetTrainers, reports, response, userResponse, viewTrainer, viewUser } from "../../../interfaces/IadminService";
 import { adminApi } from "../../constant/apiEndPoints";
 
 const BASE_URL = environment.BASE_URL
@@ -62,21 +62,20 @@ export class adminService {
        const trainers =  this.http.get<viewTrainer>(`${BASE_URL}${adminApi}/viewtrainer/${id}`)
        return trainers
     }
-    viewUser(id:string): Observable<any> {
+    viewUser(id:string): Observable<viewUser> {
 
-       const trainers =  this.http.get(`${BASE_URL}${adminApi}/viewUser/${id}`)
+       const trainers =  this.http.get<viewUser>(`${BASE_URL}${adminApi}/viewUser/${id}`)
        return trainers
     }
 
-    addmeal(data:FormData): Observable<any> {
-        data.forEach((value, key) => {
-            console.log(`${key}: ${value}`);
-        });
-        return  this.http.post(`${BASE_URL}${adminApi}/addmeal`,data)   
+    addmeal(data:FormData): Observable<response> {
+       console.log('enterd the add meal servic ', data);
+       
+        return  this.http.post<response>(`${BASE_URL}${adminApi}/addmeal`,data)   
     }
 
-    getMeals(): Observable<any> {
-        return this.http.get(`${BASE_URL}${adminApi}/getMeals`)
+    getMeals(): Observable<getmealsResponse> {
+        return this.http.get<getmealsResponse>(`${BASE_URL}${adminApi}/getMeals`)
     }
 
     getReports(): Observable<reports> {

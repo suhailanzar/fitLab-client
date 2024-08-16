@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { UserService } from '../../../core/services/module-services/user.service';
+import { ICourse } from '../../../core/models/trainer';
 
 @Component({
   selector: 'app-mycourse',
@@ -28,7 +29,7 @@ export class MycourseComponent implements OnInit, OnDestroy {
   fetchPurchasedCourses(): void {
     this.isLoading = true;
     this.courseSubscription = this.service.getPurchasedCourses().subscribe({
-      next: (res) => {
+      next: (res:any) => {
         this.purchasedCourses = res.Courses;
         console.log('this.purchased ourse is',res);
         

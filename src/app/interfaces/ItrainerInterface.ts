@@ -1,30 +1,64 @@
 import { Reports } from "../core/models/admin";
-import { Trainer } from "../core/models/trainer";
+import { ICourse, Slot, Trainer, Transaction } from "../core/models/trainer";
 import { User } from "../core/models/user";
 
 export interface reports {
     message: string,
     reports: Reports[]
 }
-export interface response {
+export interface trainerResponse {
     message: string,
 }
 
-export interface userResponse {
+export interface getClientsResponse {
     message: string,
-    users: User[]
+    clients: User[]
 }
 
-export interface GetTrainers {
-    message: string,
-    trainers: Trainer[]
-}
 
 export interface viewTrainer {
     message: string,
     trainer: Trainer
 }
-export interface adminLogin {
+export interface trainerLogin {
     message: string,
-    token: string
+    token: string,
+    Trainerdata:Trainer
 }
+export interface trainerEditProfile{
+    message: string,
+    updatedProfile:Trainer
+}
+export interface trainerProfile{
+    message: string,
+    Details:Trainer
+}
+export interface trainerProfile{
+    message: string,
+    Details:Trainer
+}
+export interface addSlot{
+    message: string,
+    addedslot:Slot
+}
+export interface getSlot {
+    message: string;
+    Details: {
+      availableslots: Slot[];
+    };
+  }
+  
+export interface getBookingsResponse {
+    message: string;
+  }
+
+export interface trainerCourseResponse {
+    message: string;
+    availableCourses:ICourse[]
+  }
+  
+export interface trainerTransactionResponse {
+    message: string;
+    revenueData:Transaction
+  }
+  

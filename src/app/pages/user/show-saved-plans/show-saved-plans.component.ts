@@ -26,7 +26,7 @@ export class ShowSavedPlansComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.profileSubscription = this.service.getprofile().subscribe({
-      next: (res) => {
+      next: (res:any) => {
         if (res && res.message) {
           console.log('response is', res);
           
